@@ -4,6 +4,7 @@ import logo from "./assets/stellar-xlm-logo.svg";
 import Input from "./commons/Input";
 import Button from "./commons/Button";
 import { useState } from "react";
+import Register from "./components/Register";
 
 export default function Home() {
   const [secret, setSecret] = useState<string | null>(null);
@@ -32,7 +33,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col justify-center m-5 px-5 ">
-          {!secret && (
+          {secret && (
             <div className="flex flex-col justify-center px-5 ">
               <Input
                 label="Secret key"
@@ -67,7 +68,10 @@ export default function Home() {
           )}
           {!secret && (
             <div className="flex flex-col justify-center m-5 px-5">
-              <Button> Generate key pair for a new account</Button>
+              <div className="flex flex-col justify-center m-5">
+                <Button fullWidth>Confirm wallet</Button>
+              </div>
+              <Register setSecret={setSecret} setPublicKey={setPublicKey} />
             </div>
           )}
         </div>
