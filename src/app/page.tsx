@@ -2,6 +2,7 @@
 import Image from "next/image";
 import logo from "./assets/stellar-xlm-logo.svg";
 import Input from "./commons/Input";
+import Button from "./commons/Button";
 import { useState } from "react";
 
 export default function Home() {
@@ -30,9 +31,9 @@ export default function Home() {
           Sign in methods
         </p>
 
-        <div className="flex flex-col justify-center m-5">
+        <div className="flex flex-col justify-center m-5 px-5 ">
           {!secret && (
-            <div className="flex flex-col justify-center px-5">
+            <div className="flex flex-col justify-center px-5 ">
               <Input
                 label="Secret key"
                 value={secret}
@@ -46,28 +47,29 @@ export default function Home() {
                 required={true}
               />
               <div className="flex flex-col justify-center m-5">
-                <button className="flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-green-500 hover:bg-green-600 focus-visible:outline-rose-600 text-white">
+                <Button secondary fullWidth>
                   Confirm wallet
-                </button>
+                </Button>
               </div>
               <div className="flex flex-col justify-center m-5">
-                <button
+                <Button
                   onClick={() => {
-                    setSecret(null);
                     setPublicKey(null);
+                    setSecret(null);
                   }}
-                  className="flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-red-500 hover:bg-green-600 focus-visible:outline-rose-600 text-white"
+                  fullWidth
+                  danger
                 >
                   Go back
-                </button>
+                </Button>
               </div>
             </div>
           )}
-        </div>
-        <div className="flex flex-col justify-center m-5">
-          <button className="flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-green-500 hover:bg-green-600 focus-visible:outline-rose-600 text-white">
-            Generate key pair for a new account
-          </button>
+          {!secret && (
+            <div className="flex flex-col justify-center m-5 px-5">
+              <Button> Generate key pair for a new account</Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
