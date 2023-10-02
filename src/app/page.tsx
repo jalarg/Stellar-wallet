@@ -1,8 +1,13 @@
 "use client";
 import Image from "next/image";
 import logo from "./assets/stellar-xlm-logo.svg";
+import Input from "./commons/Input";
+import { useState } from "react";
 
 export default function Home() {
+  const [secret, setSecret] = useState<string | null>(null);
+  const [publicKey, setPublicKey] = useState<string | null>(null);
+
   return (
     <div className="relative h-[100vh]">
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
@@ -24,10 +29,40 @@ export default function Home() {
         <p className="mb-8 text-center text-xl font-bold tracking-tight text-gray-800">
           Sign in methods
         </p>
+
         <div className="flex flex-col justify-center m-5">
-          <button className="flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-blue-500 hover:bg-blue-600 focus-visible:outline-rose-600 text-white">
-            Connect with your wallet
-          </button>
+          {!secret && (
+            <div className="flex flex-col justify-center px-5">
+              <Input
+                label="Secret key"
+                value={secret}
+                readOnly={true}
+                required={true}
+              />
+              <Input
+                label="Public key"
+                value={publicKey}
+                readOnly={true}
+                required={true}
+              />
+              <div className="flex flex-col justify-center m-5">
+                <button className="flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-green-500 hover:bg-green-600 focus-visible:outline-rose-600 text-white">
+                  Confirm wallet
+                </button>
+              </div>
+              <div className="flex flex-col justify-center m-5">
+                <button
+                  onClick={() => {
+                    setSecret(null);
+                    setPublicKey(null);
+                  }}
+                  className="flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-red-500 hover:bg-green-600 focus-visible:outline-rose-600 text-white"
+                >
+                  Go back
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <div className="flex flex-col justify-center m-5">
           <button className="flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-green-500 hover:bg-green-600 focus-visible:outline-rose-600 text-white">

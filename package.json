@@ -11,12 +11,14 @@
   "dependencies": {
     "next": "latest",
     "react": "latest",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "latest",
     "stellar-sdk": "^10.4.1"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
+    "@types/react-copy-to-clipboard": "^5.0.5",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",
