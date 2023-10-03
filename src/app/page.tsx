@@ -5,6 +5,7 @@ import Input from "./commons/Input";
 import Button from "./commons/Button";
 import { useState } from "react";
 import Register from "./components/Register";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   const [secret, setSecret] = useState<string | null>(null);
@@ -12,6 +13,7 @@ export default function Home() {
 
   return (
     <div className="relative h-[100vh]">
+      <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
         <Image
           src={logo}
