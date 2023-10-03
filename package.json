@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "antd": "^5.9.4",
     "next": "latest",
     "react": "latest",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "latest",
+    "react-icons": "^4.11.0",
     "stellar-sdk": "^10.4.1"
   },
   "devDependencies": {
