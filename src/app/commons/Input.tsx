@@ -28,9 +28,13 @@ const Input: React.FC<InputProps> = ({
           />
           <CopyToClipboard
             text={value || ""}
-            onCopy={() => alert("Texto copiado al portapapeles")}
+            onCopy={() => alert("Text copied to the clipboard")}
           >
-            <Image src={copy} alt="copy" className="m-3 w-4 h-4 cursor-pointer" />
+            <Image
+              src={copy}
+              alt="copy"
+              className="m-3 w-4 h-4 cursor-pointer"
+            />
           </CopyToClipboard>
         </div>
       </div>
