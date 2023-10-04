@@ -1,5 +1,5 @@
-import { InputProps } from "../types/types";
-import copy from "../assets/copy-icon.svg";
+import { InputProps } from "../../types/types";
+import copy from "../../assets/copy-icon.svg";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Image from "next/image";
 

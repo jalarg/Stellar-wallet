@@ -1,4 +1,4 @@
-import Button from "../commons/Button";
+import Button from "../components/commons/Button";
 import { ISetKeyPair } from "../types/types";
 import registerHandler from "../actions/registerHandler";
 
