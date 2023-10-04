@@ -71,7 +71,9 @@ export default function Page() {
           {!secret && (
             <div className="flex flex-col justify-center m-5 px-5">
               <div className="flex flex-col justify-center m-5">
-                <Button fullWidth>Confirm wallet</Button>
+                <Button cy-data="connect" fullWidth>
+                  Connect with a secret key
+                </Button>
               </div>
               <Register setSecret={setSecret} setPublicKey={setPublicKey} />
             </div>
