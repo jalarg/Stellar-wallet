@@ -1,8 +1,8 @@
-const ProjectURL = Cypress.env("BASE_URL");
+const projectUrl = Cypress.env("BASE_URL");
 
 describe("Navigation", () => {
   it("Go to the website:", () => {
-    console.log(ProjectURL, "ProjectURL")
-    cy.visit(ProjectURL);
+    console.log(projectUrl, "ProjectURL");
+    cy.visit(projectUrl);
   });
 });
