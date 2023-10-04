@@ -9,9 +9,7 @@ import { FiSun } from "react-icons/fi";
 const Navbar = () => {
   const [theme, setTheme] = useState<string | "light">("dark");
 
-  const handleChangeTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
+const handleChangeTheme = () => setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 
   return (
     <nav className="bg-white p-4">
