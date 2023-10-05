@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../assets/github.svg";
+import { PiCopyrightBold } from "react-icons/pi";
 
 const Footer = () => {
   return (
@@ -14,6 +15,26 @@ const Footer = () => {
           >
             <Image src={logo} alt="github" width={50} height={50} />
           </Link>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-y-2 lg:gap-x-10 lg:gap-y-0 text-center lg:text-left ">
+          <Link
+            data-cy="footer-termsofservice"
+            href="https://stellar.org/terms-of-service"
+          >
+            <p className="hover:font-bold">Terms and Services</p>
+          </Link>
+          <Link
+            data-cy="footer-privacyterms"
+            href="https://stellar.org/privacy-policy"
+          >
+            <p className="hover:font-bold">Privacy Policy</p>
+          </Link>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-y-2 lg:gap-x-10 lg:gap-y-0 text-center lg:text-left">
+          <div className="flex items-center gap-x-2 lg:gap-x-10">
+            <PiCopyrightBold className="hover:text-green-500 text-2xl" />
+            <p data-cy="footer-copyright">Rocket wallet 2023</p>
+          </div>
         </div>
       </div>
     </footer>
