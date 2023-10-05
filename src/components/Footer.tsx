@@ -18,22 +18,26 @@ const Footer = () => {
         </div>
         <div className="flex flex-col lg:flex-row gap-y-2 lg:gap-x-10 lg:gap-y-0 text-center lg:text-left ">
           <Link
-            data-cy="footer-termsofservice"
-            href="https://stellar.org/terms-of-service"
+            className="footer-terms-service-url"
+            href="https://www.stellar.org/terms-of-service"
           >
-            <p className="hover:font-bold">Terms and Services</p>
+            <p className="footer-terms-service-text hover:font-bold">
+              Terms and Services
+            </p>
           </Link>
           <Link
-            data-cy="footer-privacyterms"
-            href="https://stellar.org/privacy-policy"
+            className="privacy-policy-url"
+            href="https://www.stellar.org/privacy-policy"
           >
-            <p className="hover:font-bold">Privacy Policy</p>
+            <p className="privacy-policy-text hover:font-bold">
+              Privacy Policy
+            </p>
           </Link>
         </div>
         <div className="flex flex-col lg:flex-row gap-y-2 lg:gap-x-10 lg:gap-y-0 text-center lg:text-left">
           <div className="flex items-center gap-x-2 lg:gap-x-10">
-            <PiCopyrightBold className="hover:text-green-500 text-2xl" />
-            <p data-cy="footer-copyright">Rocket wallet 2023</p>
+            <PiCopyrightBold className="footer-copyright-icon hover:text-green-500 text-2xl" />
+            <p className="footer-copyright-text">Rocket wallet 2023</p>
           </div>
         </div>
       </div>
