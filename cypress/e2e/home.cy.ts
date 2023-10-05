@@ -1,4 +1,4 @@
-import { projectUrl, stellarIconUrl } from "../support/constants";
+import { projectUrl, stellarUrl } from "../support/constants";
 
 beforeEach(() => {
   cy.visit(projectUrl);
@@ -60,7 +60,7 @@ describe(" Navbar: UI and functionality:", () => {
     cy.get('[data-cy="navbar-container"]').should("exist").and("be.visible");
     cy.get('[data-cy="stellar-icon"]')
       .should("be.visible")
-      .and("have.attr", "href", stellarIconUrl);
+      .and("have.attr", "href", stellarUrl);
   });
 
   it("Should the theme icon exist and have the toggle theme functionality", () => {
