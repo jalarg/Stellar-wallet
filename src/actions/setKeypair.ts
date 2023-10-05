@@ -1,7 +1,6 @@
 import { Keypair } from "stellar-sdk";
 import { ISetKeyPair } from "../types/types";
 
-
 export interface SetKeypairProps extends ISetKeyPair {
   pair?: Keypair | undefined;
 }

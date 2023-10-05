@@ -1,4 +1,4 @@
-import Button from "../commons/Button";
+import Button from "../components/commons/Button";
 import { ISetKeyPair } from "../types/types";
 import registerHandler from "../actions/registerHandler";
 
@@ -6,6 +6,7 @@ const Register = ({ setSecret, setPublicKey }: ISetKeyPair) => {
   return (
     <div className="flex justify-center m-5">
       <Button
+        buttonClass="button-register"
         secondary
         fullWidth
         onClick={() => registerHandler({ setSecret, setPublicKey })}

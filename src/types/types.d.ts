@@ -16,6 +16,7 @@ export interface ButtonProps {
   secondary?: boolean;
   danger?: boolean;
   disabled?: boolean;
+  buttonClass?: string;
 }
 
 export interface ISetKeyPair {
