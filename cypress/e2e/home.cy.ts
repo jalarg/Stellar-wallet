@@ -1,4 +1,4 @@
-import { projectUrl, stellarUrl } from "../support/constants";
+import { projectUrl, stellarUrl, githubUrl } from "../support/constants";
 
 beforeEach(() => {
   cy.visit(projectUrl);
@@ -75,5 +75,10 @@ describe(" Navbar: UI and functionality:", () => {
     cy.get("@themeButtonLight").click().should("not.exist");
     cy.get(".theme-button-dark").should("exist");
     cy.get("@themeButtonLight").should("not.exist");
+  });
+});
+describe(" Footer: UI and functionality:", () => {
+  it("Should the footer container be visible", () => {
+    cy.get(".footer-container").should("exist").and("be.visible");
   });
 });
