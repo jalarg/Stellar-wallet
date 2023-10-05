@@ -1,4 +1,4 @@
-import { projectUrl } from "../support/constants";
+import { projectUrl, stellarIconUrl } from "../support/constants";
 
 beforeEach(() => {
   cy.visit(projectUrl);
@@ -44,5 +44,24 @@ describe("Home: UI and functionality:", () => {
     cy.get('[data-cy="go-back"]').should("exist");
     cy.get('[data-cy="confirm-wallet"]').should("have.text", "Confirm wallet");
     cy.get('[data-cy="go-back"]').should("have.text", "Go back");
+  });
+});
+
+describe(" Navbar: UI and functionality:", () => {
+  it("Check Stellar Icon functionality", () => {
+    // cy.visit(projectUrl);
+    cy.get('[data-cy="navbar-container"]').should("exist").and("be.visible");
+    cy.get('[data-cy="stellar-icon"]')
+      .should("be.visible")
+      .and("have.attr", "href", stellarIconUrl);
+  });
+
+  it("Check theme functionality", () => {
+    // cy.visit(projectUrl);
+    cy.get('[data-cy="theme-button-light"]').should("exist");
+    cy.get('[data-cy="theme-button-dark"]').should("not.exist");
+    cy.get('[data-cy="theme-button-light"]').click();
+    cy.get('[data-cy="theme-button-light"]').should("not.exist");
+    cy.get('[data-cy="theme-button-dark"]').should("exist");
   });
 });
