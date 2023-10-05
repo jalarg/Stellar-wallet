@@ -6,7 +6,7 @@ const Register = ({ setSecret, setPublicKey }: ISetKeyPair) => {
   return (
     <div className="flex justify-center m-5">
       <Button
-        cypressId="register"
+        buttonClass="button-register"
         secondary
         fullWidth
         onClick={() => registerHandler({ setSecret, setPublicKey })}

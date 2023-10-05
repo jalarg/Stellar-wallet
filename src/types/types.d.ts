@@ -6,7 +6,6 @@ export interface InputProps {
   placeholder?: string;
   required?: boolean;
   readOnly?: boolean;
-  cypressId?: string;
 }
 
 export interface ButtonProps {
@@ -17,7 +16,7 @@ export interface ButtonProps {
   secondary?: boolean;
   danger?: boolean;
   disabled?: boolean;
-  cypressId?: string;
+  buttonClass?: string;
 }
 
 export interface ISetKeyPair {

@@ -10,7 +10,6 @@ const Input: React.FC<InputProps> = ({
   required,
   disabled,
   readOnly,
-  cypressId,
 }) => {
   return (
     <div>
@@ -20,13 +19,22 @@ const Input: React.FC<InputProps> = ({
         </label>
         <div className="flex">
           <input
-            data-cy={cypressId}
             placeholder={placeholder}
             disabled={disabled}
             value={value || ""}
             readOnly={readOnly}
             required={required}
-            className={`rounded-md px-3 py-2 font-semibold w-full text-gray-800 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6`}
+            className={`
+            rounded-md px-3 py-2 font-semibold w-full text-gray-800 focus:ring-2 
+            focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6 
+            ${
+              label === "Secret key"
+                ? "input-private-key"
+                : label === "Public key"
+                ? "input-public-key"
+                : ""
+            }
+            `}
           />
           <CopyToClipboard
             text={value || ""}

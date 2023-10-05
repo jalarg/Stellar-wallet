@@ -13,10 +13,10 @@ const Navbar = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 
   return (
-    <nav className="bg-white p-4" data-cy="navbar-container">
+    <nav className="navbar-container bg-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">
-          <Link data-cy="stellar-icon" href="https://stellar.org/">
+          <Link className="stellar-icon" href="https://stellar.org/">
             <Image src={logo} alt="logo" width={120} height={120} />
           </Link>
         </div>
@@ -24,14 +24,12 @@ const Navbar = () => {
           <Avatar
             icon={
               theme === "light" ? (
-                <FiSun
-                  data-cy={`theme-button-${theme}`}
-                  className="text-3xl m-[6px] text-yellow-500 transition-colors hover:text-yellow-200"
+                <FiSun    
+                  className={`theme-button-${theme} text-3xl m-[6px] text-yellow-500 transition-colors hover:text-yellow-200`}
                 />
               ) : (
                 <FaRegMoon
-                  data-cy={`theme-button-${theme}`}
-                  className="text-3xl m-[6px] text-blue-500 transition-colors hover:text-blue-200"
+                  className={`theme-button-${theme} text-3xl m-[6px] text-blue-500 transition-colors hover:text-blue-200`}
                 />
               )
             }
