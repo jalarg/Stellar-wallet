@@ -8,6 +8,7 @@ const Button: React.FC<ButtonProps> = ({
   secondary,
   danger,
   disabled,
+  cypressId,
 }) => {
   const buttonClasses =
     "flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" +
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      data-cy={cypressId}
       onClick={onClick}
       type={type}
       disabled={disabled}

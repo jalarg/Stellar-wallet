@@ -10,6 +10,7 @@ const Input: React.FC<InputProps> = ({
   required,
   disabled,
   readOnly,
+  cypressId,
 }) => {
   return (
     <div>
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = ({
         </label>
         <div className="flex">
           <input
+            data-cy={cypressId}
             placeholder={placeholder}
             disabled={disabled}
             value={value || ""}
