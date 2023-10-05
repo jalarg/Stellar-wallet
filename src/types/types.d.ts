@@ -28,3 +28,13 @@ export interface Ikeypair {
   publicKey: string;
   privateKey: string;
 }
+
+export interface Imodal {
+  isOpen?: boolean;
+  onClose: () => void;
+  data: {
+    title: string;
+    subtitle: string;
+    list: string[];
+  };
+}
