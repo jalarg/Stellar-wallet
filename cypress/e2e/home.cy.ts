@@ -81,4 +81,10 @@ describe(" Footer: UI and functionality:", () => {
   it("Should the footer container be visible", () => {
     cy.get(".footer-container").should("exist").and("be.visible");
   });
+
+  it("Should the github logo be visible and have a href", () => {
+    cy.get(".github-icon")
+      .should("be.visible")
+      .and("have.attr", "href", githubUrl);
+  });
 });
