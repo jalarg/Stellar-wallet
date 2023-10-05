@@ -16,6 +16,7 @@ export default function Page() {
       <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
         <Image
+          data-cy="stellar-home-logo"
           src={logo}
           width={100}
           height={100}
@@ -24,13 +25,22 @@ export default function Page() {
         />
       </div>
       <div className="border-2 rounded-[25px] my-6 mx-auto w-[90%] sm:max-w-lg h-900px] z-30 bg-gray-100 p-3 flex flex-col">
-        <h1 className="mb-8 text-center text-3xl font-bold tracking-tight text-gray-800">
+        <h1
+          data-cy="rocket-title"
+          className="mb-8 text-center text-3xl font-bold tracking-tight text-gray-800"
+        >
           Rocket
         </h1>
-        <p className="mb-8 text-center text-xl font-bold tracking-tight text-gray-800">
+        <p
+          data-cy="rocket-description-1"
+          className="mb-8 text-center text-xl font-bold tracking-tight text-gray-800"
+        >
           The easiest way to connect with a wallet
         </p>
-        <p className="mb-8 text-center text-xl font-bold tracking-tight text-gray-800">
+        <p
+          data-cy="rocket-description-2"
+          className="mb-8 text-center text-xl font-bold tracking-tight text-gray-800"
+        >
           Sign in methods
         </p>
 
@@ -38,24 +48,27 @@ export default function Page() {
           {secret && (
             <div className="flex flex-col justify-center px-5 ">
               <Input
+                cypressId="private-key"
                 label="Secret key"
                 value={secret}
                 readOnly={true}
                 required={true}
               />
               <Input
+                cypressId="public-key"
                 label="Public key"
                 value={publicKey}
                 readOnly={true}
                 required={true}
               />
               <div className="flex flex-col justify-center m-5">
-                <Button secondary fullWidth>
+                <Button cypressId="confirm-wallet" secondary fullWidth>
                   Confirm wallet
                 </Button>
               </div>
               <div className="flex flex-col justify-center m-5">
                 <Button
+                  cypressId="go-back"
                   onClick={() => {
                     setPublicKey(null);
                     setSecret(null);
@@ -71,7 +84,7 @@ export default function Page() {
           {!secret && (
             <div className="flex flex-col justify-center m-5 px-5">
               <div className="flex flex-col justify-center m-5">
-                <Button cy-data="connect" fullWidth>
+                <Button cypressId="connect" fullWidth>
                   Connect with a secret key
                 </Button>
               </div>
