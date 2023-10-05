@@ -5,6 +5,18 @@ beforeEach(() => {
 });
 
 describe("Home: UI and functionality:", () => {
+  beforeEach(() => {
+    cy.get(".button-register").as("registerButton");
+    cy.get(".button-connect").as("connectButton");
+    cy.get("@registerButton").click();
+    cy.get(".input-private-key").as("privateKeyInput");
+    cy.get(".input-public-key").as("publicKeyInput");
+    cy.get(".button-confirm-wallet").as("confirmWalletButton");
+    cy.get(".button-go-back").as("goBackButton");
+    cy.get(".theme-button-light").as("themeButtonLight");
+    cy.get("@goBackButton").click();
+  });
+
   it("Should the Stellar logo be visible", () => {
     cy.get(".stellar-home-logo").should("be.visible");
   });
@@ -20,7 +32,6 @@ describe("Home: UI and functionality:", () => {
   });
 
   it("Should show a button to generate connect", () => {
-    cy.get(".button-connect").as("connectButton");
     cy.get("@connectButton")
       .should("exist")
       .should("be.visible")
@@ -28,15 +39,10 @@ describe("Home: UI and functionality:", () => {
   });
 
   it("Should show a button to generate a pair of new keys and should  have create public and private key functionality", () => {
-    cy.get(".button-register").as("registerButton");
     cy.get("@registerButton")
       .should("exist")
       .and("have.text", "Generate key pair for a new account");
     cy.get("@registerButton").click();
-    cy.get(".input-private-key").as("privateKeyInput");
-    cy.get(".input-public-key").as("publicKeyInput");
-    cy.get(".button-confirm-wallet").as("confirmWalletButton");
-    cy.get(".button-go-back").as("goBackButton");
     cy.get("@publicKeyInput").should("exist");
     cy.get("@privateKeyInput").should("exist");
     cy.get("@confirmWalletButton").should("exist");
@@ -49,6 +55,9 @@ describe("Home: UI and functionality:", () => {
   });
 });
 describe(" Navbar: UI and functionality:", () => {
+  beforeEach(() => {
+    cy.get(".theme-button-light").as("themeButtonLight");
+  });
   it("Should the navbar container be visible", () => {
     cy.get(".navbar-container").should("exist").and("be.visible");
   });
@@ -61,7 +70,6 @@ describe(" Navbar: UI and functionality:", () => {
   });
 
   it("Should the theme icon exist and have the toggle theme functionality", () => {
-    cy.get(".theme-button-light").as("themeButtonLight");
     cy.get("@themeButtonLight").should("exist");
     cy.get(".theme-button-dark").should("not.exist");
     cy.get("@themeButtonLight").click().should("not.exist");
