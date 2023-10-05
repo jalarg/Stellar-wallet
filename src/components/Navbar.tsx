@@ -5,17 +5,12 @@ import logo from "../assets/stellar-xlm-logo-full.svg";
 import { Avatar } from "antd";
 import { FaRegMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
-import { useEffect } from "react";
 
 const Navbar = () => {
   const [theme, setTheme] = useState<string>("light");
 
   const handleChangeTheme = () =>
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
 
   return (
     <nav className="bg-white p-4" data-cy="navbar-container">
