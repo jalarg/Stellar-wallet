@@ -77,7 +77,7 @@ describe(" Navbar: UI and functionality:", () => {
     cy.get("@themeButtonLight").should("not.exist");
   });
 });
-describe(" Registration Modals: UI and functionality:", () => {
+describe(" Registration Modal Step1: UI and functionality:", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get("@registerButton").click();
@@ -124,5 +124,86 @@ describe(" Registration Modals: UI and functionality:", () => {
       .and("have.text", "Continue")
       .click();
     cy.get(".modal-container-confirmWallet").should("exist");
+  });
+});
+describe(" Registration Modal Step2: UI and functionality:", () => {
+  beforeEach(() => {
+    cy.get(".button-register").as("registerButton");
+    cy.get("@registerButton").click();
+    cy.get(".button-modal-generateKeyPair").as("generateKeyPairButton");
+    cy.get("@generateKeyPairButton").click();
+
+    cy.get(".button-modal-confirmWallet").as("confirmWalletButton");
+    cy.get(".button-modal-confirmWallet-cancel").as("cancelButton");
+    cy.get(".modal-checkbox-confirmWallet").as("checkboxConfirmWallet");
+  });
+
+  it("Should the modal container be visible", () => {
+    cy.get(".modal-container-confirmWallet").should("exist").and("be.visible");
+  });
+
+  it("Should the title and paragraphs be visible and contain the text description", () => {
+    cy.get(".modal-title-confirmWallet")
+      .should("be.visible")
+      .and("contain", "Generate a new keypair");
+    cy.get(".modal-subtitle-confirmWallet")
+      .should("be.visible")
+      .and("contain", "ATTENTION:");
+    cy.get(".modal-paragraphs-confirmWallet-1")
+      .should("be.visible")
+      .and(
+        "contain",
+        "It is very important to save your secret key and store it somewhere safe."
+      );
+    cy.get(".modal-paragraphs-confirmWallet-2")
+      .should("be.visible")
+      .and(
+        "contain",
+        "If you lose it, you will lose access to your account. No one in the known universe will be able to help you get back in."
+      );
+    cy.get(".modal-paragraphs-confirmWallet-3")
+      .should("be.visible")
+      .and(
+        "contain",
+        "SDF does not store a copy of your keys and cannot help you recover lost keys."
+      );
+    cy.get(".modal-paragraphs-confirmWallet-4")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Anyone who knows your secret key has access to your funds."
+      );
+    cy.get(".modal-paragraphs-confirmWallet-5")
+      .should("be.visible")
+      .and(
+        "contain",
+        "You have several options: Write your key down on a piece of paper. Keep it in a safe. Store it in a password manager. Use a hardware wallet. But don't ever keep it unencrypted on your computer or in your email."
+      );
+
+    cy.get(".modal-paragraphs-confirmWallet-6")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Note: Connecting by entering a secret key may be deprecated in a future version of the Account Viewer."
+      );
+  });
+
+  it("Should show a checkbox", () => {
+    cy.get(".modal-checkbox-confirmWallet").should("exist");
+  });
+
+  it("Should show a button cancel and perform an action", () => {
+    cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
+    cy.get(".modal-container-generateKeyPair").should("be.hidden");
+  });
+
+  it("Should show a button to continue and perform an action", () => {
+    cy.get("@checkboxConfirmWallet").click();
+    cy.get(".modal-checkbox-confirmWallet").should("exist");
+    cy.get("@confirmWalletButton")
+      .should("exist")
+      .and("have.text", "Confirm")
+      .click();
+    cy.get(".modal-container-confirmWallet").should("not.exist");
   });
 });
