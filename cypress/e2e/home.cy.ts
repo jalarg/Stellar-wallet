@@ -1,4 +1,10 @@
-import { projectUrl, stellarUrl } from "../support/constants";
+import {
+  projectUrl,
+  stellarUrl,
+  githubUrl,
+  termsOfServiceUrl,
+  privacyPolicyUrl,
+} from "../support/constants";
 
 beforeEach(() => {
   cy.visit(projectUrl);
@@ -75,5 +81,44 @@ describe(" Navbar: UI and functionality:", () => {
     cy.get("@themeButtonLight").click().should("not.exist");
     cy.get(".theme-button-dark").should("exist");
     cy.get("@themeButtonLight").should("not.exist");
+  });
+});
+describe(" Footer: UI and functionality:", () => {
+  it("Should the footer container be visible", () => {
+    cy.get(".footer-container").should("exist").and("be.visible");
+  });
+
+  it("Should the github logo be visible and have the correct url", () => {
+    cy.get(".github-icon")
+      .should("be.visible")
+      .and("have.attr", "href", githubUrl);
+  });
+
+  it("Should the terms and services and have the correct url", () => {
+    cy.get(".footer-terms-service-url")
+      .should("be.visible")
+      .and("have.attr", "href", termsOfServiceUrl);
+
+    cy.get(".footer-terms-service-text")
+      .should("be.visible")
+      .contains("Terms and Services");
+  });
+
+  it("Should the privacy policy be visible, have specific text and have the correct url", () => {
+    cy.get(".privacy-policy-url")
+      .should("be.visible")
+      .and("have.attr", "href", privacyPolicyUrl);
+
+    cy.get(".privacy-policy-text")
+      .should("be.visible")
+      .contains("Privacy Policy");
+  });
+
+  it("Should have a copyright icon and have an specific text", () => {
+    cy.get(".footer-copyright-icon").should("be.visible");
+
+    cy.get(".footer-copyright-text")
+      .should("be.visible")
+      .contains("Rocket wallet 2023");
   });
 });
