@@ -37,4 +37,6 @@ export interface Imodal {
     subtitle: string;
     list: string[];
   };
+  label: string;
+  setIsActiveModal: (isActive: string) => void;
 }
