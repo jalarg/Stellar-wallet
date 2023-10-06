@@ -6,16 +6,48 @@ import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
 import Navbar from "../components/Navbar";
+import CustomModal from "@/components/commons/CustomModal";
+import {
+  generateKeyPairDataStep1,
+  generateKeyPairDataStep2,
+} from "./../data/modals";
 
 export default function Page() {
   const [secret, setSecret] = useState<string | null>(null);
   const [publicKey, setPublicKey] = useState<string | null>(null);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  const openModal = (modalName: string) => {
+    setActiveModal(modalName);
+  };
+
+  const closeModal = () => {
+    setActiveModal(null);
+    if (secret && publicKey) {
+      setPublicKey(null);
+      setSecret(null);
+    }
+  };
 
   return (
     <div className="relative h-[100vh]">
+      <CustomModal
+        label="generateKeyPair"
+        isOpen={activeModal === "generateKeyPair"}
+        onClose={closeModal}
+        data={generateKeyPairDataStep1}
+        setIsActiveModal={setActiveModal}
+      />
+      <CustomModal
+        label="confirmWallet"
+        isOpen={activeModal === "confirmWallet"}
+        onClose={closeModal}
+        data={generateKeyPairDataStep2}
+        setIsActiveModal={setActiveModal}
+      />
       <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
-        <Image      
+        <Image
           src={logo}
           width={100}
           height={100}
@@ -24,19 +56,13 @@ export default function Page() {
         />
       </div>
       <div className="border-2 rounded-[25px] my-6 mx-auto w-[90%] sm:max-w-lg h-900px] z-30 bg-gray-100 p-3 flex flex-col">
-        <h1         
-          className="rocket-title mb-8 text-center text-3xl font-bold tracking-tight text-gray-800"
-        >
+        <h1 className="rocket-title mb-8 text-center text-3xl font-bold tracking-tight text-gray-800">
           Rocket
         </h1>
-        <p    
-          className="rocket-description-1 mb-8 text-center text-xl font-bold tracking-tight text-gray-800"
-        >
+        <p className="rocket-description-1 mb-8 text-center text-xl font-bold tracking-tight text-gray-800">
           The easiest way to connect with a wallet
         </p>
-        <p
-          className="rocket-description-2 mb-8 text-center text-xl font-bold tracking-tight text-gray-800"
-        >
+        <p className="rocket-description-2 mb-8 text-center text-xl font-bold tracking-tight text-gray-800">
           Sign in methods
         </p>
 
@@ -82,7 +108,11 @@ export default function Page() {
                   Connect with a secret key
                 </Button>
               </div>
-              <Register setSecret={setSecret} setPublicKey={setPublicKey} />
+              <Register
+                setSecret={setSecret}
+                setPublicKey={setPublicKey}
+                setIsOpen={() => openModal("generateKeyPair")}
+              />
             </div>
           )}
         </div>
