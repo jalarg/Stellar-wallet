@@ -6,7 +6,7 @@ import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
 import Navbar from "../components/Navbar";
-import CustomModal from "@/components/commons/CustomModal";
+import CustomModal from "@/components/modals/CustomModal";
 import {
   generateKeyPairDataStep1,
   generateKeyPairDataStep2,
