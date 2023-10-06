@@ -30,28 +30,24 @@ export default function Page() {
 
   return (
     <div className="relative h-[100vh]">
-      <CustomModal
-        label="generateKeyPair"
-        isOpen={activeModal === "generateKeyPair"}
-        onClose={closeModal}
-        data={generateKeyPairDataStep1}
-        setIsActiveModal={setActiveModal}
-        setPublicKey={setPublicKey}
-        setSecretKey={setSecretKey}
-        publicKey={publicKey}
-        secretKey={secretKey}
-      />
-      <CustomModal
-        label="confirmWallet"
-        isOpen={activeModal === "confirmWallet"}
-        onClose={closeModal}
-        data={generateKeyPairDataStep2}
-        setIsActiveModal={setActiveModal}
-        setPublicKey={setPublicKey}
-        setSecretKey={setSecretKey}
-        publicKey={publicKey}
-        secretKey={secretKey}
-      />
+      {["generateKeyPair", "confirmWallet"].map((modalLabel) => (
+        <CustomModal
+          key={modalLabel}
+          label={modalLabel}
+          isOpen={activeModal === modalLabel}
+          onClose={closeModal}
+          data={
+            modalLabel === "generateKeyPair"
+              ? generateKeyPairDataStep1
+              : generateKeyPairDataStep2
+          }
+          setIsActiveModal={setActiveModal}
+          setPublicKey={setPublicKey}
+          setSecretKey={setSecretKey}
+          publicKey={publicKey}
+          secretKey={secretKey}
+        />
+      ))}
       <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
         <Image
