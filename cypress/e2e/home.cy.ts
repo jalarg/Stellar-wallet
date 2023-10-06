@@ -88,13 +88,13 @@ describe(" Footer: UI and functionality:", () => {
     cy.get(".footer-container").should("exist").and("be.visible");
   });
 
-  it("Should the github logo be visible and have a href", () => {
+  it("Should the github logo be visible and have the correct url", () => {
     cy.get(".github-icon")
       .should("be.visible")
       .and("have.attr", "href", githubUrl);
   });
 
-  it("Should the terms and services and have a href", () => {
+  it("Should the terms and services and have the correct url", () => {
     cy.get(".footer-terms-service-url")
       .should("be.visible")
       .and("have.attr", "href", termsOfServiceUrl);
@@ -104,7 +104,7 @@ describe(" Footer: UI and functionality:", () => {
       .contains("Terms and Services");
   });
 
-  it("Should the privacy policy be visible, have specific text and have a href", () => {
+  it("Should the privacy policy be visible, have specific text and have the correct url", () => {
     cy.get(".privacy-policy-url")
       .should("be.visible")
       .and("have.attr", "href", privacyPolicyUrl);
