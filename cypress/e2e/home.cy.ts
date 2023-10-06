@@ -122,3 +122,60 @@ describe(" Footer: UI and functionality:", () => {
       .contains("Rocket wallet 2023");
   });
 });
+describe(" Wallet: UI and functionality:", () => {
+  beforeEach(() => {
+    cy.visit(`${projectUrl}/wallet`);
+  });
+
+  it("Should the wallet container be visible", () => {
+    cy.get(".wallet-container").should("exist").and("be.visible");
+  });
+
+  it("Should the title for the balance and the amount be visible and contain the amount number", () => {
+    cy.get(".wallet-balance-title")
+      .should("be.visible")
+      .and("contain", "Your balance");
+    cy.get(".wallet-balance-amount")
+      .should("be.visible")
+      .and("contain", `0 Lumens (XML)`);
+  });
+
+  it("Should the title for the wallet public key and input be visible and contain a text message", () => {
+    cy.get(".wallet-publicKey-title")
+      .should("be.visible")
+      .and("contain", "Your Stellar Public Key");
+    cy.get(".wallet-input").should("be.visible");
+  });
+
+  it("Should the wallet warning icon and warning message be visible and contain a text messager", () => {
+    cy.get(".wallet-warning-text")
+      .should("be.visible")
+      .and(
+        "contain",
+        "This account is currently inactive. To activate it, send at least 1 lumen (XLM) to the Stellar public key displayed above."
+      );
+
+    cy.get(".wallet-warning-icon").should("be.visible");
+  });
+
+  it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
+    cy.get(".wallet-payments-title")
+      .should("be.visible")
+      .and("contain", "Payments History");
+    cy.get(".wallet-payments-text")
+      .should("be.visible")
+      .and("contain", "There are no payments to show.");
+  });
+
+  it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
+    cy.get(".wallet-lp-title")
+      .should("be.visible")
+      .and("contain", "Liquidity pool transactions");
+    cy.get(".wallet-lp-text")
+      .should("be.visible")
+      .and(
+        "contain",
+        "There are no recent liquidity pool transactions to show."
+      );
+  });
+});
