@@ -5,6 +5,7 @@ export const generateKeyPairDataStep1 = {
     "Pasting your secret key makes you vulnerable to accidents, attacks, and scams that can result in the loss of funds.",
     "It is safer to create an account using methods that do not share your secret key with websites, such as hardware wallets or browser extensions.",
   ],
+  button: "Continue",
 };
 
 export const generateKeyPairDataStep2 = {
@@ -18,4 +19,6 @@ export const generateKeyPairDataStep2 = {
     "You have several options: Write your key down on a piece of paper. Keep it in a safe. Store it in a password manager. Use a hardware wallet. But don't ever keep it unencrypted on your computer or in your email.",
     "Note: Connecting by entering a secret key may be deprecated in a future version of the Account Viewer.",
   ],
+  checkbox: "I’ve stored my secret key in a safe place.",
+  button: "Confirm",
 };
