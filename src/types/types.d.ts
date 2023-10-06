@@ -20,7 +20,7 @@ export interface ButtonProps {
 }
 
 export interface ISetKeyPair {
-  setSecret: (secret: string | null) => void;
+  setSecretKey: (secret: string | null) => void;
   setPublicKey: (publicKey: string | null) => void;
 }
 
@@ -41,4 +41,9 @@ export interface Imodal {
   };
   label: string;
   setIsActiveModal: (isActive: string) => void;
+  publicKey?: string | null;
+  secretKey?: string | null;
+  setPublicKey: (publicKey: string | null) => void;
+  setSecretKey: (secretKey: string | null) => void;
+  registerHandler?: () => void;
 }
