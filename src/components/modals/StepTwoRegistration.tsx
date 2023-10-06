@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../commons/Button";
+import Input from "../commons/Input";
 import { Imodal } from "../../types/types";
 import Link from "next/link";
 import { Checkbox } from "antd";
@@ -7,8 +8,9 @@ import { Checkbox } from "antd";
 const StepTwoRegistration: React.FC<Imodal> = ({
   data,
   label,
-  setIsActiveModal,
   onClose,
+  secretKey,
+  publicKey,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   return (
@@ -28,6 +30,20 @@ const StepTwoRegistration: React.FC<Imodal> = ({
             key={index}
           >{`- ${item}`}</p>
         ))}
+      </div>
+      <div className="flex flex-col justify-center px-5">
+        <Input
+          label="Secret key"
+          value={secretKey}
+          readOnly={true}
+          required={true}
+        />
+        <Input   
+          label="Public key"
+          value={publicKey}
+          readOnly={true}
+          required={true}
+        />
       </div>
       <div className="flex flex-col justify-center pt-5">
         <Checkbox

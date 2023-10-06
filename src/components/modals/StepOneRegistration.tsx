@@ -1,11 +1,14 @@
 import Button from "../commons/Button";
 import { Imodal } from "../../types/types";
+import registerHandler from "../../actions/registerHandler";
 
 const StepOneRegistration: React.FC<Imodal> = ({
   data,
   label,
   setIsActiveModal,
   onClose,
+  setPublicKey,
+  setSecretKey,
 }) => {
   return (
     <div>
@@ -29,9 +32,8 @@ const StepOneRegistration: React.FC<Imodal> = ({
         <Button
           buttonClass={`button-modal-${label}`}
           onClick={() => {
-            if (label === "generateKeyPair") {
-              setIsActiveModal("confirmWallet");
-            }
+            registerHandler({ setSecretKey, setPublicKey });
+            setIsActiveModal("confirmWallet");
           }}
         >
           {data.button}
