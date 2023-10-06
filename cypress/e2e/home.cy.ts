@@ -7,14 +7,7 @@ beforeEach(() => {
 describe("Home: UI and functionality:", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
-    cy.get(".button-connect").as("connectButton");
-    cy.get("@registerButton").click();
-    cy.get(".input-private-key").as("privateKeyInput");
-    cy.get(".input-public-key").as("publicKeyInput");
-    cy.get(".button-confirm-wallet").as("confirmWalletButton");
-    cy.get(".button-go-back").as("goBackButton");
-    cy.get(".theme-button-light").as("themeButtonLight");
-    cy.get("@goBackButton").click();
+    cy.get(".button-connect").as("connectButton");    
   });
 
   it("Should the Stellar logo be visible", () => {
@@ -36,22 +29,6 @@ describe("Home: UI and functionality:", () => {
       .should("exist")
       .should("be.visible")
       .and("contain", "Connect with a secret key");
-  });
-
-  it("Should show a button to generate a pair of new keys and should  have create public and private key functionality", () => {
-    cy.get("@registerButton")
-      .should("exist")
-      .and("have.text", "Generate key pair for a new account");
-    cy.get("@registerButton").click();
-    cy.get("@publicKeyInput").should("exist");
-    cy.get("@privateKeyInput").should("exist");
-    cy.get("@confirmWalletButton").should("exist");
-    cy.get("@goBackButton").should("exist");
-    cy.get("@goBackButton").click();
-    cy.get("@publicKeyInput").should("not.exist");
-    cy.get("@privateKeyInput").should("not.exist");
-    cy.get("@publicKeyInput").should("not.exist");
-    cy.get("@privateKeyInput").should("not.exist");
   });
 });
 describe(" Navbar: UI and functionality:", () => {
@@ -135,6 +112,8 @@ describe(" Registration Modal Step2: UI and functionality:", () => {
 
     cy.get(".button-modal-confirmWallet").as("confirmWalletButton");
     cy.get(".button-modal-confirmWallet-cancel").as("cancelButton");
+    cy.get(".input-public-key").as("publicKeyInput");
+    cy.get(".input-private-key").as("privateKeyInput");
     cy.get(".modal-checkbox-confirmWallet").as("checkboxConfirmWallet");
   });
 
@@ -186,6 +165,11 @@ describe(" Registration Modal Step2: UI and functionality:", () => {
         "contain",
         "Note: Connecting by entering a secret key may be deprecated in a future version of the Account Viewer."
       );
+  });
+
+  it("Should show input for public and private key", () => {
+    cy.get("@publicKeyInput").should("exist");
+    cy.get("@privateKeyInput").should("exist");
   });
 
   it("Should show a checkbox", () => {
