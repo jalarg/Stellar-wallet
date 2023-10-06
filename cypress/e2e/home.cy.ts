@@ -77,3 +77,52 @@ describe(" Navbar: UI and functionality:", () => {
     cy.get("@themeButtonLight").should("not.exist");
   });
 });
+describe(" Registration Modals: UI and functionality:", () => {
+  beforeEach(() => {
+    cy.get(".button-register").as("registerButton");
+    cy.get("@registerButton").click();
+
+    cy.get(".button-modal-generateKeyPair").as("generateKeyPairButton");
+    cy.get(".button-modal-cancel").as("cancelButton");
+  });
+
+  it("Should the modal container be visible", () => {
+    cy.get(".modal-container-generateKeyPair")
+      .should("exist")
+      .and("be.visible");
+  });
+
+  it("Should the title and paragraphs be visible and contain the text description", () => {
+    cy.get(".modal-title-generateKeyPair")
+      .should("be.visible")
+      .and("contain", "Generate a new keypair");
+    cy.get(".modal-subtitle-generateKeyPair")
+      .should("be.visible")
+      .and("contain", "ATTENTION: Secret key wallets are not safe:");
+    cy.get(".modal-paragraphs-generateKeyPair-1")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Pasting your secret key makes you vulnerable to accidents, attacks, and scams that can result in the loss of funds."
+      );
+    cy.get(".modal-paragraphs-generateKeyPair-2")
+      .should("be.visible")
+      .and(
+        "contain",
+        "It is safer to create an account using methods that do not share your secret key with websites, such as hardware wallets or browser extensions."
+      );
+  });
+
+  it("Should show a button cancel and perform an action", () => {
+    cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
+    cy.get(".modal-container-generateKeyPair").should("be.hidden");
+  });
+
+  it("Should show a button to continue and perform an action", () => {
+    cy.get("@generateKeyPairButton")
+      .should("exist")
+      .and("have.text", "Continue")
+      .click();
+    cy.get(".modal-container-confirmWallet").should("exist");
+  });
+});
