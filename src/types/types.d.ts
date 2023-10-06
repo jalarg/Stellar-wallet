@@ -36,6 +36,8 @@ export interface Imodal {
     title: string;
     subtitle: string;
     list: string[];
+    checkbox?: string;
+    button: string;
   };
   label: string;
   setIsActiveModal: (isActive: string) => void;
