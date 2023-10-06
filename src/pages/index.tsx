@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import logo from "../assets/stellar-xlm-logo.svg";
-import Input from "../components/commons/Input";
 import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
@@ -11,9 +10,10 @@ import {
   generateKeyPairDataStep1,
   generateKeyPairDataStep2,
 } from "./../data/modals";
+import resetKeys from "@/actions/resetKeys";
 
 export default function Page() {
-  const [secret, setSecret] = useState<string | null>(null);
+  const [secretKey, setSecretKey] = useState<string | null>(null);
   const [publicKey, setPublicKey] = useState<string | null>(null);
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
@@ -23,9 +23,8 @@ export default function Page() {
 
   const closeModal = () => {
     setActiveModal(null);
-    if (secret && publicKey) {
-      setPublicKey(null);
-      setSecret(null);
+    if (secretKey && publicKey) {
+      resetKeys({ setPublicKey, setSecretKey });
     }
   };
 
@@ -37,6 +36,10 @@ export default function Page() {
         onClose={closeModal}
         data={generateKeyPairDataStep1}
         setIsActiveModal={setActiveModal}
+        setPublicKey={setPublicKey}
+        setSecretKey={setSecretKey}
+        publicKey={publicKey}
+        secretKey={secretKey}
       />
       <CustomModal
         label="confirmWallet"
@@ -44,6 +47,10 @@ export default function Page() {
         onClose={closeModal}
         data={generateKeyPairDataStep2}
         setIsActiveModal={setActiveModal}
+        setPublicKey={setPublicKey}
+        setSecretKey={setSecretKey}
+        publicKey={publicKey}
+        secretKey={secretKey}
       />
       <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
@@ -65,43 +72,8 @@ export default function Page() {
         <p className="rocket-description-2 mb-8 text-center text-xl font-bold tracking-tight text-gray-800">
           Sign in methods
         </p>
-
         <div className="flex flex-col justify-center m-5 px-5 ">
-          {secret && (
-            <div className="flex flex-col justify-center px-5 ">
-              <Input
-                label="Secret key"
-                value={secret}
-                readOnly={true}
-                required={true}
-              />
-              <Input
-                label="Public key"
-                value={publicKey}
-                readOnly={true}
-                required={true}
-              />
-              <div className="flex flex-col justify-center m-5">
-                <Button buttonClass="button-confirm-wallet" secondary fullWidth>
-                  Confirm wallet
-                </Button>
-              </div>
-              <div className="flex flex-col justify-center m-5">
-                <Button
-                  buttonClass="button-go-back"
-                  onClick={() => {
-                    setPublicKey(null);
-                    setSecret(null);
-                  }}
-                  fullWidth
-                  danger
-                >
-                  Go back
-                </Button>
-              </div>
-            </div>
-          )}
-          {!secret && (
+          {!secretKey && (
             <div className="flex flex-col justify-center m-5 px-5">
               <div className="flex flex-col justify-center m-5">
                 <Button buttonClass="button-connect" fullWidth>
@@ -109,7 +81,7 @@ export default function Page() {
                 </Button>
               </div>
               <Register
-                setSecret={setSecret}
+                setSecretKey={setSecretKey}
                 setPublicKey={setPublicKey}
                 setIsOpen={() => openModal("generateKeyPair")}
               />
