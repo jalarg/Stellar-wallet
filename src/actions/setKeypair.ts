@@ -5,14 +5,14 @@ export interface SetKeypairProps extends ISetKeyPair {
   pair?: Keypair | undefined;
 }
 
-function setKeypair({ setSecret, setPublicKey, pair }: SetKeypairProps) {
+function setKeypair({ setSecretKey, setPublicKey, pair }: SetKeypairProps) {
   if (pair) {
     const secret = pair?.secret();
     const publicKey = pair?.publicKey();
-    setSecret(secret);
+    setSecretKey(secret);
     setPublicKey(publicKey);
   } else {
-    setSecret(null);
+    setSecretKey(null);
     setPublicKey(null);
   }
 }

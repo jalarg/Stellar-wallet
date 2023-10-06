@@ -6,7 +6,7 @@ interface IRegister extends ISetKeyPair {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const Register = ({ setSecret, setPublicKey, setIsOpen }: IRegister) => {
+const Register = ({ setSecretKey, setPublicKey, setIsOpen }: IRegister) => {
   return (
     <div className="flex justify-center m-5">
       <Button
@@ -14,7 +14,7 @@ const Register = ({ setSecret, setPublicKey, setIsOpen }: IRegister) => {
         secondary
         fullWidth
         onClick={() => {
-          registerHandler({ setSecret, setPublicKey });
+          registerHandler({ setSecretKey, setPublicKey });
           setIsOpen(true);
         }}
       >
