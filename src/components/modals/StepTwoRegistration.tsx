@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Checkbox } from "antd";
 
 const StepTwoRegistration: React.FC<IModal> = ({
-  data,
+  content,
   label,
   onClose,
   secretKey,
@@ -16,15 +16,15 @@ const StepTwoRegistration: React.FC<IModal> = ({
   return (
     <div>
       <div className="flex justify-center pb-5">
-        <h1 className={`modal-title-${label} text-xl`}>{data.title}</h1>
+        <h1 className={`modal-title-${label} text-xl`}>{content.title}</h1>
       </div>
       <div className="flex flex-col justify-center bg-gray-200 rounded-[2px] border border-gray-600 p-3">
         <div className="flex flex-col justify-center pb-1">
           <h3 className={`modal-subtitle-${label} text-base`}>
-            {data.subtitle}
+            {content.subtitle}
           </h3>
         </div>
-        {data.list.map((item, index) => (
+        {content.list.map((item, index) => (
           <p
             className={`modal-paragraphs-${label}-${index + 1}`}
             key={index}
@@ -51,7 +51,7 @@ const StepTwoRegistration: React.FC<IModal> = ({
           checked={isChecked}
           onChange={(e) => setIsChecked(e.target.checked)}
         >
-          {data.checkbox}
+          {content.checkbox}
         </Checkbox>
       </div>
       <div className="flex flex-row justify-center mt-5 space-x-10">
@@ -61,7 +61,7 @@ const StepTwoRegistration: React.FC<IModal> = ({
             buttonClass={`button-modal-${label}`}
             onClick={() => {}}
           >
-            {data.button}
+            {content.button}
           </Button>
         </Link>
         <Button

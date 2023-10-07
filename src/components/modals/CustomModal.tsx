@@ -8,7 +8,7 @@ import StepTwoRegistration from "./StepTwoRegistration";
 const CustomModal: React.FC<IModal> = ({
   isOpen,
   onClose,
-  data,
+  content,
   setIsActiveModal,
   label,
   setPublicKey,
@@ -28,7 +28,7 @@ const CustomModal: React.FC<IModal> = ({
         <StepOneRegistration
           onClose={onClose}
           setIsActiveModal={setIsActiveModal}
-          data={data}
+          content={content}
           label={label}
           setSecretKey={setSecretKey}
           setPublicKey={setPublicKey}
@@ -38,7 +38,7 @@ const CustomModal: React.FC<IModal> = ({
         <StepTwoRegistration
           onClose={onClose}
           setIsActiveModal={setIsActiveModal}
-          data={data}
+          content={content}
           label={label}
           secretKey={secretKey}
           publicKey={publicKey}

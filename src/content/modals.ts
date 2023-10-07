@@ -1,4 +1,4 @@
-export const generateKeyPairDataStep1 = {
+export const generateKeyPairContentStep1 = {
   title: "Generate a new keypair",
   subtitle: "ATTENTION: Secret key wallets are not safe:",
   list: [
@@ -8,7 +8,7 @@ export const generateKeyPairDataStep1 = {
   button: "Continue",
 };
 
-export const generateKeyPairDataStep2 = {
+export const generateKeyPairContentStep2 = {
   title: "Generate a new keypair",
   subtitle: "ATTENTION:",
   list: [

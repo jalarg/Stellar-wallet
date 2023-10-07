@@ -7,9 +7,9 @@ import Register from "../components/Register";
 import Navbar from "../components/Navbar";
 import CustomModal from "@/components/modals/CustomModal";
 import {
-  generateKeyPairDataStep1,
-  generateKeyPairDataStep2,
-} from "./../data/modals";
+  generateKeyPairContentStep1,
+  generateKeyPairContentStep2,
+} from "../content/modals";
 import resetKeys from "@/actions/resetKeys";
 
 export default function Page() {
@@ -36,10 +36,10 @@ export default function Page() {
           label={modalLabel}
           isOpen={activeModal === modalLabel}
           onClose={closeModal}
-          data={
+          content={
             modalLabel === "generateKeyPair"
-              ? generateKeyPairDataStep1
-              : generateKeyPairDataStep2
+              ? generateKeyPairContentStep1
+              : generateKeyPairContentStep2
           }
           setIsActiveModal={setActiveModal}
           setPublicKey={setPublicKey}

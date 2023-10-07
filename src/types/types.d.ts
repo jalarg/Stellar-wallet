@@ -32,7 +32,7 @@ export interface Ikeypair {
 export interface IModal {
   isOpen?: boolean;
   onClose: () => void;
-  data: {
+  content: {
     title: string;
     subtitle: string;
     list: string[];
