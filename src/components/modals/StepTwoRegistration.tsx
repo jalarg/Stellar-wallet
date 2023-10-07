@@ -38,7 +38,7 @@ const StepTwoRegistration: React.FC<IModal> = ({
           readOnly={true}
           required={true}
         />
-        <Input   
+        <Input
           label="Public key"
           value={publicKey}
           readOnly={true}
@@ -67,9 +67,7 @@ const StepTwoRegistration: React.FC<IModal> = ({
         <Button
           buttonClass={`button-modal-${label}-cancel`}
           danger
-          onClick={() => {
-            onClose();
-          }}
+          onClick={onClose}
         >
           Cancel
         </Button>

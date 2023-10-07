@@ -5,7 +5,7 @@ import registerHandler from "../../actions/registerHandler";
 const StepOneRegistration: React.FC<IModal> = ({
   content,
   label,
-  setIsActiveModal,
+  openModalFn,
   onClose,
   setPublicKey,
   setSecretKey,
@@ -33,18 +33,12 @@ const StepOneRegistration: React.FC<IModal> = ({
           buttonClass={`button-modal-${label}`}
           onClick={() => {
             registerHandler({ setSecretKey, setPublicKey });
-            setIsActiveModal("confirmWallet");
+            openModalFn("confirmWallet");
           }}
         >
           {content.button}
         </Button>
-        <Button
-          buttonClass="button-modal-cancel"
-          danger
-          onClick={() => {
-            onClose();
-          }}
-        >
+        <Button buttonClass="button-modal-cancel" danger onClick={onClose}>
           Cancel
         </Button>
       </div>

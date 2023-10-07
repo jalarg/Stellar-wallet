@@ -3,13 +3,11 @@ import { IModal } from "../../types/types";
 import StepOneRegistration from "./StepOneRegistration";
 import StepTwoRegistration from "./StepTwoRegistration";
 
-
-
 const CustomModal: React.FC<IModal> = ({
   isOpen,
   onClose,
   content,
-  setIsActiveModal,
+  openModalFn,
   label,
   setPublicKey,
   setSecretKey,
@@ -27,7 +25,7 @@ const CustomModal: React.FC<IModal> = ({
       {label === "generateKeyPair" && (
         <StepOneRegistration
           onClose={onClose}
-          setIsActiveModal={setIsActiveModal}
+          openModalFn={openModalFn}
           content={content}
           label={label}
           setSecretKey={setSecretKey}
@@ -37,7 +35,7 @@ const CustomModal: React.FC<IModal> = ({
       {label === "confirmWallet" && (
         <StepTwoRegistration
           onClose={onClose}
-          setIsActiveModal={setIsActiveModal}
+          openModalFn={openModalFn}
           content={content}
           label={label}
           secretKey={secretKey}

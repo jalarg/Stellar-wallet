@@ -41,7 +41,7 @@ export default function Page() {
               ? generateKeyPairContentStep1
               : generateKeyPairContentStep2
           }
-          setIsActiveModal={setActiveModal}
+          openModalFn={openModal}
           setPublicKey={setPublicKey}
           setSecretKey={setSecretKey}
           publicKey={publicKey}

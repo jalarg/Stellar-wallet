@@ -40,7 +40,7 @@ export interface IModal {
     button: string;
   };
   label: string;
-  setIsActiveModal: (isActive: string) => void;
+  openModalFn: (isActive: string) => void;
   publicKey?: string | null;
   secretKey?: string | null;
   setPublicKey: (publicKey: string | null) => void;
