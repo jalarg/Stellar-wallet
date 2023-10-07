@@ -3,10 +3,11 @@ import { ISetKeyPair } from "../types/types";
 import registerHandler from "../actions/registerHandler";
 
 interface IRegister extends ISetKeyPair {
-  setIsOpen: (isOpen: boolean) => void;
+  openModalFn: (isOpen: string) => void;
 }
 
-const Register = ({ setSecretKey, setPublicKey, setIsOpen }: IRegister) => {
+
+const Register = ({ setSecretKey, setPublicKey, openModalFn }: IRegister) => {
   return (
     <div className="flex justify-center m-5">
       <Button
@@ -15,7 +16,7 @@ const Register = ({ setSecretKey, setPublicKey, setIsOpen }: IRegister) => {
         fullWidth
         onClick={() => {
           registerHandler({ setSecretKey, setPublicKey });
-          setIsOpen(true);
+          openModalFn("generateKeyPair")
         }}
       >
         Generate key pair for a new account

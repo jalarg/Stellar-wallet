@@ -79,7 +79,7 @@ export default function Page() {
               <Register
                 setSecretKey={setSecretKey}
                 setPublicKey={setPublicKey}
-                setIsOpen={() => openModal("generateKeyPair")}
+                openModalFn={openModal}
               />
             </div>
           )}
