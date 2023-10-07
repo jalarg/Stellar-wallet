@@ -1,14 +1,14 @@
 import Button from "../commons/Button";
-import { Imodal } from "../../types/types";
+import { IModal } from "../../types/types";
 import registerHandler from "../../actions/registerHandler";
 
-const StepOneRegistration: React.FC<Imodal> = ({
+const StepOneRegistration: React.FC<IModal> = ({
   data,
   label,
   setIsActiveModal,
   onClose,
   setPublicKey,
-  setSecretKey,
+  setSecretKey, 
 }) => {
   return (
     <div>

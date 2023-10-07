@@ -29,7 +29,7 @@ export interface Ikeypair {
   privateKey: string;
 }
 
-export interface Imodal {
+export interface IModal {
   isOpen?: boolean;
   onClose: () => void;
   data: {

@@ -1,9 +1,11 @@
 import { Modal } from "antd";
-import { Imodal } from "../../types/types";
+import { IModal } from "../../types/types";
 import StepOneRegistration from "./StepOneRegistration";
 import StepTwoRegistration from "./StepTwoRegistration";
 
-const CustomModal: React.FC<Imodal> = ({
+
+
+const CustomModal: React.FC<IModal> = ({
   isOpen,
   onClose,
   data,

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Button from "../commons/Button";
 import Input from "../commons/Input";
-import { Imodal } from "../../types/types";
+import { IModal } from "../../types/types";
 import Link from "next/link";
 import { Checkbox } from "antd";
 
-const StepTwoRegistration: React.FC<Imodal> = ({
+const StepTwoRegistration: React.FC<IModal> = ({
   data,
   label,
   onClose,
