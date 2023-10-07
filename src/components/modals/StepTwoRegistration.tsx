@@ -13,6 +13,11 @@ const StepTwoRegistration: React.FC<IModal> = ({
   publicKey,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
+
+  const handleCancelChecked = () => {
+    setIsChecked(false);
+  };
+
   return (
     <div>
       <div className="flex justify-center pb-5">
@@ -67,7 +72,10 @@ const StepTwoRegistration: React.FC<IModal> = ({
         <Button
           buttonClass={`button-modal-${label}-cancel`}
           danger
-          onClick={onClose}
+          onClick={() => {
+            onClose();
+            handleCancelChecked()
+          }}
         >
           Cancel
         </Button>
