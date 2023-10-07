@@ -1,4 +1,4 @@
-export interface InputProps {
+export interface IInput {
   label: string;
   type?: string;
   value?: string | null;
@@ -8,7 +8,7 @@ export interface InputProps {
   readOnly?: boolean;
 }
 
-export interface ButtonProps {
+export interface IButton {
   type?: "button" | "submit" | "reset" | undefined;
   fullWidth?: boolean;
   children?: React.ReactNode;
@@ -24,7 +24,7 @@ export interface ISetKeyPair {
   setPublicKey: (publicKey: string | null) => void;
 }
 
-export interface Ikeypair {
+export interface IKeypair {
   publicKey: string;
   privateKey: string;
 }

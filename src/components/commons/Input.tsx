@@ -1,9 +1,9 @@
-import { InputProps } from "../../types/types";
+import { IInput } from "../../types/types";
 import copy from "../../assets/copy-icon.svg";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Image from "next/image";
 
-const Input: React.FC<InputProps> = ({
+const Input: React.FC<IInput> = ({
   label,
   value,
   placeholder,
