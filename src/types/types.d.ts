@@ -61,4 +61,11 @@ export interface ICloseModal {
   handleCancelChecked: () => void
 }
 
+export interface IOpenModal {
+  modalName: string
+  openModal: (modalName: string) => void
+}
+
+
+
 

@@ -1,4 +1,7 @@
-function openModalHandler(modalName: string, openModal: (modalName: string) => void) {
+import { IOpenModal } from "../types/types";
+
+
+function openModalHandler({ modalName, openModal }: IOpenModal) {
   openModal(modalName);
 }
 
