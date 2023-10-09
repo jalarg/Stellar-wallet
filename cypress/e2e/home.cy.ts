@@ -7,7 +7,7 @@ beforeEach(() => {
 describe("Home: UI and functionality:", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
-    cy.get(".button-connect").as("connectButton");    
+    cy.get(".button-connect").as("connectButton");
   });
 
   it("Should the Stellar logo be visible", () => {
@@ -189,5 +189,142 @@ describe(" Registration Modal Step2: UI and functionality:", () => {
       .and("have.text", "Confirm")
       .click();
     cy.get(".modal-container-confirmWallet").should("not.exist");
+  });
+});
+describe("Login Modal Step1: UI and functionality:", () => {
+  beforeEach(() => {
+    cy.get(".button-connect").as("connectButton");
+    cy.get("@connectButton").click();
+    cy.get(".button-modal-connectSecretKeyWarning").as(
+      "connectSecretKeyWarning"
+    );
+    cy.get(".button-modal-cancel-1").as("cancelButton");
+    cy.get("@cancelButton").click();
+  });
+
+  it("Should the modal container be visible", () => {
+    cy.get("@connectButton").click();
+    cy.get(".modal-container-connectSecretKeyWarning")
+      .should("exist")
+      .and("be.visible");
+  });
+
+  it("Should the checkbox be visible and have text", () => {
+    cy.get("@connectButton").click();
+    cy.get(".modal-checkbox-connectSecretKeyWarning")
+      .should("exist")
+      .and("be.visible")
+      .and(
+        "have.text",
+        "I understand and accept the risks of entering my secret key."
+      );
+  });
+
+  it("Should the title and paragraphs be visible and contain the text description", () => {
+    cy.get(".modal-title-connectSecretKeyWarning")
+      .should("be.visible")
+      .and("contain", "Connect with a secret key");
+    cy.get(".modal-subtitle-connectSecretKeyWarning")
+      .should("be.visible")
+      .and(
+        "contain",
+        "ATTENTION: Entering your secret key on any website is not recommended"
+      );
+    cy.get(".modal-paragraphs-connectSecretKeyWarning-1")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Copy and pasting your secret key makes you vulnerable to accidents, attacks, and scams that can result in loss of funds."
+      );
+    cy.get(".modal-paragraphs-connectSecretKeyWarning-2")
+      .should("be.visible")
+      .and(
+        "contain",
+        "If this website were compromised or if you visit a phishing replica of this site, your secret key may be stolen if you use this method."
+      );
+    cy.get(".modal-paragraphs-connectSecretKeyWarning-3")
+      .should("be.visible")
+      .and(
+        "contain",
+        "It is safer to use connection methods that do not share your secret key with websites, such as hardware wallets or browser extensions."
+      );
+    cy.get(".modal-paragraphs-connectSecretKeyWarning-4")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Note: Connecting by entering a secret key may be deprecated in a future version of the Account Viewer."
+      );
+  });
+  it("Should show a button cancel and perform an action", () => {
+    cy.get("@connectButton").click();
+    cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
+    cy.get(".modal-container-connectSecretKeyWarning").should("be.hidden");
+  });
+  it("Should show a button to continue and perform an action", () => {
+    cy.get("@connectButton").click();
+    cy.get(".modal-checkbox-connectSecretKeyWarning").click();
+    cy.get("@connectSecretKeyWarning")
+      .should("exist")
+      .and("have.text", "Continue")
+      .click();
+    cy.get(".modal-container-connectAddSecretKey").should("exist");
+  });
+});
+
+describe("Login Modal Step2: UI and functionality:", () => {
+  beforeEach(() => {
+    cy.get(".button-connect").as("connectButton");
+    cy.get("@connectButton").click();
+    cy.get(".modal-checkbox-connectSecretKeyWarning").click();
+    cy.get(".button-modal-connectSecretKeyWarning").click();
+    cy.get(".button-modal-cancel-2").as("cancelButton");
+    cy.get(".button-modal-connectAddSecretKey").as("AddSecretKeyButton");
+  });
+
+  it("Should the modal container be visible", () => {
+    cy.get(".modal-container-connectSecretKeyWarning")
+      .should("exist")
+      .and("be.visible");
+  });
+
+  it("Should the title and paragraphs be visible and contain the text description", () => {
+    cy.get(".modal-title-connectAddSecretKey")
+      .should("be.visible")
+      .and("contain", "Connect with a secret key");
+    cy.get(".modal-subtitle-connectAddSecretKey")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Always make sure the domain you are using to access the Account Viewer is https://accountviewer.stellar.org before entering your keys. Scammers can replicate this website on a different domain to steal your keys."
+      );
+    cy.get(".modal-question-connectAddSecretKey")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Did you know that password managers are a safer alternative to copying and pasting your secret keys?"
+      );
+    cy.get(".modal-paragraphs-connectAddSecretKey-1")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Password managers will autocomplete the secret key field only if they detect you're in the right domain. They also reduce risk by removing the need to copy and paste your secret key."
+      );
+  });
+
+  it("Should show a input and be visible", () => {
+    cy.get(".input-private-key").should("exist").and("be.visible");
+  });
+
+  it("Should show a button cancel and perform an action", () => {
+    cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
+    cy.get(".modal-container-connectAddSecretKey").should("be.hidden");
+  });
+
+  it("Should show a button to continue and perform an action", () => {
+    cy.get("@AddSecretKeyButton")
+      .should("exist")
+      .and("have.text", "Connect")
+      .click();
+    cy.get(".modal-container-connectAddSecretKey").should("not.exist");
   });
 });
