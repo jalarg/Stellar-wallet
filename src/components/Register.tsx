@@ -1,11 +1,6 @@
 import Button from "../components/commons/Button";
-import { ISetKeyPair } from "../types/types";
+import { IRegister } from "../types/types";
 import registerHandler from "../actions/registerHandler";
-
-interface IRegister extends ISetKeyPair {
-  openModalFn: (isOpen: string) => void;
-}
-
 
 const Register = ({ setSecretKey, setPublicKey, openModalFn }: IRegister) => {
   return (
@@ -15,8 +10,7 @@ const Register = ({ setSecretKey, setPublicKey, openModalFn }: IRegister) => {
         secondary
         fullWidth
         onClick={() => {
-          registerHandler({ setSecretKey, setPublicKey });
-          openModalFn("generateKeyPair")
+          registerHandler({ setSecretKey, setPublicKey, openModalFn});
         }}
       >
         Generate key pair for a new account

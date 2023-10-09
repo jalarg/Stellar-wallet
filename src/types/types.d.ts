@@ -24,6 +24,10 @@ export interface ISetKeyPair {
   setPublicKey: (publicKey: string | null) => void;
 }
 
+export interface IRegister extends ISetKeyPair {
+  openModalFn: (isOpen: string) => void;
+}
+
 export interface IKeypair {
   publicKey: string;
   privateKey: string;
