@@ -1,3 +1,4 @@
+"use client";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Input } from "antd";
@@ -20,8 +21,15 @@ function Wallet() {
               </p>
             </div>
             <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
-              <Button fullWidth>Send</Button>
-              <Button fullWidth secondary>
+              <Button onClick={() => {}} buttonClass="button-send" fullWidth>
+                Send
+              </Button>
+              <Button
+                onClick={() => {}}
+                buttonClass="button-receive"
+                fullWidth
+                secondary
+              >
                 Receive
               </Button>
             </div>
@@ -38,12 +46,20 @@ function Wallet() {
                 />
               </div>
             </div>
-            <div className="flex items-center justify-center border-2 border-orange-300 rounded-md bg-orange-100 mt-3 p-3">
-              <WarningOutlined className="wallet-warning-icon text-sm sm:text-2xl" />
+            <div className="flex items-center justify-center border-2 border-orange-300 rounded-md bg-orange-100 mt-3 p-3 gap-2">
+              <WarningOutlined className="wallet-warning-icon text-red-600 text-sm sm:text-2xl" />
+
               <p className="wallet-warning-text text-sm sm:text-xl font-semibold text-center">
-                This account is currently inactive. To activate it, send at
-                least 1 lumen (XLM) to the Stellar public key displayed above.
+                This account is currently inactive. to send 10,000 test lumen
+                (XLM) to the Stellar public key displayed above.
               </p>
+              <button
+                className="button-addLumens activate-button font-extrabold text-blue-500 hover:text-blue-600"
+                onClick={() => {}}
+              >
+                {" "}
+                Click here
+              </button>
             </div>
             <div className="wallet-payments-title flex items-start justify-start pb-5 pt-5 font-semibold text-sm sm:text-xl">
               Payments History
