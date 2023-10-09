@@ -6,6 +6,7 @@ export interface IInput {
   placeholder?: string;
   required?: boolean;
   readOnly?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export interface IButton {

@@ -2,8 +2,20 @@ import Button from "../commons/Button";
 import Input from "../commons/Input";
 import { IModal } from "../../types/types";
 import Link from "next/link";
+import { useState } from "react";
 
-const StepTwoLogin: React.FC<IModal> = ({ content, label, onClose }) => {
+const StepTwoLogin: React.FC<IModal> = ({
+  content,
+  label,
+  onClose,
+  setSecretKey,
+}) => {
+  const [value, setValue] = useState<string>("");
+
+  const handleSecretKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
     <div>
       <div className="flex justify-center pb-5">
@@ -28,10 +40,13 @@ const StepTwoLogin: React.FC<IModal> = ({ content, label, onClose }) => {
         ))}
       </div>
       <div className="flex flex-col justify-center px-5">
-        <Input
+        <Input       
           placeholder="Starts with S, example: SCHK..ZLJK"
           label="Secret key"
           required={true}
+          readOnly={false}
+          onChange={handleSecretKeyChange}
+          value={value}
         />
       </div>
       <div className="flex flex-row justify-center mt-5 space-x-10">

@@ -10,6 +10,7 @@ const Input: React.FC<IInput> = ({
   required,
   disabled,
   readOnly,
+  onChange,
 }) => {
   return (
     <div>
@@ -17,6 +18,7 @@ const Input: React.FC<IInput> = ({
         <label className="text-xs text-gray-800 font-bold pt-2">{label}</label>
         <div className="flex">
           <input
+            onChange={onChange}
             placeholder={placeholder}
             disabled={disabled}
             value={value || ""}

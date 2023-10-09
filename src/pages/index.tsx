@@ -81,22 +81,20 @@ export default function Page() {
           Sign in methods
         </p>
         <div className="flex flex-col justify-center m-5 px-5 ">
-          {!secretKey && (
-            <div className="flex flex-col justify-center m-5 px-5">
-              <div className="flex flex-col justify-center m-5">
-                <Button
-                  onClick={() => {
-                    openModal("connectSecretKeyWarning");
-                  }}
-                  buttonClass="button-connect"
-                  fullWidth
-                >
-                  Connect with a secret key
-                </Button>
-              </div>
-              <Register modalName="generateKeyPair" openModal={openModal} />
+          <div className="flex flex-col justify-center m-5 px-5">
+            <div className="flex flex-col justify-center m-5">
+              <Button
+                onClick={() => {
+                  openModal("connectSecretKeyWarning");
+                }}
+                buttonClass="button-connect"
+                fullWidth
+              >
+                Connect with a secret key
+              </Button>
             </div>
-          )}
+            <Register modalName="generateKeyPair" openModal={openModal} />
+          </div>
         </div>
       </div>
     </div>
