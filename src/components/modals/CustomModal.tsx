@@ -2,6 +2,8 @@ import { Modal } from "antd";
 import { IModal } from "../../types/types";
 import StepOneRegistration from "./StepOneRegistration";
 import StepTwoRegistration from "./StepTwoRegistration";
+import StepOneLogin from "./StepOneLogin";
+import StepTwoLogin from "./StepTwoLogin";
 
 const CustomModal: React.FC<IModal> = ({
   isOpen,
@@ -34,6 +36,30 @@ const CustomModal: React.FC<IModal> = ({
       )}
       {label === "confirmWallet" && (
         <StepTwoRegistration
+          onClose={onClose}
+          openModalFn={openModalFn}
+          content={content}
+          label={label}
+          secretKey={secretKey}
+          publicKey={publicKey}
+          setSecretKey={setSecretKey}
+          setPublicKey={setPublicKey}
+        />
+      )}
+      {label === "connectSecretKeyWarning" && (
+        <StepOneLogin
+          onClose={onClose}
+          openModalFn={openModalFn}
+          content={content}
+          label={label}
+          secretKey={secretKey}
+          publicKey={publicKey}
+          setSecretKey={setSecretKey}
+          setPublicKey={setPublicKey}
+        />
+      )}
+      {label === "connectAddSecretKey" && (
+        <StepTwoLogin
           onClose={onClose}
           openModalFn={openModalFn}
           content={content}
