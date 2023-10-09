@@ -4,6 +4,7 @@ import Input from "../commons/Input";
 import { IModal } from "../../types/types";
 import Link from "next/link";
 import { Checkbox } from "antd";
+import closeModalHandler from "@/actions/closeModalHandler";
 
 const StepTwoRegistration: React.FC<IModal> = ({
   content,
@@ -11,6 +12,7 @@ const StepTwoRegistration: React.FC<IModal> = ({
   onClose,
   secretKey,
   publicKey,
+  setActiveModal,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -73,8 +75,7 @@ const StepTwoRegistration: React.FC<IModal> = ({
           buttonClass={`button-modal-${label}-cancel`}
           danger
           onClick={() => {
-            onClose();
-            handleCancelChecked()
+            closeModalHandler({ onClose, handleCancelChecked });
           }}
         >
           Cancel

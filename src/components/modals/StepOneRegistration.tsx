@@ -5,10 +5,11 @@ import registerHandler from "../../actions/registerHandler";
 const StepOneRegistration: React.FC<IModal> = ({
   content,
   label,
-  openModalFn,
+  openModal,
   onClose,
   setPublicKey,
   setSecretKey,
+  setActiveModal,
 }) => {
   return (
     <div>
@@ -32,8 +33,7 @@ const StepOneRegistration: React.FC<IModal> = ({
         <Button
           buttonClass={`button-modal-${label}`}
           onClick={() => {
-            registerHandler({ setSecretKey, setPublicKey });
-            openModalFn("confirmWallet");
+            registerHandler({ setSecretKey, setPublicKey, openModal });
           }}
         >
           {content.button}
