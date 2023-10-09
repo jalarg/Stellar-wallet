@@ -19,13 +19,15 @@ export interface IButton {
   buttonClass?: string;
 }
 
+export interface IRegisterButton {
+  openModal: (modalName: string) => void;
+  modalName: string;
+}
+
 export interface ISetKeyPair {
   setSecretKey: (secret: string | null) => void;
   setPublicKey: (publicKey: string | null) => void;
-}
-
-export interface IRegister extends ISetKeyPair {
-  openModalFn: (isOpen: string) => void;
+  openModal?: (modalName: string) => void;
 }
 
 export interface IKeypair {
@@ -45,10 +47,18 @@ export interface IModal {
     button: string;
   };
   label: string;
-  openModalFn: (isActive: string) => void;
+  openModal: (isActive: string) => void;
   publicKey?: string | null;
   secretKey?: string | null;
   setPublicKey: (publicKey: string | null) => void;
   setSecretKey: (secretKey: string | null) => void;
   registerHandler?: () => void;
+  setActiveModal?: (modalName: string) => void;
 }
+
+export interface ICloseModal {
+  onClose: () => void
+  handleCancelChecked: () => void
+}
+
+
