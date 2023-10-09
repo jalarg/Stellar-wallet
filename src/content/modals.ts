@@ -22,3 +22,29 @@ export const generateKeyPairContentStep2 = {
   checkbox: "I’ve stored my secret key in a safe place.",
   button: "Confirm",
 };
+
+export const loginContentStep1 = {
+  title: "Connect with a secret key",
+  subtitle:
+    "ATTENTION: Entering your secret key on any website is not recommended",
+  list: [
+    "Copy and pasting your secret key makes you vulnerable to accidents, attacks, and scams that can result in loss of funds.",
+    "If this website were compromised or if you visit a phishing replica of this site, your secret key may be stolen if you use this method.",
+    "It is safer to use connection methods that do not share your secret key with websites, such as hardware wallets or browser extensions.",
+    "Note: Connecting by entering a secret key may be deprecated in a future version of the Account Viewer.",
+  ],
+  checkbox: "I understand and accept the risks of entering my secret key.",
+  button: "Continue",
+};
+
+export const loginContentStep2 = {
+  title: "Connect with a secret key",
+  subtitle:
+    "Always make sure the domain you are using to access the Account Viewer is https://accountviewer.stellar.org before entering your keys. Scammers can replicate this website on a different domain to steal your keys.",
+  question:
+    "Did you know that password managers are a safer alternative to copying and pasting your secret keys?",
+  list: [
+    "Password managers will autocomplete the secret key field only if they detect you're in the right domain. They also reduce risk by removing the need to copy and paste your secret key.",
+  ],
+  button: "Connect",
+};
