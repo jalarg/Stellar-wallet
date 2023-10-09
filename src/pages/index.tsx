@@ -52,11 +52,12 @@ export default function Page() {
               ? loginContentStep1
               : loginContentStep2
           }
-          openModalFn={openModal}
+          openModal={openModal}
           setPublicKey={setPublicKey}
           setSecretKey={setSecretKey}
           publicKey={publicKey}
           secretKey={secretKey}
+          setActiveModal={setActiveModal}
         />
       ))}
       <Navbar />
@@ -94,9 +95,8 @@ export default function Page() {
                 </Button>
               </div>
               <Register
-                setSecretKey={setSecretKey}
-                setPublicKey={setPublicKey}
-                openModalFn={openModal}
+                modalName="generateKeyPair"
+                openModal={openModal}
               />
             </div>
           )}

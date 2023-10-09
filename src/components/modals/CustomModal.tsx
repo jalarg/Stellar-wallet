@@ -9,7 +9,7 @@ const CustomModal: React.FC<IModal> = ({
   isOpen,
   onClose,
   content,
-  openModalFn,
+  openModal,
   label,
   setPublicKey,
   setSecretKey,
@@ -27,7 +27,7 @@ const CustomModal: React.FC<IModal> = ({
       {label === "generateKeyPair" && (
         <StepOneRegistration
           onClose={onClose}
-          openModalFn={openModalFn}
+          openModal={openModal}
           content={content}
           label={label}
           setSecretKey={setSecretKey}
@@ -37,7 +37,7 @@ const CustomModal: React.FC<IModal> = ({
       {label === "confirmWallet" && (
         <StepTwoRegistration
           onClose={onClose}
-          openModalFn={openModalFn}
+          openModal={openModal}
           content={content}
           label={label}
           secretKey={secretKey}
@@ -49,7 +49,7 @@ const CustomModal: React.FC<IModal> = ({
       {label === "connectSecretKeyWarning" && (
         <StepOneLogin
           onClose={onClose}
-          openModalFn={openModalFn}
+          openModal={openModal}
           content={content}
           label={label}
           secretKey={secretKey}
@@ -61,7 +61,7 @@ const CustomModal: React.FC<IModal> = ({
       {label === "connectAddSecretKey" && (
         <StepTwoLogin
           onClose={onClose}
-          openModalFn={openModalFn}
+          openModal={openModal}
           content={content}
           label={label}
           secretKey={secretKey}
