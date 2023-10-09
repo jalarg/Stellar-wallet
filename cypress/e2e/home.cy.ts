@@ -122,6 +122,7 @@ describe(" Footer: UI and functionality:", () => {
       .contains("Rocket wallet 2023");
   });
 });
+
 describe(" Wallet: UI and functionality:", () => {
   beforeEach(() => {
     cy.visit(`${projectUrl}/wallet`);
@@ -140,6 +141,11 @@ describe(" Wallet: UI and functionality:", () => {
       .and("contain", `0 Lumens (XML)`);
   });
 
+  it("Should the button send and receive be visible and contain a text message", () => {
+    cy.get(".button-send").should("be.visible").and("contain", "Send");
+    cy.get(".button-receive").should("be.visible").and("contain", "Receive");
+  });
+
   it("Should the title for the wallet public key and input be visible and contain a text message", () => {
     cy.get(".wallet-publicKey-title")
       .should("be.visible")
@@ -147,15 +153,18 @@ describe(" Wallet: UI and functionality:", () => {
     cy.get(".wallet-input").should("be.visible");
   });
 
-  it("Should the wallet warning icon and warning message be visible and contain a text messager", () => {
+  it("Should the wallet warning icon, a warning message and a button be visible and contain a text messager", () => {
     cy.get(".wallet-warning-text")
       .should("be.visible")
       .and(
         "contain",
-        "This account is currently inactive. To activate it, send at least 1 lumen (XLM) to the Stellar public key displayed above."
+        "his account is currently inactive. to send 10,000 test lumen (XLM) to the Stellar public key displayed above."
       );
 
     cy.get(".wallet-warning-icon").should("be.visible");
+    cy.get(".button-addLumens")
+      .should("be.visible")
+      .and("contain", "Click here");
   });
 
   it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
