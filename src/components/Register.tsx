@@ -10,7 +10,7 @@ const Register = ({ modalName, openModal }: IRegisterButton) => {
         secondary
         fullWidth
         onClick={() => {
-          openModalHandler(modalName, openModal);
+          openModalHandler({modalName, openModal});
         }}
       >
         Generate key pair for a new account

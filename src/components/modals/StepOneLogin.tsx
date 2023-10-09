@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Button from "../commons/Button";
-import { IModal } from "../../types/types";
+import { IModal, IOpenModal } from "../../types/types";
 import { Checkbox } from "antd";
-import closeModalHandler from "@/actions/closeModalHandler";
+import closeModalHandler from "../../actions/closeModalHandler";
+import openModalHandler from "../../actions/openModalHandler";
 
 const StepOneLogin: React.FC<IModal> = ({
   content,
@@ -48,7 +49,7 @@ const StepOneLogin: React.FC<IModal> = ({
           disabled={!isChecked}
           buttonClass={`button-modal-${label}`}
           onClick={() => {
-            openModal("connectAddSecretKey");
+            openModalHandler({ modalName: "connectAddSecretKey", openModal });
           }}
         >
           {content.button}
