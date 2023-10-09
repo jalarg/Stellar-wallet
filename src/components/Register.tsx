@@ -1,8 +1,8 @@
 import Button from "../components/commons/Button";
-import { IRegister } from "../types/types";
-import registerHandler from "../actions/registerHandler";
+import { IRegisterButton } from "../types/types";
+import openModalHandler from "../actions/openModalHandler";
 
-const Register = ({ setSecretKey, setPublicKey, openModalFn }: IRegister) => {
+const Register = ({ modalName, openModal }: IRegisterButton) => {
   return (
     <div className="flex justify-center m-5">
       <Button
@@ -10,7 +10,7 @@ const Register = ({ setSecretKey, setPublicKey, openModalFn }: IRegister) => {
         secondary
         fullWidth
         onClick={() => {
-          registerHandler({ setSecretKey, setPublicKey, openModalFn});
+          openModalHandler(modalName, openModal);
         }}
       >
         Generate key pair for a new account
