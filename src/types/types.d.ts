@@ -35,6 +35,7 @@ export interface IModal {
   content: {
     title: string;
     subtitle: string;
+    question?: string;
     list: string[];
     checkbox?: string;
     button: string;
