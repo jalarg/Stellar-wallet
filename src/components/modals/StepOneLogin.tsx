@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Button from "../commons/Button";
 import { IModal } from "../../types/types";
 import { Checkbox } from "antd";
+import closeModalHandler from "@/actions/closeModalHandler";
 
 const StepOneLogin: React.FC<IModal> = ({
   content,
   label,
   onClose,
-  openModalFn,
+  openModal,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -47,7 +48,7 @@ const StepOneLogin: React.FC<IModal> = ({
           disabled={!isChecked}
           buttonClass={`button-modal-${label}`}
           onClick={() => {
-            openModalFn("connectAddSecretKey");
+            openModal("connectAddSecretKey");
           }}
         >
           {content.button}
@@ -56,8 +57,7 @@ const StepOneLogin: React.FC<IModal> = ({
           buttonClass="button-modal-cancel-1"
           danger
           onClick={() => {
-            onClose();
-            handleCancelChecked();
+            closeModalHandler({ onClose, handleCancelChecked });
           }}
         >
           Cancel
