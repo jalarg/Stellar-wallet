@@ -94,10 +94,7 @@ export default function Page() {
                   Connect with a secret key
                 </Button>
               </div>
-              <Register
-                modalName="generateKeyPair"
-                openModal={openModal}
-              />
+              <Register modalName="generateKeyPair" openModal={openModal} />
             </div>
           )}
         </div>

@@ -28,9 +28,11 @@ const StepTwoLogin: React.FC<IModal> = ({ content, label, onClose }) => {
         ))}
       </div>
       <div className="flex flex-col justify-center px-5">
-        <Input 
-        placeholder="Starts with S, example: SCHK..ZLJK"
-        label="Secret key" required={true} />
+        <Input
+          placeholder="Starts with S, example: SCHK..ZLJK"
+          label="Secret key"
+          required={true}
+        />
       </div>
       <div className="flex flex-row justify-center mt-5 space-x-10">
         <Link className={`modal-link-${label}`} href="/wallet">
