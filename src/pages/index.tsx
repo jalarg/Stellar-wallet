@@ -9,6 +9,8 @@ import CustomModal from "@/components/modals/CustomModal";
 import {
   generateKeyPairContentStep1,
   generateKeyPairContentStep2,
+  loginContentStep1,
+  loginContentStep2,
 } from "../content/modals";
 import resetKeys from "@/actions/resetKeys";
 
@@ -30,7 +32,12 @@ export default function Page() {
 
   return (
     <div className="relative h-[100vh]">
-      {["generateKeyPair", "confirmWallet"].map((modalLabel) => (
+      {[
+        "generateKeyPair",
+        "confirmWallet",
+        "connectSecretKeyWarning",
+        "connectAddSecretKey",
+      ].map((modalLabel) => (
         <CustomModal
           key={modalLabel}
           label={modalLabel}
@@ -39,7 +46,11 @@ export default function Page() {
           content={
             modalLabel === "generateKeyPair"
               ? generateKeyPairContentStep1
-              : generateKeyPairContentStep2
+              : modalLabel === "confirmWallet"
+              ? generateKeyPairContentStep2
+              : modalLabel === "connectSecretKeyWarning"
+              ? loginContentStep1
+              : loginContentStep2
           }
           openModalFn={openModal}
           setPublicKey={setPublicKey}
@@ -72,7 +83,13 @@ export default function Page() {
           {!secretKey && (
             <div className="flex flex-col justify-center m-5 px-5">
               <div className="flex flex-col justify-center m-5">
-                <Button buttonClass="button-connect" fullWidth>
+                <Button
+                  onClick={() => {
+                    openModal("connectSecretKeyWarning");
+                  }}
+                  buttonClass="button-connect"
+                  fullWidth
+                >
                   Connect with a secret key
                 </Button>
               </div>
