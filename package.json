@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "cypress:open": "cypress open",
+    "test-auth": "jest jest/authSlice.spec.ts",
     "lint": "next lint",
     "test": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && npm run cypress:open\""
   },
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/cypress": "^1.1.3",
+    "@types/jest": "^29.5.5",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-copy-to-clipboard": "^5.0.5",
@@ -33,8 +35,10 @@
     "cypress": "^13.3.0",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "jest": "^29.7.0",
     "postcss": "latest",
     "tailwindcss": "latest",
+    "ts-jest": "^29.1.1",
     "typescript": "latest",
     "wait-on": "^7.0.1"
   }
