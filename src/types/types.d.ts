@@ -38,3 +38,11 @@ interface IBalance {
   asset_type: string;
   balance: string;
 }
+
+interface ISendTransaction {
+  publicKey: string;
+  privateKey: string;
+  destinationId: string;
+  amount: string;
+}
+
