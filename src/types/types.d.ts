@@ -28,3 +28,13 @@ export interface Ikeypair {
   publicKey: string;
   privateKey: string;
 }
+
+export interface IPair {
+  publicKey: () => string | null;
+  privateKey: () => string | null;
+}
+
+interface IBalance {
+  asset_type: string;
+  balance: string;
+}
