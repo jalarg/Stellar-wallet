@@ -1,4 +1,4 @@
-export interface InputProps {
+export interface IInput {
   label: string;
   type?: string;
   value?: string | null;
@@ -6,9 +6,10 @@ export interface InputProps {
   placeholder?: string;
   required?: boolean;
   readOnly?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface ButtonProps {
+export interface IButton {
   type?: "button" | "submit" | "reset" | undefined;
   fullWidth?: boolean;
   children?: React.ReactNode;
@@ -19,12 +20,54 @@ export interface ButtonProps {
   buttonClass?: string;
 }
 
-export interface ISetKeyPair {
-  setSecret: (secret: string | null) => void;
-  setPublicKey: (publicKey: string | null) => void;
+export interface IRegisterButton {
+  openModal: (modalName: string) => void;
+  modalName: string;
 }
 
-export interface Ikeypair {
+export interface ISetKeyPair {
+  setSecretKey: (secret: string | null) => void;
+  setPublicKey: (publicKey: string | null) => void;
+  openModal?: (modalName: string) => void;
+}
+
+export interface IKeypair {
   publicKey: string;
   privateKey: string;
+}
+
+export interface IModal {
+  isOpen?: boolean;
+  onClose: () => void;
+  content: {
+    title: string;
+    subtitle: string;
+    question?: string;
+    list: string[];
+    checkbox?: string;
+    button: string;
+  };
+  label: string;
+  openModal: (isActive: string) => void;
+  publicKey?: string | null;
+  secretKey?: string | null;
+  setPublicKey: (publicKey: string | null) => void;
+  setSecretKey: (secretKey: string | null) => void;
+  registerHandler?: () => void;
+  setActiveModal?: (modalName: string) => void;
+}
+
+export interface ICloseModal {
+  onClose: () => void;
+  handleCancelChecked: () => void;
+}
+
+export interface IOpenModal {
+  modalName: string;
+  openModal: (modalName: string) => void;
+}
+
+interface IRegister {
+  modalName: string;
+  openModal: (modalName: string) => void;
 }

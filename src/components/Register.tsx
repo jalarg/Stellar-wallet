@@ -1,15 +1,17 @@
 import Button from "../components/commons/Button";
-import { ISetKeyPair } from "../types/types";
-import registerHandler from "../actions/registerHandler";
+import { IRegister } from "../types/types";
+import openModalHandler from "../actions/openModalHandler";
 
-const Register = ({ setSecret, setPublicKey }: ISetKeyPair) => {
+const Register: React.FC<IRegister> = ({ modalName, openModal }) => {
   return (
     <div className="flex justify-center m-5">
       <Button
         buttonClass="button-register"
         secondary
         fullWidth
-        onClick={() => registerHandler({ setSecret, setPublicKey })}
+        onClick={() => {
+          openModalHandler({ modalName, openModal });
+        }}
       >
         Generate key pair for a new account
       </Button>

@@ -1,6 +1,6 @@
-import { ButtonProps } from "../../types/types";
+import { IButton } from "../../types/types";
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<IButton> = ({
   type,
   fullWidth,
   children,
