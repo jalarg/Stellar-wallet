@@ -41,7 +41,7 @@ function Wallet() {
           <div className="bg-neutralMain flex flex-col px-[12.5%] text-black bg-blue-200 rounded-md border-2 border-blue-300 sm:h-[70vh] h-[70vh] sm:w-[60%]  hover:bg-blue-100">
             <div className="flex items-center justify-center font-semibold gap-x-3">
               <div className="w-[80%]">
-                <div className="wallet-publicKey-title flex items-start justify-start text-xs sm:text-xl font-semibold py-5">
+                <div className="wallet-public-key-title flex items-start justify-start text-xs sm:text-xl font-semibold py-5">
                   Your Stellar Public Key
                 </div>
                 <Input

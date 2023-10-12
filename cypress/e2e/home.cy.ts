@@ -122,7 +122,6 @@ describe(" Footer: UI and functionality:", () => {
       .contains("Rocket wallet 2023");
   });
 });
-
 describe(" Wallet: UI and functionality:", () => {
   beforeEach(() => {
     cy.visit(`${projectUrl}/wallet`);
@@ -147,7 +146,7 @@ describe(" Wallet: UI and functionality:", () => {
   });
 
   it("Should the title for the wallet public key and input be visible and contain a text message", () => {
-    cy.get(".wallet-publicKey-title")
+    cy.get(".wallet-public-key-title")
       .should("be.visible")
       .and("contain", "Your Stellar Public Key");
     cy.get(".wallet-input").should("be.visible");
