@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Input } from "antd";
@@ -6,6 +7,9 @@ import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
 
 function Wallet() {
+  const [publicKey, setPublicKey] = useState<string>("");
+  const [balance, setBalance] = useState<string>("0");
+
   return (
     <>
       <div className="wallet-container flex flex-col min-h-screen">
@@ -17,7 +21,7 @@ function Wallet() {
                 Your balance
               </p>
               <p className="wallet-balance-amount text-sm sm:text-2xl font-bold">
-                0 Lumens (XML)
+                {balance} Lumens (XML)
               </p>
             </div>
             <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
@@ -42,7 +46,7 @@ function Wallet() {
                 </div>
                 <Input
                   className="wallet-input text-sm font-semibold h-10"
-                  placeholder="GBXECMFOPNJQXSYHYT5VYI43RHKGPTSD3QVOTY7BY4GC7TDDXKGJUAXB"
+                  value={publicKey}
                 />
               </div>
             </div>
@@ -54,7 +58,7 @@ function Wallet() {
                 (XLM) to the Stellar public key displayed above.
               </p>
               <button
-                className="button-addLumens activate-button font-extrabold text-blue-500 hover:text-blue-600"
+                className="button-add-lumens activate-button font-extrabold text-blue-500 hover:text-blue-600"
                 onClick={() => {}}
               >
                 {" "}
