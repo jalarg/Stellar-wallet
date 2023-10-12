@@ -66,3 +66,8 @@ export interface IOpenModal {
   modalName: string;
   openModal: (modalName: string) => void;
 }
+
+interface IRegister {
+  modalName: string;
+  openModal: (modalName: string) => void;
+}
