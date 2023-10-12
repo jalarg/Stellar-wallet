@@ -6,11 +6,18 @@ const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
 async function checkBalance(publicKey: string) {
   try {
     const accountBalance = await server.loadAccount(publicKey);
-    accountBalance.balances.forEach(({ asset_type, balance }: IBalance) => {
-      return { publicKey, asset_type, balance };
-    });
-  } catch (err) {
-    console.error("ERROR!", err);
+    const balances = accountBalance.balances.map(
+      ({ asset_type, balance }: IBalance) => ({
+        asset_type,
+        balance,
+      })
+    );
+    return balances;
+  } catch (err: any) {
+    if (publicKey === "") {
+      throw new Error("Please provide a public key in the correct format.");
+    }
+    throw new Error("Account not found. Please check the public key.");
   }
 }
 
