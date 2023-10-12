@@ -1,9 +1,9 @@
 "use client";
 
 import { createSlice } from "@reduxjs/toolkit";
-import { AuthState } from "../../types/types";
+import { IAuthState } from "../../types/types";
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   isAuthenticated: false,
   walletCredential: null,
 };

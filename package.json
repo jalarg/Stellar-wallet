@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "cypress:open": "cypress open",
-    "test-auth": "jest jest/authSlice.spec.ts",
+    "jest": "jest",
     "lint": "next lint",
     "test": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && npm run cypress:open\""
   },

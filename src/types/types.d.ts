@@ -29,7 +29,7 @@ export interface Ikeypair {
   privateKey: string;
 }
 
-export interface AuthState {
+export interface IAuthState {
   isAuthenticated: boolean;
   walletCredential: string | null; 
 }

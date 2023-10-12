@@ -9,13 +9,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../GlobalRedux/store";
-import { AuthState } from "@/types/types";
+import { IAuthState } from "@/types/types";
 
 export default function Page() {
   const [secret, setSecret] = useState<string | null>(null);
   const [publicKey, setPublicKey] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const credential = useSelector((state: AuthState) => state.walletCredential);
+  const userPrivateKey = useSelector((state: IAuthState) => state.walletCredential);
 
   return (
     <>
