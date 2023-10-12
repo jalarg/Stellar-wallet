@@ -162,7 +162,7 @@ describe(" Wallet: UI and functionality:", () => {
       );
 
     cy.get(".wallet-warning-icon").should("be.visible");
-    cy.get(".button-addLumens")
+    cy.get(".button-add-lumens")
       .should("be.visible")
       .and("contain", "Click here");
   });
