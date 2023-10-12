@@ -5,6 +5,7 @@ import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
 import Navbar from "../components/Navbar";
+
 import CustomModal from "@/components/modals/CustomModal";
 import {
   generateKeyPairContentStep1,
@@ -13,6 +14,8 @@ import {
   loginContentStep2,
 } from "../content/modals";
 import resetKeys from "@/actions/resetKeys";
+import Footer from "../components/Footer";
+
 
 export default function Page() {
   const [secretKey, setSecretKey] = useState<string | null>(null);
@@ -31,7 +34,9 @@ export default function Page() {
   };
 
   return (
-    <div className="relative h-[100vh]">
+
+
+    <div className="relative h-[80vh]">
       {[
         "generateKeyPair",
         "confirmWallet",
@@ -62,13 +67,13 @@ export default function Page() {
       ))}
       <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
-        <Image
-          src={logo}
-          width={100}
-          height={100}
-          alt="logo"
-          className="stellar-home-logo mx-auto w-auto h-20 rounded-lg cursor-pointer hover:scale-110 pt-5"
-        />
+      <Image
+            src={logo}
+            width={100}
+            height={100}
+            alt="logo"
+            className="stellar-home-logo mx-auto w-auto h-20 rounded-lg cursor-pointer hover:scale-110 pt-5"
+          />
       </div>
       <div className="border-2 rounded-[25px] my-6 mx-auto w-[90%] sm:max-w-lg h-900px] z-30 bg-gray-100 p-3 flex flex-col">
         <h1 className="rocket-title mb-8 text-center text-3xl font-bold tracking-tight text-gray-800">
@@ -94,9 +99,11 @@ export default function Page() {
               </Button>
             </div>
             <Register modalName="generateKeyPair" openModal={openModal} />
-          </div>
+         </div>
         </div>
       </div>
+      <Footer />
     </div>
+
   );
 }
