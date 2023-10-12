@@ -31,7 +31,6 @@ describe("Home: UI and functionality:", () => {
       .and("contain", "Connect with a secret key");
   });
 });
-
 describe(" Navbar: UI and functionality:", () => {
   beforeEach(() => {
     cy.get(".theme-button-light").as("themeButtonLight");
@@ -55,8 +54,7 @@ describe(" Navbar: UI and functionality:", () => {
     cy.get("@themeButtonLight").should("not.exist");
   });
 });
-
-describe(" Registration Modal Step1: UI and functionality:", () => {
+describe(" Registration Modal Step1", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get("@registerButton").click();
@@ -105,8 +103,7 @@ describe(" Registration Modal Step1: UI and functionality:", () => {
     cy.get(".modal-container-confirmWallet").should("exist");
   });
 });
-
-describe(" Registration Modal Step2: UI and functionality:", () => {
+describe("Registration Modal Step2", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get("@registerButton").click();
@@ -194,8 +191,7 @@ describe(" Registration Modal Step2: UI and functionality:", () => {
     cy.get(".modal-container-confirmWallet").should("not.exist");
   });
 });
-
-describe("Login Modal Step1: UI and functionality:", () => {
+describe("Login Modal Step1", () => {
   beforeEach(() => {
     cy.get(".button-connect").as("connectButton");
     cy.get("@connectButton").click();
@@ -274,8 +270,7 @@ describe("Login Modal Step1: UI and functionality:", () => {
     cy.get(".modal-container-connectAddSecretKey").should("exist");
   });
 });
-
-describe("Login Modal Step2: UI and functionality:", () => {
+describe("Login Modal Step2", () => {
   beforeEach(() => {
     cy.get(".button-connect").as("connectButton");
     cy.get("@connectButton").click();
