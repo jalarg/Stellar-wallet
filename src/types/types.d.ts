@@ -6,7 +6,7 @@ export interface IInput {
   placeholder?: string;
   required?: boolean;
   readOnly?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IButton {
@@ -58,15 +58,11 @@ export interface IModal {
 }
 
 export interface ICloseModal {
-  onClose: () => void
-  handleCancelChecked: () => void
+  onClose: () => void;
+  handleCancelChecked: () => void;
 }
 
 export interface IOpenModal {
-  modalName: string
-  openModal: (modalName: string) => void
+  modalName: string;
+  openModal: (modalName: string) => void;
 }
-
-
-
-
