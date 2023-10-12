@@ -31,7 +31,7 @@ describe("Home: UI and functionality:", () => {
       .and("contain", "Connect with a secret key");
   });
 });
-describe(" Navbar: UI and functionality:", () => {
+describe("Navbar: UI and functionality:", () => {
   beforeEach(() => {
     cy.get(".theme-button-light").as("themeButtonLight");
   });
@@ -54,7 +54,7 @@ describe(" Navbar: UI and functionality:", () => {
     cy.get("@themeButtonLight").should("not.exist");
   });
 });
-describe(" Registration Modal Step1", () => {
+describe("Registration Modal Step1", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get("@registerButton").click();
