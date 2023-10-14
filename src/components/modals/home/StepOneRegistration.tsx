@@ -1,6 +1,6 @@
-import Button from "../commons/Button";
-import { IModal } from "../../types/types";
-import registerHandler from "../../actions/registerHandler";
+import Button from "../../commons/Button";
+import { IModal } from "../../../types/types";
+import registerHandler from "../../../actions/registerHandler";
 
 const StepOneRegistration: React.FC<IModal> = ({
   content,

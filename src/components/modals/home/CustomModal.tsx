@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import { IModal } from "../../types/types";
+import { IModal } from "../../../types/types";
 import StepOneRegistration from "./StepOneRegistration";
 import StepTwoRegistration from "./StepTwoRegistration";
 import StepOneLogin from "./StepOneLogin";

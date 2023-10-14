@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Button from "../commons/Button";
-import Input from "../commons/Input";
-import { IModal } from "../../types/types";
+import Button from "../../commons/Button";
+import Input from "../../commons/Input";
+import { IModal } from "../../../types/types";
 import Link from "next/link";
 import { Checkbox } from "antd";
 import closeModalHandler from "@/actions/closeModalHandler";

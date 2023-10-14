@@ -1,6 +1,6 @@
-import Button from "../commons/Button";
-import Input from "../commons/Input";
-import { IModal } from "../../types/types";
+import Button from "../../commons/Button";
+import Input from "../../commons/Input";
+import { IModal } from "../../../types/types";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -40,7 +40,7 @@ const StepTwoLogin: React.FC<IModal> = ({
         ))}
       </div>
       <div className="flex flex-col justify-center px-5">
-        <Input       
+        <Input
           placeholder="Starts with S, example: SCHK..ZLJK"
           label="Secret key"
           required={true}
