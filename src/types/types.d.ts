@@ -57,16 +57,18 @@ export interface IModal {
   setActiveModal?: (modalName: string) => void;
 }
 
-export interface IModalSendTransaction {
+export interface IModalWallet {
   isOpen?: boolean;
   onClose: () => void;
   content: {
     title: string;
+    subtitle?: string;
     button: string;
   };
   label: string;
   openModal: (isActive: string) => void;
   privateKey?: string | null;
+  publicKey?: string | null;
   registerHandler?: () => void;
 }
 
