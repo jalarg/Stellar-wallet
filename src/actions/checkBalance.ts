@@ -1,8 +1,6 @@
-import StellarSdk from "stellar-sdk";
 import { IBalance } from "../types/types";
 import { isValidPublicKey } from "../validations";
-
-const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
+import { server } from "./";
 
 async function checkBalance(publicKey: string) {
   try {
@@ -21,7 +19,5 @@ async function checkBalance(publicKey: string) {
     throw new Error("Account not found. Please check the public key.");
   }
 }
-
-
 
 export default checkBalance;
