@@ -50,9 +50,12 @@ export const loginContentStep2 = {
 };
 
 export const sendTransaction = {
-  title: "Send Lummens",
-  subtitle: "",
-  list: [""],
-  button: "Send",
+    title: "Send Lummens",
+    button: "Send",
 };
 
+export const receiveTransaction = {
+  title: "Receive Lummens",
+  subtitle: "Scan this QR code using a Stellar wallet app to make a payment to your account.",
+  button: "Receive",
+};

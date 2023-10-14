@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
 import Button from "../../commons/Button";
-import { IModalSendTransaction } from "../../../types/types";
+import { IModalWallet  } from "../../../types/types";
 import { Input, Tooltip } from "antd";
 import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 import closeModalHandler from "../../../actions/closeModalHandler";
 
-const SendTransaction: React.FC<IModalSendTransaction> = ({
+const SendTransaction: React.FC<IModalWallet> = ({
   content,
   label,
   onClose,
