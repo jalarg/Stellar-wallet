@@ -1,7 +1,6 @@
 import StellarSdk from "stellar-sdk";
 import { ISendTransaction } from "../types/types";
-
-const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
+import { server } from "./";
 
 async function sendTransaction({
   publicKey,
@@ -10,7 +9,6 @@ async function sendTransaction({
   amount,
 }: ISendTransaction) {
   try {
-
     const destinationAccount = await server.loadAccount(destinationId);
     if (!destinationAccount) {
       throw new Error("The destination account does not exist!");
@@ -36,12 +34,12 @@ async function sendTransaction({
 
     const transaction = transactionBuilder.build();
 
-
     const keyPair = StellarSdk.Keypair.fromSecret(privateKey);
     transaction.sign(keyPair);
 
     const transactionResult = await server.submitTransaction(transaction);
     console.log(JSON.stringify(transactionResult, null, 2));
+    return JSON.stringify(transactionResult, null, 2);
   } catch (err) {
     console.error("ERROR!", err);
   }

@@ -1,6 +1,4 @@
-import StellarSdk from "stellar-sdk";
-
-const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
+import { server } from "./";
 
 interface IPayment {
   amount: string;
@@ -8,42 +6,44 @@ interface IPayment {
   sender: string;
 }
 
-async function paymentsHistory(publicKey: string) {
-  const paymentData: IPayment[] = [];
+async function paymentsHistory(publicKey: string): Promise<IPayment[]> {
+  return new Promise<IPayment[]>(async (resolve, reject) => {
+    try {
+      const paymentData: IPayment[] = [];
+      const payments = server.payments().forAccount(publicKey);
+      payments.stream({
+        onmessage: function (payment: any) {
+          if (payment.to !== publicKey) {
+            return;
+          }
+          var asset;
+          if (payment.asset_type === "native") {
+            asset = "lumens";
+          } else {
+            asset = payment.asset_code + ":" + payment.asset_issuer;
+          }
 
-  try {
-    const payments = await server.payments().forAccount(publicKey);
-    payments.stream({
-      onmessage: function (payment: any) {
-        if (payment.to !== publicKey) {
-          return;
-        }
-        var asset;
-        if (payment.asset_type === "native") {
-          asset = "lumens";
-        } else {
-          asset = payment.asset_code + ":" + payment.asset_issuer;
-        }
+          const paymentEntry: IPayment = {
+            amount: payment.amount,
+            asset: asset,
+            sender: payment.from,
+          };
 
-        const paymentEntry: IPayment = {
-          amount: payment.amount,
-          asset: asset,
-          sender: payment.from,
-        };
-
-        if (payment.type !== "create_account") {
-          paymentData.push(paymentEntry);
-        }
-      },
-      onerror: function (error: any) {
-        console.error("Error in payment stream");
-      },
-    });
-    console.log("Regular Payments:", paymentData);
-    return paymentData;
-  } catch (err) {
-    console.error("ERROR!", err);
-  }
+          if (payment.type !== "create_account") {
+            paymentData.push(paymentEntry);
+          }
+        },
+        onerror: function (error: any) {
+          console.error("Error in payment stream");
+          reject(error);
+        },
+      });
+      console.log("payments", paymentData);
+    } catch (err) {
+      console.error("ERROR!", err);
+      reject(err);
+    }
+  });
 }
 
 export default paymentsHistory;
