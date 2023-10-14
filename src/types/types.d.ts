@@ -57,9 +57,22 @@ export interface IModal {
   setActiveModal?: (modalName: string) => void;
 }
 
+export interface IModalSendTransaction {
+  isOpen?: boolean;
+  onClose: () => void;
+  content: {
+    title: string;
+    button: string;
+  };
+  label: string;
+  openModal: (isActive: string) => void;
+  privateKey?: string | null;
+  registerHandler?: () => void;
+}
+
 export interface ICloseModal {
   onClose: () => void;
-  handleCancelChecked: () => void;
+  handleCancelChecked?: () => void;
 }
 
 export interface IOpenModal {
