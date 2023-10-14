@@ -3,6 +3,7 @@ import checkBalance from "./checkBalance";
 import sendTransaction from "./sendTransaction";
 import setKeypair from "./setKeypair";
 import paymentsHistory from "./paymentsHistory";
+import server from "./server";
 
 export {
   minimumBalance,
@@ -10,4 +11,5 @@ export {
   sendTransaction,
   setKeypair,
   paymentsHistory,
+  server,
 };
