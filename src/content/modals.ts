@@ -48,3 +48,11 @@ export const loginContentStep2 = {
   ],
   button: "Connect",
 };
+
+export const sendTransaction = {
+  title: "Send Lummens",
+  subtitle: "",
+  list: [""],
+  button: "Send",
+};
+
