@@ -5,14 +5,41 @@ import Footer from "../../components/Footer";
 import { Input } from "antd";
 import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
+import CustomModal from "@/components/modals/CustomModal";
+import { sendTransaction } from "../../content/modals";
+import SendTransaction from "@/components/modals/SendTransaction";
 
 function Wallet() {
   const [publicKey, setPublicKey] = useState<string>("");
+  const [secretKey, setSecretKey] = useState<string>("");
   const [balance, setBalance] = useState<string>("0");
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  const openModal = (modalName: string) => {
+    setActiveModal(modalName);
+  };
+
+  const closeModal = () => {
+    setActiveModal(null);
+  };
 
   return (
     <>
       <div className="wallet-container flex flex-col min-h-screen">
+        {["sendButtonModal", "receiveButtonModal"].map((modalLabel) => (
+          <SendTransaction
+            key={modalLabel}
+            label={modalLabel}
+            isOpen={activeModal === modalLabel}
+            onClose={closeModal}
+            content={
+              modalLabel === "sendButtonModal"
+                ? sendTransaction
+                : sendTransaction
+            }
+            openModal={openModal}
+          />
+        ))}
         <Navbar />
         <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
           <div className="flex justify-evenly w-full gap-5 py-5 px-10">
@@ -25,7 +52,13 @@ function Wallet() {
               </p>
             </div>
             <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
-              <Button onClick={() => {}} buttonClass="button-send" fullWidth>
+              <Button
+                onClick={() => {
+                  openModal("sendButtonModal");
+                }}
+                buttonClass="button-send"
+                fullWidth
+              >
                 Send
               </Button>
               <Button
