@@ -39,22 +39,57 @@ export interface IKeypair {
 export interface IModal {
   isOpen?: boolean;
   onClose: () => void;
+  label: string;
+  modalProps: any;
+}
+
+export interface IRegistrationModalStepOne extends IModal {
+  openModal: (modalName: string) => void;
+  setPublicKey: (publicKey: string | null) => void;
+  setSecretKey: (secretKey: string | null) => void;
   content: {
     title: string;
     subtitle: string;
-    question?: string;
     list: string[];
-    checkbox?: string;
     button: string;
   };
-  label: string;
-  openModal: (isActive: string) => void;
+}
+
+export interface IRegistrationModalStepTwo extends IModal {
+  openModal: (modalName: string) => void;
   publicKey?: string | null;
   secretKey?: string | null;
-  setPublicKey: (publicKey: string | null) => void;
+  content: {
+    title: string;
+    subtitle: string;
+    list: string[];
+    checkbox: string;
+    button: string;
+  };
+}
+
+export interface ILoginModalStepOne extends IModal {
+  openModal: (modalName: string) => void;
+  content: {
+    title: string;
+    subtitle: string;
+    list: string[];
+    checkbox: string;
+    button: string;
+  };
+}
+
+export interface ILoginModalStepTwo extends IModal {
+  openModal: (modalName: string) => void;
   setSecretKey: (secretKey: string | null) => void;
-  registerHandler?: () => void;
-  setActiveModal?: (modalName: string) => void;
+  content: {
+    title: string;
+    subtitle: string;
+    question: string;
+    list: string[];
+    checkbox: string;
+    button: string;
+  };
 }
 
 export interface IModalWallet {

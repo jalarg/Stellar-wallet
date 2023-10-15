@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import Button from "../../commons/Button";
 import Input from "../../commons/Input";
-import { IModal } from "../../../types/types";
+import { IRegistrationModalStepTwo } from "../../../types/types";
 import Link from "next/link";
 import { Checkbox } from "antd";
 import closeModalHandler from "@/actions/closeModalHandler";
 
-const StepTwoRegistration: React.FC<IModal> = ({
+const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
   content,
   label,
   onClose,
   secretKey,
   publicKey,
-  setActiveModal,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 

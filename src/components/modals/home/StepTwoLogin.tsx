@@ -1,10 +1,10 @@
 import Button from "../../commons/Button";
 import Input from "../../commons/Input";
-import { IModal } from "../../../types/types";
+import { ILoginModalStepTwo } from "../../../types/types";
 import Link from "next/link";
 import { useState } from "react";
 
-const StepTwoLogin: React.FC<IModal> = ({
+const StepTwoLogin: React.FC<ILoginModalStepTwo> = ({
   content,
   label,
   onClose,

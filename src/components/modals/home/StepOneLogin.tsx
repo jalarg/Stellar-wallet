@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Button from "../../commons/Button";
-import { IModal, IOpenModal } from "../../../types/types";
+import {  ILoginModalStepOne  } from "../../../types/types";
 import { Checkbox } from "antd";
 import closeModalHandler from "../../../actions/closeModalHandler";
 import openModalHandler from "../../../actions/openModalHandler";
 
-const StepOneLogin: React.FC<IModal> = ({
+const StepOneLogin: React.FC<ILoginModalStepOne > = ({
   content,
   label,
   onClose,
