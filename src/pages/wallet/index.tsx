@@ -6,8 +6,11 @@ import { Input } from "antd";
 import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
 import { sendTransaction, receiveTransaction } from "../../content/modals";
-import SendTransaction from "@/components/modals/wallet/SendTransaction";
-import ReceiveTransaction from "@/components/modals/wallet/ReceiveTransaction";
+import CustomModal from "../../components/modals/CustomModal";
+import {
+  IWalletModalSendTransaction,
+  IWalletModalReceiveTransaction,
+} from "../../types/types";
 
 function Wallet() {
   const [publicKey, setPublicKey] = useState<string>(
@@ -25,36 +28,33 @@ function Wallet() {
     setActiveModal(null);
   };
 
+  const modalProps = {
+    SendTransaction: {
+      content: sendTransaction,
+      secretKey: secretKey,
+    } as IWalletModalSendTransaction,
+    ReceiveTransaction: {
+      content: receiveTransaction,
+      publicKey: publicKey,
+    } as IWalletModalReceiveTransaction,
+  };
+
   return (
     <>
       <div className="wallet-container flex flex-col min-h-screen">
-        {["sendButtonModal", "receiveButtonModal"].map((modalLabel) => {
-          return (
-            <div key={modalLabel}>
-              {modalLabel === "sendButtonModal" &&
-                activeModal === modalLabel && (
-                  <SendTransaction
-                    label={modalLabel}
-                    isOpen={true}
-                    onClose={closeModal}
-                    content={sendTransaction}
-                    openModal={openModal}
-                  />
-                )}
-              {modalLabel === "receiveButtonModal" &&
-                activeModal === modalLabel && (
-                  <ReceiveTransaction
-                    label={modalLabel}
-                    isOpen={true}
-                    onClose={closeModal}
-                    content={receiveTransaction}
-                    openModal={openModal}
-                    publicKey={publicKey}
-                  />
-                )}
-            </div>
-          );
-        })}
+        {["SendTransaction", "ReceiveTransaction"].map((modalLabel: string) => (
+          <CustomModal
+            key={modalLabel}
+            label={modalLabel}
+            isOpen={activeModal === modalLabel}
+            onClose={closeModal}
+            modalProps={
+              modalLabel === "SendTransaction"
+                ? modalProps["SendTransaction"]
+                : modalProps["ReceiveTransaction"]
+            }
+          />
+        ))}
         <Navbar />
         <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
           <div className="flex justify-evenly w-full gap-5 py-5 px-10">
@@ -69,7 +69,7 @@ function Wallet() {
             <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
               <Button
                 onClick={() => {
-                  openModal("sendButtonModal");
+                  openModal("SendTransaction");
                 }}
                 buttonClass="button-send"
                 fullWidth
@@ -78,7 +78,7 @@ function Wallet() {
               </Button>
               <Button
                 onClick={() => {
-                  openModal("receiveButtonModal");
+                  openModal("ReceiveTransaction");
                 }}
                 buttonClass="button-receive"
                 fullWidth
