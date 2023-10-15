@@ -60,7 +60,7 @@ const SendTransaction: React.FC<IWalletModalSendTransaction> = ({
             {content.button}
           </Button>
           <Button
-            buttonClass="button-modal-cancel-1"
+            buttonClass="button-modal-cancel"
             danger
             onClick={() => {
               closeModalHandler({ onClose });

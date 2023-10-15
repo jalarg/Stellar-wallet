@@ -30,20 +30,20 @@ const ReceiveTransaction: React.FC<IWalletModalReceiveTransaction> = ({
       </div>
       <div className="flex flex-col items-center justify-center text-center text-xs sm:text-xl">
         <div className="flex flex-col items-center justify-center bg-white rounded-[10px] border border-[2] border-gray-600 p-3">
-          <QRCode value={qrValue} size={128} />
+          <QRCode className="modal-receive-qr" value={qrValue} size={128} />
         </div>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <h3 className={`modal-subtitle-${label} text-xsm sm:text-xsm`}>
+        <h3 className={`modal-publicKey-${label} text-xsm sm:text-xsm`}>
           {`${publicKey?.trim().slice(0, 5)}...${publicKey
             ?.trim()
             .slice(publicKey.length - 6, publicKey.length - 1)}`}
         </h3>
-        <CopyToClipboard
+        <CopyToClipboard    
           text={qrValue}
           onCopy={() => alert("Text copied to the clipboard")}
         >
-          <Image src={copy} alt="copy" className="m-3 w-4 h-4 cursor-pointer" />
+          <Image  src={copy} alt="copy" className="modal-receive-copy-icon m-3 w-4 h-4 cursor-pointer" />
         </CopyToClipboard>
       </div>
       <div className="flex justify-evenly w-full gap-5 py-5 px-10">

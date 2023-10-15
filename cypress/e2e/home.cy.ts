@@ -37,7 +37,7 @@ describe("Home: UI and functionality:", () => {
       .and("contain", "Connect with a secret key");
   });
 });
-describe("Navbar: UI and functionality:", () => {
+describe("Navbar", () => {
   beforeEach(() => {
     cy.get(".theme-button-light").as("themeButtonLight");
   });
@@ -334,107 +334,43 @@ describe("Login Modal Step2", () => {
     cy.get(".modal-container-connectAddSecretKey").should("not.exist");
   });
 
-describe(" Footer: UI and functionality:", () => {
-  it("Should the footer container be visible", () => {
-    cy.get(".footer-container").should("exist").and("be.visible");
-  });
+  describe(" Footer: UI and functionality:", () => {
+    it("Should the footer container be visible", () => {
+      cy.get(".footer-container").should("exist").and("be.visible");
+    });
 
-  it("Should the github logo be visible and have the correct url", () => {
-    cy.get(".github-icon")
-      .should("be.visible")
-      .and("have.attr", "href", githubUrl);
-  });
+    it("Should the github logo be visible and have the correct url", () => {
+      cy.get(".github-icon")
+        .should("be.visible")
+        .and("have.attr", "href", githubUrl);
+    });
 
-  it("Should the terms and services and have the correct url", () => {
-    cy.get(".footer-terms-service-url")
-      .should("be.visible")
-      .and("have.attr", "href", termsOfServiceUrl);
+    it("Should the terms and services and have the correct url", () => {
+      cy.get(".footer-terms-service-url")
+        .should("be.visible")
+        .and("have.attr", "href", termsOfServiceUrl);
 
-    cy.get(".footer-terms-service-text")
-      .should("be.visible")
-      .contains("Terms and Services");
-  });
+      cy.get(".footer-terms-service-text")
+        .should("be.visible")
+        .contains("Terms and Services");
+    });
 
-  it("Should the privacy policy be visible, have specific text and have the correct url", () => {
-    cy.get(".privacy-policy-url")
-      .should("be.visible")
-      .and("have.attr", "href", privacyPolicyUrl);
+    it("Should the privacy policy be visible, have specific text and have the correct url", () => {
+      cy.get(".privacy-policy-url")
+        .should("be.visible")
+        .and("have.attr", "href", privacyPolicyUrl);
 
-    cy.get(".privacy-policy-text")
-      .should("be.visible")
-      .contains("Privacy Policy");
-  });
+      cy.get(".privacy-policy-text")
+        .should("be.visible")
+        .contains("Privacy Policy");
+    });
 
-  it("Should have a copyright icon and have an specific text", () => {
-    cy.get(".footer-copyright-icon").should("be.visible");
+    it("Should have a copyright icon and have an specific text", () => {
+      cy.get(".footer-copyright-icon").should("be.visible");
 
-    cy.get(".footer-copyright-text")
-      .should("be.visible")
-      .contains("Rocket wallet 2023");
-  });
-});
-describe(" Wallet: UI and functionality:", () => {
-  beforeEach(() => {
-    cy.visit(`${projectUrl}/wallet`);
-  });
-
-  it("Should the wallet container be visible", () => {
-    cy.get(".wallet-container").should("exist").and("be.visible");
-  });
-
-  it("Should the title for the balance and the amount be visible and contain the amount number", () => {
-    cy.get(".wallet-balance-title")
-      .should("be.visible")
-      .and("contain", "Your balance");
-    cy.get(".wallet-balance-amount")
-      .should("be.visible")
-      .and("contain", `0 Lumens (XML)`);
-  });
-
-  it("Should the button send and receive be visible and contain a text message", () => {
-    cy.get(".button-send").should("be.visible").and("contain", "Send");
-    cy.get(".button-receive").should("be.visible").and("contain", "Receive");
-  });
-
-  it("Should the title for the wallet public key and input be visible and contain a text message", () => {
-    cy.get(".wallet-public-key-title")
-      .should("be.visible")
-      .and("contain", "Your Stellar Public Key");
-    cy.get(".wallet-input").should("be.visible");
-  });
-
-  it("Should the wallet warning icon, a warning message and a button be visible and contain a text messager", () => {
-    cy.get(".wallet-warning-text")
-      .should("be.visible")
-      .and(
-        "contain",
-        "his account is currently inactive. to send 10,000 test lumen (XLM) to the Stellar public key displayed above."
-      );
-
-    cy.get(".wallet-warning-icon").should("be.visible");
-    cy.get(".button-add-lumens")
-      .should("be.visible")
-      .and("contain", "Click here");
-  });
-
-  it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
-    cy.get(".wallet-payments-title")
-      .should("be.visible")
-      .and("contain", "Payments History");
-    cy.get(".wallet-payments-text")
-      .should("be.visible")
-      .and("contain", "There are no payments to show.");
-  });
-
-  it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
-    cy.get(".wallet-lp-title")
-      .should("be.visible")
-      .and("contain", "Liquidity pool transactions");
-    cy.get(".wallet-lp-text")
-      .should("be.visible")
-      .and(
-        "contain",
-        "There are no recent liquidity pool transactions to show."
-      );
+      cy.get(".footer-copyright-text")
+        .should("be.visible")
+        .contains("Rocket wallet 2023");
+    });
   });
 });

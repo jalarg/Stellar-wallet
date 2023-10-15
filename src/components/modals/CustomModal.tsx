@@ -30,6 +30,7 @@ const CustomModal = <T extends Record<string, any>>({
   modalProps,
 }: ModalProps<T>) => {
   const Component = modalComponents[label];
+  console.log(label, "label");
 
   return (
     <Modal
@@ -39,7 +40,9 @@ const CustomModal = <T extends Record<string, any>>({
       onCancel={onClose}
       footer={null}
     >
-      {Component && <Component onClose={onClose} {...modalProps} />}
+      {Component && (
+        <Component label={label} onClose={onClose} {...modalProps} />
+      )}
     </Modal>
   );
 };
