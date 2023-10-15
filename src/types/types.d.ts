@@ -92,6 +92,23 @@ export interface ILoginModalStepTwo extends IModal {
   };
 }
 
+export interface IWalletModalReceiveTransaction extends IModal {
+  publicKey: string;
+  content: {
+    title: string;
+    subtitle: string;
+    button: string;
+  };
+}
+
+export interface IWalletModalSendTransaction extends IModal {
+  secretKey: string;
+  content: {
+    title: string;
+    button: string;
+  };
+}
+
 export interface IModalWallet {
   isOpen?: boolean;
   onClose: () => void;
