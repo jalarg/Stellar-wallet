@@ -4,12 +4,16 @@ import StepOneRegistration from "./home/StepOneRegistration";
 import StepTwoRegistration from "./home/StepTwoRegistration";
 import StepOneLogin from "./home/StepOneLogin";
 import StepTwoLogin from "./home/StepTwoLogin";
+import SendTransaction from "./wallet/SendTransaction";
+import ReceiveTransaction from "./wallet/ReceiveTransaction";
 
 const modalComponents: Record<string, React.FC<any>> = {
   generateKeyPair: StepOneRegistration,
   confirmWallet: StepTwoRegistration,
   connectSecretKeyWarning: StepOneLogin,
   connectAddSecretKey: StepTwoLogin,
+  SendTransaction: SendTransaction,
+  ReceiveTransaction: ReceiveTransaction,
 };
 
 type ModalProps<T> = {
