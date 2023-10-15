@@ -5,16 +5,21 @@ import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
 import Navbar from "../components/Navbar";
-
-import CustomModal from "@/components/modals/home/CustomModal";
+import CustomModal from "@/components/modals/CustomModal";
 import {
   generateKeyPairContentStep1,
   generateKeyPairContentStep2,
   loginContentStep1,
   loginContentStep2,
 } from "../content/modals";
-import resetKeys from "@/actions/resetKeys";
+import resetKeys from "../actions/resetKeys";
 import Footer from "../components/Footer";
+import {
+  ILoginModalStepOne,
+  ILoginModalStepTwo,
+  IRegistrationModalStepOne,
+  IRegistrationModalStepTwo,
+} from "../types/types";
 
 export default function Page() {
   const [secretKey, setSecretKey] = useState<string | null>(null);
@@ -32,6 +37,28 @@ export default function Page() {
     }
   };
 
+  const modalProps = {
+    generateKeyPair: {
+      openModal: openModal,
+      content: generateKeyPairContentStep1,
+      setSecretKey: setSecretKey,
+      setPublicKey: setPublicKey,
+    } as IRegistrationModalStepOne,
+    confirmWallet: {
+      content: generateKeyPairContentStep2,
+      publicKey: publicKey,
+      secretKey: secretKey,
+    } as IRegistrationModalStepTwo,
+    connectSecretKeyWarning: {
+      openModal: openModal,
+      content: loginContentStep1,
+    } as ILoginModalStepOne,
+    connectAddSecretKey: {
+      setSecretKey: setSecretKey,
+      content: loginContentStep2,
+    } as ILoginModalStepTwo,
+  };
+
   return (
     <div className="relative h-[80vh]">
       {[
@@ -39,27 +66,23 @@ export default function Page() {
         "confirmWallet",
         "connectSecretKeyWarning",
         "connectAddSecretKey",
-      ].map((modalLabel) => (
+      ].map((modalLabel: string) => (
         <CustomModal
           key={modalLabel}
           label={modalLabel}
           isOpen={activeModal === modalLabel}
           onClose={closeModal}
-          content={
+          modalProps={
             modalLabel === "generateKeyPair"
-              ? generateKeyPairContentStep1
+              ? modalProps["generateKeyPair"]
               : modalLabel === "confirmWallet"
-              ? generateKeyPairContentStep2
+              ? modalProps["confirmWallet"]
               : modalLabel === "connectSecretKeyWarning"
-              ? loginContentStep1
-              : loginContentStep2
+              ? modalProps["connectSecretKeyWarning"]
+              : modalLabel === "connectAddSecretKey"
+              ? modalProps["connectAddSecretKey"]
+              : {}
           }
-          openModal={openModal}
-          setPublicKey={setPublicKey}
-          setSecretKey={setSecretKey}
-          publicKey={publicKey}
-          secretKey={secretKey}
-          setActiveModal={setActiveModal}
         />
       ))}
       <Navbar />
