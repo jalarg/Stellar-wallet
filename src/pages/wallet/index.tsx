@@ -32,6 +32,7 @@ function Wallet() {
     SendTransaction: {
       content: sendTransaction,
       secretKey: secretKey,
+      publicKey: publicKey,
     } as IWalletModalSendTransaction,
     ReceiveTransaction: {
       content: receiveTransaction,

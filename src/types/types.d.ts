@@ -103,6 +103,7 @@ export interface IWalletModalReceiveTransaction extends IModal {
 
 export interface IWalletModalSendTransaction extends IModal {
   secretKey: string;
+  publicKey: string;
   content: {
     title: string;
     button: string;

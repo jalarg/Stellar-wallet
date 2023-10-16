@@ -10,6 +10,7 @@ const SendTransaction: React.FC<IWalletModalSendTransaction> = ({
   label,
   onClose,
   secretKey,
+  publicKey,
 }) => {
   const [value, setValue] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
@@ -23,7 +24,7 @@ const SendTransaction: React.FC<IWalletModalSendTransaction> = ({
   };
 
   const sendTransactionHandler = () => {
-    console.log("Transaction sent");
+    console.log(`Transaction sent from ${publicKey} to ${value}`);
   };
 
   return (
