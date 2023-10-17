@@ -10,7 +10,7 @@ beforeEach(() => {
   cy.visit(projectUrl);
 });
 
-describe("Home: UI and functionality:", () => {
+describe("Home UI", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get(".button-connect").as("connectButton");
@@ -60,7 +60,6 @@ describe("Navbar", () => {
     cy.get("@themeButtonLight").should("not.exist");
   });
 });
-
 describe("Registration Modal Step1", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
@@ -333,8 +332,7 @@ describe("Login Modal Step2", () => {
       .click();
     cy.get(".modal-container-connectAddSecretKey").should("not.exist");
   });
-
-  describe(" Footer: UI and functionality:", () => {
+  describe("Footer:", () => {
     it("Should the footer container be visible", () => {
       cy.get(".footer-container").should("exist").and("be.visible");
     });
