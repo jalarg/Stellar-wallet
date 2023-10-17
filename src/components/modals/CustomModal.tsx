@@ -30,8 +30,6 @@ const CustomModal = <T extends Record<string, any>>({
   modalProps,
 }: ModalProps<T>) => {
   const Component = modalComponents[label];
-  console.log(label, "label");
-
   return (
     <Modal
       className={`modal-container-${label}`}
