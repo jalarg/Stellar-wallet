@@ -46,3 +46,8 @@ interface ISendTransaction {
   amount: string;
 }
 
+interface IMinimumBalanceResponse {
+  status: number;
+  detail: string;
+  error: string;
+}

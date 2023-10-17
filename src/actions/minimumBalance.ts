@@ -1,8 +1,4 @@
-interface ResponseData {
-  status: number;
-  detail: string;
-  error: string;
-}
+import { IMinimumBalanceResponse } from "../../src/types/types";
 
 async function minimumBalance(publicKey: string | null) {
   try {
@@ -13,7 +9,7 @@ async function minimumBalance(publicKey: string | null) {
       `https://friendbot.stellar.org?addr=${encodeURIComponent(publicKey)}`
     );
 
-    const responseJSON = (await response.json()) as ResponseData;
+    const responseJSON = (await response.json()) as IMinimumBalanceResponse;
     
     if (responseJSON.status === 400) {
       console.error(`ERROR ${responseJSON.detail} !`, responseJSON.error);
