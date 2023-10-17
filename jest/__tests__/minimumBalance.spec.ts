@@ -19,7 +19,6 @@ describe("MinimumBalance function", () => {
     const realPair = Keypair.random();
     const publicKey = realPair.publicKey();
 
-    // Configura la respuesta simulada de fetch usando fetchMock
     fetchMock.mockResponse(
       JSON.stringify({
         status: 200,
@@ -51,7 +50,7 @@ describe("MinimumBalance function", () => {
 
   it("Should log an error message when publicKey is null or empty", async () => {
     const consoleError = jest.spyOn(console, "error");
-    const publicKey = null; // Set the publicKey to null or an empty string
+    const publicKey = null; 
     await minimumBalance(publicKey);
     expect(consoleError).toHaveBeenCalledWith("ERROR!", expect.any(Error));
   });
