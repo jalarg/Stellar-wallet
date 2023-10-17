@@ -15,11 +15,17 @@ import {
 } from "../content/modals";
 import resetKeys from "@/actions/resetKeys";
 import Footer from "../components/Footer";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../GlobalRedux/store";
+import { IAuthState } from "@/types/types";
 
 
 export default function Page() {
   const [secretKey, setSecretKey] = useState<string | null>(null);
-  const [publicKey, setPublicKey] = useState<string | null>(null);
+  const [publicKey, setPublicKey] = useState<string | null>(null);  
+  const dispatch = useDispatch();
+  const userPrivateKey = useSelector((state: IAuthState) => state.walletCredential);
+
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const openModal = (modalName: string) => {
@@ -34,7 +40,6 @@ export default function Page() {
   };
 
   return (
-
 
     <div className="relative h-[80vh]">
       {[
