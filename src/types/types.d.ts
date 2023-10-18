@@ -37,13 +37,23 @@ export interface IKeypair {
 }
 
 export interface IModal {
+  activeModal: string;
+  isOpen: boolean;
+  onClose: () => void;
+  label: string;
+  openModal: (modalName: string) => void;
+  setPublicKey: (publicKey: string | null) => void;
+  setSecretKey: (secretKey: string | null) => void;
+  secretKey: string;
+  publicKey: string;
+}
+
+// ACA ESTO TOCANDO:
+
+export interface IRegistrationModalStepOne {
   isOpen?: boolean;
   onClose: () => void;
   label: string;
-  modalProps: any;
-}
-
-export interface IRegistrationModalStepOne extends IModal {
   openModal: (modalName: string) => void;
   setPublicKey: (publicKey: string | null) => void;
   setSecretKey: (secretKey: string | null) => void;
@@ -55,10 +65,13 @@ export interface IRegistrationModalStepOne extends IModal {
   };
 }
 
-export interface IRegistrationModalStepTwo extends IModal {
+export interface IRegistrationModalStepTwo {
+  isOpen?: boolean;
+  onClose: () => void;
+  label: string;
   openModal: (modalName: string) => void;
-  publicKey?: string | null;
-  secretKey?: string | null;
+  publicKey: string | null;
+  secretKey: string | null;
   content: {
     title: string;
     subtitle: string;
@@ -68,7 +81,10 @@ export interface IRegistrationModalStepTwo extends IModal {
   };
 }
 
-export interface ILoginModalStepOne extends IModal {
+export interface ILoginModalStepOne {
+  isOpen?: boolean;
+  onClose: () => void;
+  label: string;
   openModal: (modalName: string) => void;
   content: {
     title: string;
@@ -79,7 +95,10 @@ export interface ILoginModalStepOne extends IModal {
   };
 }
 
-export interface ILoginModalStepTwo extends IModal {
+export interface ILoginModalStepTwo {
+  isOpen?: boolean;
+  onClose: () => void;
+  label: string;
   openModal: (modalName: string) => void;
   setSecretKey: (secretKey: string | null) => void;
   content: {
@@ -87,7 +106,6 @@ export interface ILoginModalStepTwo extends IModal {
     subtitle: string;
     question: string;
     list: string[];
-    checkbox: string;
     button: string;
   };
 }
