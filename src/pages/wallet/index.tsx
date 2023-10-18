@@ -6,11 +6,7 @@ import { Input } from "antd";
 import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
 import { sendTransaction, receiveTransaction } from "../../content/modals";
-import CustomModal from "../../components/modals/CustomModal";
-import {
-  IWalletModalSendTransaction,
-  IWalletModalReceiveTransaction,
-} from "../../types/types";
+import { SendModal, ReceiveModal } from "../../components/modals/wallet";
 
 function Wallet() {
   const [publicKey, setPublicKey] = useState<string>("");
@@ -26,34 +22,29 @@ function Wallet() {
     setActiveModal(null);
   };
 
-  const modalProps = {
-    SendTransaction: {
-      content: sendTransaction,
-      secretKey: secretKey,
-      publicKey: publicKey,
-    } as IWalletModalSendTransaction,
-    ReceiveTransaction: {
-      content: receiveTransaction,
-      publicKey: publicKey,
-    } as IWalletModalReceiveTransaction,
-  };
-
   return (
     <>
       <div className="wallet-container flex flex-col min-h-screen">
-        {["SendTransaction", "ReceiveTransaction"].map((modalLabel: string) => (
-          <CustomModal
-            key={modalLabel}
-            label={modalLabel}
-            isOpen={activeModal === modalLabel}
+        {activeModal === "SendTransaction" ? (
+          <SendModal
+            key={activeModal}
+            label={activeModal as string}
+            isOpen={activeModal === "SendTransaction"}
             onClose={closeModal}
-            modalProps={
-              modalLabel === "SendTransaction"
-                ? modalProps["SendTransaction"]
-                : modalProps["ReceiveTransaction"]
-            }
+            content={sendTransaction}
+            secretKey={secretKey}
+            publicKey={publicKey}
           />
-        ))}
+        ) : (
+          <ReceiveModal
+            key={activeModal}
+            label={activeModal as string}
+            isOpen={activeModal === "ReceiveTransaction"}
+            onClose={closeModal}
+            content={receiveTransaction}
+            publicKey={publicKey}
+          />
+        )}
         <Navbar />
         <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
           <div className="flex justify-evenly w-full gap-5 py-5 px-10">
