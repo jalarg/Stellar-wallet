@@ -48,6 +48,16 @@ export interface IModal {
   publicKey: string;
 }
 
+export interface IModalWallet {
+  activeModal: string;
+  isOpen: boolean;
+  onClose: () => void;
+  label: string;
+  openModal: (modalName: string) => void;
+  secretKey: string;
+  publicKey: string;
+}
+
 // ACA ESTO TOCANDO:
 
 export interface IRegistrationModalStepOne {
