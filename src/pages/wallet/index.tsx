@@ -5,8 +5,7 @@ import Footer from "../../components/Footer";
 import { Input } from "antd";
 import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
-import { sendTransaction, receiveTransaction } from "../../content/modals";
-import { SendModal, ReceiveModal } from "../../components/modals/wallet";
+import Modal from "../../components/modals/wallet";
 
 function Wallet() {
   const [publicKey, setPublicKey] = useState<string>("");
@@ -25,26 +24,15 @@ function Wallet() {
   return (
     <>
       <div className="wallet-container flex flex-col min-h-screen">
-        {activeModal === "SendTransaction" ? (
-          <SendModal
-            key={activeModal}
-            label={activeModal as string}
-            isOpen={activeModal === "SendTransaction"}
-            onClose={closeModal}
-            content={sendTransaction}
-            secretKey={secretKey}
-            publicKey={publicKey}
-          />
-        ) : (
-          <ReceiveModal
-            key={activeModal}
-            label={activeModal as string}
-            isOpen={activeModal === "ReceiveTransaction"}
-            onClose={closeModal}
-            content={receiveTransaction}
-            publicKey={publicKey}
-          />
-        )}
+        <Modal
+          openModal={openModal}
+          activeModal={activeModal as string}
+          label={activeModal as string}
+          isOpen={activeModal !== null}
+          onClose={closeModal}
+          secretKey={secretKey as string}
+          publicKey={publicKey as string}
+        />
         <Navbar />
         <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
           <div className="flex justify-evenly w-full gap-5 py-5 px-10">
