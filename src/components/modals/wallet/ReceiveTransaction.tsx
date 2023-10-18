@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import QRCode from "qrcode.react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Image from "next/image";
 import copy from "../../../assets/copy-icon.svg";
 import { IWalletModalReceiveTransaction } from "../../../types/types";
+import trimWalletAddress from "@/actions/trimWalletAddress";
 
 const ReceiveTransaction: React.FC<IWalletModalReceiveTransaction> = ({
   label,
@@ -11,7 +12,7 @@ const ReceiveTransaction: React.FC<IWalletModalReceiveTransaction> = ({
   content,
   publicKey,
 }) => {
-  const [qrValue, setQrValue] = React.useState<string>("");
+  const [qrValue, setQrValue] = useState<string>("");
   useEffect(() => {
     if (publicKey) {
       setQrValue(publicKey);
@@ -35,15 +36,17 @@ const ReceiveTransaction: React.FC<IWalletModalReceiveTransaction> = ({
       </div>
       <div className="flex flex-col items-center justify-center">
         <h3 className={`modal-publicKey-${label} text-xsm sm:text-xsm`}>
-          {`${publicKey?.trim().slice(0, 5)}...${publicKey
-            ?.trim()
-            .slice(publicKey.length - 6, publicKey.length - 1)}`}
+          {trimWalletAddress(publicKey)}
         </h3>
-        <CopyToClipboard    
+        <CopyToClipboard
           text={qrValue}
           onCopy={() => alert("Text copied to the clipboard")}
         >
-          <Image  src={copy} alt="copy" className="modal-receive-copy-icon m-3 w-4 h-4 cursor-pointer" />
+          <Image
+            src={copy}
+            alt="copy"
+            className="modal-receive-copy-icon m-3 w-4 h-4 cursor-pointer"
+          />
         </CopyToClipboard>
       </div>
       <div className="flex justify-evenly w-full gap-5 py-5 px-10">
