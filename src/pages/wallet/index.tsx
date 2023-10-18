@@ -13,9 +13,7 @@ import {
 } from "../../types/types";
 
 function Wallet() {
-  const [publicKey, setPublicKey] = useState<string>(
-    "G54325GDGFFDGFDGSASDASDASDFGDSFDA87ADAS9D7SADA9D7AS"
-  );
+  const [publicKey, setPublicKey] = useState<string>("");
   const [secretKey, setSecretKey] = useState<string>("");
   const [balance, setBalance] = useState<string>("0");
   const [activeModal, setActiveModal] = useState<string | null>(null);
