@@ -5,6 +5,7 @@ import Image from "next/image";
 import copy from "../../../assets/copy-icon.svg";
 import { IWalletModalReceiveTransaction } from "../../../types/types";
 import trimWalletAddress from "@/actions/trimWalletAddress";
+import { message } from "antd";
 
 const ReceiveTransaction: React.FC<IWalletModalReceiveTransaction> = ({
   label,
@@ -40,7 +41,7 @@ const ReceiveTransaction: React.FC<IWalletModalReceiveTransaction> = ({
         </h3>
         <CopyToClipboard
           text={qrValue}
-          onCopy={() => alert("Text copied to the clipboard")}
+          onCopy={() => message.success("Copied to clipboard")}
         >
           <Image
             src={copy}

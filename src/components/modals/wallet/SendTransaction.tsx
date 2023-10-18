@@ -4,6 +4,7 @@ import { IWalletModalSendTransaction } from "../../../types/types";
 import { Input, Tooltip } from "antd";
 import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 import closeModalHandler from "../../../actions/closeModalHandler";
+import { message } from "antd";
 
 const SendTransaction: React.FC<IWalletModalSendTransaction> = ({
   content,
@@ -24,7 +25,12 @@ const SendTransaction: React.FC<IWalletModalSendTransaction> = ({
   };
 
   const sendTransactionHandler = () => {
-    console.log(`Transaction sent from ${publicKey} to ${value}`);
+    if (value && amount) {
+      message.success("Transaction sent successfully");
+      closeModalHandler({ onClose });
+    } else {
+      message.error("Please fill in all fields");
+    }
   };
 
   return (
