@@ -28,7 +28,7 @@ jest.mock("../../src/actions", () => {
   };
 });
 
-describe("paymentHistory function", () => {
+describe("PaymentHistory function", () => {
   it("Should create an array with the history of lumens transactions of a wallet", async () => {
     const result = await paymentHistory(publicKey);
 
@@ -45,6 +45,7 @@ describe("paymentHistory function", () => {
       sender: "GDNQCO7LX3PDR2YB5V3D7ZBOT6F3QBBXKO4E52AWIDE63Z5RAPMJWNST",
     });
   });
+
   it("Should throw an error when the publicKey format is invalid", async () => {
     const publicKey = "";
     expect.assertions(1);

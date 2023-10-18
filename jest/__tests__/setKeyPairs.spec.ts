@@ -4,6 +4,7 @@ import setKeypair from "../../src/actions/setKeypair";
 import { Keypair } from "stellar-sdk";
 
 describe("SetKeypair function", () => {
+  
   it("Should set secret and public key when given a key pair", () => {
     const setSecret = jest.fn();
     const setPublicKey = jest.fn();

@@ -51,7 +51,7 @@ const sendTransactionInformation = {
   amount: "20",
 };
 
-describe("sendTransaction function", () => {
+describe("SendTransaction function", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
