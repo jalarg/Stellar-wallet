@@ -1,6 +1,4 @@
-import {
-  projectUrl,
-} from "../support/constants";
+import { projectUrl } from "../support/constants";
 
 beforeEach(() => {
   cy.visit(`${projectUrl}/wallet`);
@@ -94,7 +92,7 @@ describe("Send transaction modal", () => {
     cy.get(".button-modal-cancel").should("exist").and("have.text", "Cancel");
   });
 });
-describe("Send transaction modal", () => {
+describe("Receive transaction modal", () => {
   beforeEach(() => {
     cy.get(".button-receive").click();
   });
