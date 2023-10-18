@@ -92,16 +92,10 @@ export interface ILoginModalStepTwo extends IModal {
   };
 }
 
-export interface IWalletModalReceiveTransaction extends IModal {
-  publicKey: string;
-  content: {
-    title: string;
-    subtitle: string;
-    button: string;
-  };
-}
-
-export interface IWalletModalSendTransaction extends IModal {
+export interface ISendTransaction {
+  isOpen?: boolean;
+  onClose: () => void;
+  label: string;
   secretKey: string;
   publicKey: string;
   content: {
@@ -110,19 +104,16 @@ export interface IWalletModalSendTransaction extends IModal {
   };
 }
 
-export interface IModalWallet {
+export interface IReceiveTransaction {
   isOpen?: boolean;
   onClose: () => void;
+  label: string;
+  publicKey: string;
   content: {
     title: string;
-    subtitle?: string;
+    subtitle: string;
     button: string;
   };
-  label: string;
-  openModal: (isActive: string) => void;
-  privateKey?: string | null;
-  publicKey?: string | null;
-  registerHandler?: () => void;
 }
 
 export interface ICloseModal {
