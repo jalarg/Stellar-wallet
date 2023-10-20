@@ -36,6 +36,10 @@ export interface IKeypair {
   privateKey: string;
 }
 
+export interface IAuthState {
+  isAuthenticated: boolean;
+  walletCredential: string | null; 
+
 export interface IModal {
   activeModal: string;
   isOpen: boolean;
@@ -159,4 +163,5 @@ export interface IOpenModal {
 interface IRegister {
   modalName: string;
   openModal: (modalName: string) => void;
+
 }

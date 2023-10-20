@@ -33,7 +33,7 @@
     "cypress/**/*.tsx",
     "cypress.config.ts",
     "cypress.env.json"
-  ],
+, "jest.config.js"  ],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {
