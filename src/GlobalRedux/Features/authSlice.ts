@@ -5,7 +5,10 @@ import { IAuthState } from "../../types/types";
 
 const initialState: IAuthState = {
   isAuthenticated: false,
-  walletCredential: null,
+  walletCredentials: {
+    publicKey: "",
+    secretKey: "",
+  },
 };
 
 const authSlice = createSlice({
@@ -14,14 +17,17 @@ const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.isAuthenticated = true;
-      state.walletCredential = action.payload;
+      state.walletCredentials = action.payload;
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.walletCredential = null;
+      state.walletCredentials = {
+        publicKey: "",
+        secretKey: "",
+      };
     },
   },
 });
 
 export const { login, logout } = authSlice.actions;
-export const authReducer = authSlice.reducer; 
+export const authReducer = authSlice.reducer;
