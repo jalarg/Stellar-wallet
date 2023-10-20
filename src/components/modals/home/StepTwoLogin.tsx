@@ -3,8 +3,9 @@ import Input from "../../commons/Input";
 import { ILoginModalStepTwo } from "../../../types/types";
 import Link from "next/link";
 import { useState } from "react";
-import { message } from "antd";
 import { Modal } from "antd";
+import { ILogin } from "../../../types/types";
+import loginHandler from "../../../actions/loginHandler";
 
 const StepTwoLogin: React.FC<ILoginModalStepTwo> = ({
   content,
@@ -12,19 +13,14 @@ const StepTwoLogin: React.FC<ILoginModalStepTwo> = ({
   label,
   onClose,
   setSecretKey,
+  dispatch,
+  auth,
 }) => {
   const [value, setValue] = useState<string>("");
 
+
   const handleSecretKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-  };
-
-  const handleLogin = () => {
-    if (value) {
-      message.success("Your wallet is connected");
-    } else {
-      message.error("Please enter your secret key");
-    }
   };
 
   return (
@@ -72,7 +68,13 @@ const StepTwoLogin: React.FC<ILoginModalStepTwo> = ({
             <Button
               disabled={!value}
               buttonClass={`button-modal-${label}`}
-              onClick={handleLogin}
+              onClick={() => {
+                loginHandler({
+                  secretKey: value,
+                  dispatch,
+                  auth,
+                } as ILogin);
+              }}
             >
               {content.button}
             </Button>

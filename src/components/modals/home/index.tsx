@@ -21,6 +21,9 @@ const Modal: React.FC<IModal> = ({
   setSecretKey,
   secretKey,
   publicKey,
+  dispatch,
+  auth,
+
 }) => {
   switch (activeModal) {
     case "generateKeyPair":
@@ -45,6 +48,8 @@ const Modal: React.FC<IModal> = ({
           content={generateKeyPairContentStep2}
           secretKey={secretKey}
           publicKey={publicKey}
+          dispatch={dispatch}
+          auth={auth}
         />
       );
     case "connectSecretKeyWarning":
@@ -66,6 +71,8 @@ const Modal: React.FC<IModal> = ({
           openModal={openModal}
           content={loginContentStep2}
           setSecretKey={setSecretKey}
+          dispatch={dispatch}
+          auth={auth}
         />
       );
     default:
