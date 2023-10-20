@@ -2,9 +2,16 @@ import { Keypair } from "stellar-sdk";
 import setKeypair from "./setKeypair";
 import { ISetKeyPair } from "../types/types";
 
-function registerHandler({ setSecret, setPublicKey }: ISetKeyPair) {
+function registerHandler({
+  setSecretKey,
+  setPublicKey,
+  openModal,
+}: ISetKeyPair) {
   const pair = Keypair.random();
-  setKeypair({ setSecret, setPublicKey, pair });
+  setKeypair({ setSecretKey, setPublicKey, pair });
+  if (openModal) {
+    openModal("confirmWallet");
+  }
 }
 
 export default registerHandler;
