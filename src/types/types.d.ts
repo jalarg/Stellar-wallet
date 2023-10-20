@@ -59,6 +59,10 @@ export interface IMinimumBalanceResponse {
   error: string;
 }
 
+interface IAuth {
+  auth: IAuthState;
+}
+
 export interface IAuthState {
   isAuthenticated: boolean;
   walletCredentials: {

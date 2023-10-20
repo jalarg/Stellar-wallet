@@ -6,11 +6,17 @@ import { Input } from "antd";
 import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
 import Modal from "../../components/modals/wallet";
+import { useSelector, useDispatch } from "react-redux";
 
 function Wallet() {
-  const [publicKey, setPublicKey] = useState<string>("");
-  const [secretKey, setSecretKey] = useState<string>("");
   const [balance, setBalance] = useState<string>("0");
+  const dispatch = useDispatch();
+  const publicKey = useSelector(
+    (state: any) => state.auth.walletCredentials.publicKey
+  );
+  const secretKey = useSelector(
+    (state: any) => state.auth.walletCredentials.secretKey
+  );
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const openModal = (modalName: string) => {
