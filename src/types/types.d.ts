@@ -146,7 +146,7 @@ export interface IReceiveTransaction {
 
 export interface ICloseModal {
   onClose: () => void;
-  handleCancelChecked?: () => void;
+  handleCheck?: () => void;
 }
 
 export interface IOpenModal {

@@ -18,8 +18,8 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const handleCancelChecked = () => {
-    setIsChecked(false);
+  const handleCheck = () => {
+    isChecked ? setIsChecked(false) : setIsChecked(true);
   };
 
   const handleRegister = () => {
@@ -69,7 +69,7 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
           <Checkbox
             className={`modal-checkbox-${label} text-md text-red-800 hover:font-bold`}
             checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
+            onChange={handleCheck}
           >
             {content.checkbox}
           </Checkbox>
@@ -88,7 +88,7 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
             buttonClass={`button-modal-${label}-cancel`}
             danger
             onClick={() => {
-              closeModalHandler({ onClose, handleCancelChecked });
+              closeModalHandler({ onClose, handleCheck });
             }}
           >
             Cancel

@@ -1,9 +1,9 @@
 import { ICloseModal } from "../types/types";
 
-function closeModalHandler({ onClose, handleCancelChecked }: ICloseModal) {
+function closeModalHandler({ onClose, handleCheck }: ICloseModal) {
   onClose();
-  if (handleCancelChecked) {
-    handleCancelChecked();
+  if (handleCheck) {
+    handleCheck();
   }
 }
 

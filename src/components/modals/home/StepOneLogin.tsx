@@ -15,8 +15,8 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const handleCancelChecked = () => {
-    setIsChecked(false);
+  const handleCheck = () => {
+    isChecked ? setIsChecked(false) : setIsChecked(true);
   };
 
   return (
@@ -48,7 +48,7 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
           <Checkbox
             className={`modal-checkbox-${label} text-md text-red-800 hover:font-bold`}
             checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
+            onChange={handleCheck}
           >
             {content.checkbox}
           </Checkbox>
@@ -67,7 +67,7 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
             buttonClass="button-modal-cancel-1"
             danger
             onClick={() => {
-              closeModalHandler({ onClose, handleCancelChecked });
+              closeModalHandler({ onClose, handleCheck });
             }}
           >
             Cancel
