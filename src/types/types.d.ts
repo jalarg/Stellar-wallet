@@ -146,7 +146,9 @@ export interface IReceiveTransaction {
 
 export interface ICloseModal {
   onClose: () => void;
-  handleCheck?: () => void;
+  handleCheck: (isChecked: boolean, setIsChecked: (isChecked: boolean) => void) => void;
+  isChecked?: boolean;
+  setIsChecked?: (isChecked: boolean) => void;
 }
 
 export interface IOpenModal {

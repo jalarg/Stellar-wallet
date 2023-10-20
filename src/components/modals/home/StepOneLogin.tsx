@@ -5,6 +5,8 @@ import { Checkbox } from "antd";
 import closeModalHandler from "../../../actions/closeModalHandler";
 import openModalHandler from "../../../actions/openModalHandler";
 import { Modal } from "antd";
+import { handleCheck } from "../../../actions/utils";
+import { is } from "node_modules/cypress/types/bluebird";
 
 const StepOneLogin: React.FC<ILoginModalStepOne> = ({
   content,
@@ -14,10 +16,6 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
   openModal,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
-
-  const handleCheck = () => {
-    isChecked ? setIsChecked(false) : setIsChecked(true);
-  };
 
   return (
     <Modal
@@ -48,7 +46,7 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
           <Checkbox
             className={`modal-checkbox-${label} text-md text-red-800 hover:font-bold`}
             checked={isChecked}
-            onChange={handleCheck}
+            onChange={() => handleCheck(isChecked, setIsChecked)}
           >
             {content.checkbox}
           </Checkbox>
@@ -67,7 +65,12 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
             buttonClass="button-modal-cancel-1"
             danger
             onClick={() => {
-              closeModalHandler({ onClose, handleCheck });
+              closeModalHandler({
+                onClose,
+                handleCheck,
+                isChecked,
+                setIsChecked,
+              });
             }}
           >
             Cancel

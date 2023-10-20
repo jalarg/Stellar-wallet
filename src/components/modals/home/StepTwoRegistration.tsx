@@ -7,6 +7,7 @@ import { Checkbox } from "antd";
 import closeModalHandler from "@/actions/closeModalHandler";
 import { message } from "antd";
 import { Modal } from "antd";
+import { handleCheck } from "../../../actions/utils";
 
 const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
   content,
@@ -17,10 +18,6 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
   publicKey,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
-
-  const handleCheck = () => {
-    isChecked ? setIsChecked(false) : setIsChecked(true);
-  };
 
   const handleRegister = () => {
     message.success("You have successfully registered");
@@ -69,7 +66,7 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
           <Checkbox
             className={`modal-checkbox-${label} text-md text-red-800 hover:font-bold`}
             checked={isChecked}
-            onChange={handleCheck}
+            onChange={() => handleCheck(isChecked, setIsChecked)}
           >
             {content.checkbox}
           </Checkbox>
@@ -88,7 +85,7 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
             buttonClass={`button-modal-${label}-cancel`}
             danger
             onClick={() => {
-              closeModalHandler({ onClose, handleCheck });
+              closeModalHandler({ onClose, handleCheck, setIsChecked, isChecked });
             }}
           >
             Cancel
