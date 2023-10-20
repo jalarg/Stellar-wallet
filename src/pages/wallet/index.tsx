@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Input } from "antd";
@@ -7,6 +7,9 @@ import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
 import Modal from "../../components/modals/wallet";
 import { useSelector, useDispatch } from "react-redux";
+import { checkBalance, minimumBalance } from "@/actions";
+import miniumBalanceHandler from "../../actions/miniumBalanceHandler";
+import { IMiniumBalanceHandler } from "../../types/types";
 
 function Wallet() {
   const [balance, setBalance] = useState<string>("0");
@@ -18,6 +21,18 @@ function Wallet() {
     (state: any) => state.auth.walletCredentials.secretKey
   );
   const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (publicKey) {
+        await checkBalance(publicKey)
+          .then((res) => setBalance(res[0].balance))
+          .catch((err) => setBalance("0"));
+      }
+      setBalance(balance as string);
+    };
+    fetchBalance();
+  }, [publicKey, minimumBalance]);
 
   const openModal = (modalName: string) => {
     setActiveModal(modalName);
@@ -93,7 +108,7 @@ function Wallet() {
               </p>
               <button
                 className="button-add-lumens activate-button font-extrabold text-blue-500 hover:text-blue-600"
-                onClick={() => {}}
+                onClick={() => miniumBalanceHandler({ publicKey, setBalance })}
               >
                 {" "}
                 Click here
