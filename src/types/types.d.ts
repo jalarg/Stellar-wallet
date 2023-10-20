@@ -36,9 +36,34 @@ export interface IKeypair {
   privateKey: string;
 }
 
+
+export interface IPair {
+  publicKey: () => string | null;
+  privateKey: () => string | null;
+}
+
+export interface IBalance {
+  asset_type: string;
+  balance: string;
+}
+
+export interface ISendTransaction {
+  publicKey: string;
+  privateKey: string;
+  destinationId: string;
+  amount: string;
+}
+
+export interface IMinimumBalanceResponse {
+  status: number;
+  detail: string;
+  error: string;
+}
+
 export interface IAuthState {
   isAuthenticated: boolean;
   walletCredential: string | null; 
+}
 
 export interface IModal {
   activeModal: string;
@@ -61,8 +86,6 @@ export interface IModalWallet {
   secretKey: string;
   publicKey: string;
 }
-
-// ACA ESTO TOCANDO:
 
 export interface IRegistrationModalStepOne {
   isOpen?: boolean;
@@ -160,8 +183,7 @@ export interface IOpenModal {
   openModal: (modalName: string) => void;
 }
 
-interface IRegister {
+export interface IRegister {
   modalName: string;
   openModal: (modalName: string) => void;
-
 }

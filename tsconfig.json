@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext", "es5"],
-    "types": ["cypress", "node"],
+    "types": ["cypress", "node", "jest"],
     "baseUrl": "./",
     "allowJs": true,
     "skipLibCheck": true,
@@ -32,8 +32,9 @@
     "cypress/**/*.ts",
     "cypress/**/*.tsx",
     "cypress.config.ts",
-    "cypress.env.json"
-, "jest.config.js"  ],
+    "cypress.env.json",
+    "jest.config.js"
+  ],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {
