@@ -6,6 +6,8 @@ import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 import closeModalHandler from "../../../actions/closeModalHandler";
 import { message } from "antd";
 import { Modal } from "antd";
+import sendTransactionHandler from "@/actions/sendTransactionHandler";
+import { ISendTransactionFunction } from "@/types/types";
 
 const SendModal: React.FC<ISendTransaction> = ({
   label,
@@ -14,25 +16,17 @@ const SendModal: React.FC<ISendTransaction> = ({
   content,
   secretKey,
   publicKey,
+  setBalance,
 }) => {
-  const [value, setValue] = useState<string>("");
+  const [destinationId, setDestinationId] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
 
   const handleSetTransactionId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    setDestinationId(e.target.value);
   };
 
   const handleSetAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);
-  };
-
-  const sendTransactionHandler = () => {
-    if (value && amount) {
-      message.success("Transaction sent successfully");
-      closeModalHandler({ onClose });
-    } else {
-      message.error("Please fill in all fields");
-    }
   };
 
   return (
@@ -58,7 +52,7 @@ const SendModal: React.FC<ISendTransaction> = ({
               <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
             </Tooltip>
           }
-          value={value}
+          value={destinationId}
         />
         <Input
           onChange={handleSetAmount}
@@ -71,7 +65,16 @@ const SendModal: React.FC<ISendTransaction> = ({
           <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
             <Button
               buttonClass={`button-modal-${label}`}
-              onClick={sendTransactionHandler}
+              onClick={() =>
+                sendTransactionHandler({
+                  publicKey: publicKey,
+                  privateKey: secretKey,
+                  amount: amount,
+                  destinationId: destinationId,
+                  onClose,
+                  setBalance,
+                })
+              }
             >
               {content.button}
             </Button>
