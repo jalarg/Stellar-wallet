@@ -51,11 +51,11 @@ export interface IMiniumBalanceHandler {
   setBalance: (balance: string) => void;
 }
 
-export interface ISendTransaction {
-  publicKey: string;
+export interface ISendTransactionHandler {
   privateKey: string;
-  destinationId: string;
+  publicKey: string;
   amount: string;
+  destinationId: string;
 }
 
 export interface IMinimumBalanceResponse {
@@ -98,6 +98,7 @@ export interface IModalWallet {
   openModal: (modalName: string) => void;
   secretKey: string;
   publicKey: string;
+  setBalance: (balance: string) => void;
 }
 
 export interface IRegistrationModalStepOne {
@@ -164,6 +165,15 @@ export interface ILoginModalStepTwo {
   auth: IAuthState;
 }
 
+export interface ISendTransactionFunction {
+  publicKey: string;
+  privateKey: string;
+  destinationId: string;
+  amount: string;
+  onClose?: () => void;
+  setBalance?: (balance: string) => void;
+}
+
 export interface ISendTransaction {
   isOpen?: boolean;
   onClose: () => void;
@@ -174,6 +184,7 @@ export interface ISendTransaction {
     title: string;
     button: string;
   };
+  setBalance: (balance: string) => void;
 }
 
 export interface IReceiveTransaction {
@@ -190,7 +201,7 @@ export interface IReceiveTransaction {
 
 export interface ICloseModal {
   onClose: () => void;
-  handleCheck: (
+  handleCheck?: (
     isChecked: boolean,
     setIsChecked: (isChecked: boolean) => void
   ) => void;

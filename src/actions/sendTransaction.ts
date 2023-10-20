@@ -1,6 +1,6 @@
 import StellarSdk from "stellar-sdk";
 import { BASE_FEE, Networks } from "stellar-sdk";
-import { ISendTransaction } from "../types/types";
+import { ISendTransactionFunction } from "../types/types";
 import { server } from "./";
 
 async function sendTransaction({
@@ -8,7 +8,7 @@ async function sendTransaction({
   privateKey,
   destinationId,
   amount,
-}: ISendTransaction) {
+}: ISendTransactionFunction) {
   try {
     const destinationAccount = await server.loadAccount(destinationId);
     if (!destinationAccount) {
@@ -41,7 +41,6 @@ async function sendTransaction({
     const keyPair = StellarSdk.Keypair.fromSecret(privateKey);
     transaction.sign(keyPair);
     const transactionResult = await server.submitTransaction(transaction);
-    console.log(JSON.stringify(transactionResult, null, 2));
     return JSON.stringify(transactionResult, null, 2);
   } catch (err) {
     console.error("ERROR!", err);
