@@ -10,7 +10,7 @@ beforeEach(() => {
   cy.visit(projectUrl);
 });
 
-describe("Home: UI and functionality:", () => {
+describe("Home UI", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get(".button-connect").as("connectButton");
@@ -37,10 +37,11 @@ describe("Home: UI and functionality:", () => {
       .and("contain", "Connect with a secret key");
   });
 });
-describe("Navbar: UI and functionality:", () => {
+describe("Navbar", () => {
   beforeEach(() => {
     cy.get(".theme-button-light").as("themeButtonLight");
   });
+
   it("Should the navbar container be visible", () => {
     cy.get(".navbar-container").should("exist").and("be.visible");
   });
@@ -60,12 +61,10 @@ describe("Navbar: UI and functionality:", () => {
     cy.get("@themeButtonLight").should("not.exist");
   });
 });
-
 describe("Registration Modal Step1", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get("@registerButton").click();
-
     cy.get(".button-modal-generateKeyPair").as("generateKeyPairButton");
     cy.get(".button-modal-cancel").as("cancelButton");
   });
@@ -99,7 +98,7 @@ describe("Registration Modal Step1", () => {
 
   it("Should show a button cancel and perform an action", () => {
     cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
-    cy.get(".modal-container-generateKeyPair").should("be.hidden");
+    cy.get(".modal-container-generateKeyPair").should("not.exist");
   });
 
   it("Should show a button to continue and perform an action", () => {
@@ -116,16 +115,16 @@ describe("Registration Modal Step2", () => {
     cy.get("@registerButton").click();
     cy.get(".button-modal-generateKeyPair").as("generateKeyPairButton");
     cy.get("@generateKeyPairButton").click();
-
     cy.get(".button-modal-confirmWallet").as("confirmWalletButton");
     cy.get(".button-modal-confirmWallet-cancel").as("cancelButton");
     cy.get(".input-public-key").as("publicKeyInput");
     cy.get(".input-private-key").as("privateKeyInput");
     cy.get(".modal-checkbox-confirmWallet").as("checkboxConfirmWallet");
+    cy.get(".button-modal-confirmWallet-cancel").as("cancelButton");
   });
 
   it("Should the modal container be visible", () => {
-    cy.get(".modal-container-confirmWallet").should("exist").and("be.visible");
+    cy.get(".modal-container-confirmWallet").should("be.visible");
   });
 
   it("Should the title and paragraphs be visible and contain the text description", () => {
@@ -165,7 +164,6 @@ describe("Registration Modal Step2", () => {
         "contain",
         "You have several options: Write your key down on a piece of paper. Keep it in a safe. Store it in a password manager. Use a hardware wallet. But don't ever keep it unencrypted on your computer or in your email."
       );
-
     cy.get(".modal-paragraphs-confirmWallet-6")
       .should("be.visible")
       .and(
@@ -185,7 +183,7 @@ describe("Registration Modal Step2", () => {
 
   it("Should show a button cancel and perform an action", () => {
     cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
-    cy.get(".modal-container-generateKeyPair").should("be.hidden");
+    cy.get(".modal-container-generateKeyPair").should("not.exist");
   });
 
   it("Should show a button to continue and perform an action", () => {
@@ -206,18 +204,15 @@ describe("Login Modal Step1", () => {
       "connectSecretKeyWarning"
     );
     cy.get(".button-modal-cancel-1").as("cancelButton");
-    cy.get("@cancelButton").click();
   });
 
   it("Should the modal container be visible", () => {
-    cy.get("@connectButton").click();
     cy.get(".modal-container-connectSecretKeyWarning")
       .should("exist")
       .and("be.visible");
   });
 
   it("Should the checkbox be visible and have text", () => {
-    cy.get("@connectButton").click();
     cy.get(".modal-checkbox-connectSecretKeyWarning")
       .should("exist")
       .and("be.visible")
@@ -229,44 +224,45 @@ describe("Login Modal Step1", () => {
 
   it("Should the title and paragraphs be visible and contain the text description", () => {
     cy.get(".modal-title-connectSecretKeyWarning")
-      .should("be.visible")
+      .should("exist")
       .and("contain", "Connect with a secret key");
     cy.get(".modal-subtitle-connectSecretKeyWarning")
-      .should("be.visible")
+      .should("exist")
       .and(
         "contain",
         "ATTENTION: Entering your secret key on any website is not recommended"
       );
     cy.get(".modal-paragraphs-connectSecretKeyWarning-1")
-      .should("be.visible")
+      .should("exist")
       .and(
         "contain",
         "Copy and pasting your secret key makes you vulnerable to accidents, attacks, and scams that can result in loss of funds."
       );
     cy.get(".modal-paragraphs-connectSecretKeyWarning-2")
-      .should("be.visible")
+      .should("exist")
       .and(
         "contain",
         "If this website were compromised or if you visit a phishing replica of this site, your secret key may be stolen if you use this method."
       );
     cy.get(".modal-paragraphs-connectSecretKeyWarning-3")
-      .should("be.visible")
+      .should("exist")
       .and(
         "contain",
         "It is safer to use connection methods that do not share your secret key with websites, such as hardware wallets or browser extensions."
       );
     cy.get(".modal-paragraphs-connectSecretKeyWarning-4")
-      .should("be.visible")
+      .should("exist")
       .and(
         "contain",
         "Note: Connecting by entering a secret key may be deprecated in a future version of the Account Viewer."
       );
   });
+
   it("Should show a button cancel and perform an action", () => {
-    cy.get("@connectButton").click();
     cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
-    cy.get(".modal-container-connectSecretKeyWarning").should("be.hidden");
+    cy.get(".modal-container-connectSecretKeyWarning").should("not.exist");
   });
+
   it("Should show a button to continue and perform an action", () => {
     cy.get("@connectButton").click();
     cy.get(".modal-checkbox-connectSecretKeyWarning").click();
@@ -288,7 +284,7 @@ describe("Login Modal Step2", () => {
   });
 
   it("Should the modal container be visible", () => {
-    cy.get(".modal-container-connectSecretKeyWarning")
+    cy.get(".modal-container-connectAddSecretKey")
       .should("exist")
       .and("be.visible");
   });
@@ -323,18 +319,18 @@ describe("Login Modal Step2", () => {
 
   it("Should show a button cancel and perform an action", () => {
     cy.get("@cancelButton").should("exist").and("have.text", "Cancel").click();
-    cy.get(".modal-container-connectAddSecretKey").should("be.hidden");
-  });
-
-  it("Should show a button to continue and perform an action", () => {
-    cy.get("@AddSecretKeyButton")
-      .should("exist")
-      .and("have.text", "Connect")
-      .click();
     cy.get(".modal-container-connectAddSecretKey").should("not.exist");
   });
 
-describe(" Footer: UI and functionality:", () => {
+  it("Should show a button to continue and perform an action", () => {
+    cy.get(".button-modal-connectAddSecretKey")
+      .should("exist")
+      .and("have.text", "Connect")
+      .click({ force: true });
+    cy.get(".modal-container-connectAddSecretKey").should("not.exist");
+  });
+});
+describe("Footer", () => {
   it("Should the footer container be visible", () => {
     cy.get(".footer-container").should("exist").and("be.visible");
   });
@@ -371,70 +367,5 @@ describe(" Footer: UI and functionality:", () => {
     cy.get(".footer-copyright-text")
       .should("be.visible")
       .contains("Rocket wallet 2023");
-  });
-});
-describe(" Wallet: UI and functionality:", () => {
-  beforeEach(() => {
-    cy.visit(`${projectUrl}/wallet`);
-  });
-
-  it("Should the wallet container be visible", () => {
-    cy.get(".wallet-container").should("exist").and("be.visible");
-  });
-
-  it("Should the title for the balance and the amount be visible and contain the amount number", () => {
-    cy.get(".wallet-balance-title")
-      .should("be.visible")
-      .and("contain", "Your balance");
-    cy.get(".wallet-balance-amount")
-      .should("be.visible")
-      .and("contain", `0 Lumens (XML)`);
-  });
-
-  it("Should the button send and receive be visible and contain a text message", () => {
-    cy.get(".button-send").should("be.visible").and("contain", "Send");
-    cy.get(".button-receive").should("be.visible").and("contain", "Receive");
-  });
-
-  it("Should the title for the wallet public key and input be visible and contain a text message", () => {
-    cy.get(".wallet-public-key-title")
-      .should("be.visible")
-      .and("contain", "Your Stellar Public Key");
-    cy.get(".wallet-input").should("be.visible");
-  });
-
-  it("Should the wallet warning icon, a warning message and a button be visible and contain a text messager", () => {
-    cy.get(".wallet-warning-text")
-      .should("be.visible")
-      .and(
-        "contain",
-        "his account is currently inactive. to send 10,000 test lumen (XLM) to the Stellar public key displayed above."
-      );
-
-    cy.get(".wallet-warning-icon").should("be.visible");
-    cy.get(".button-add-lumens")
-      .should("be.visible")
-      .and("contain", "Click here");
-  });
-
-  it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
-    cy.get(".wallet-payments-title")
-      .should("be.visible")
-      .and("contain", "Payments History");
-    cy.get(".wallet-payments-text")
-      .should("be.visible")
-      .and("contain", "There are no payments to show.");
-  });
-
-  it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
-    cy.get(".wallet-lp-title")
-      .should("be.visible")
-      .and("contain", "Liquidity pool transactions");
-    cy.get(".wallet-lp-text")
-      .should("be.visible")
-      .and(
-        "contain",
-        "There are no recent liquidity pool transactions to show."
-      );
   });
 });

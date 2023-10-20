@@ -1,8 +1,15 @@
 import { ICloseModal } from "../types/types";
 
-function closeModalHandler({ onClose, handleCancelChecked }: ICloseModal) {
+function closeModalHandler({
+  onClose,
+  handleCheck,
+  isChecked,
+  setIsChecked,
+}: ICloseModal) {
   onClose();
-  handleCancelChecked();
+  if (handleCheck && isChecked && setIsChecked) {
+    handleCheck(isChecked, setIsChecked);
+  }
 }
 
 export default closeModalHandler;

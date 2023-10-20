@@ -5,14 +5,34 @@ import Footer from "../../components/Footer";
 import { Input } from "antd";
 import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
+import Modal from "../../components/modals/wallet";
 
 function Wallet() {
   const [publicKey, setPublicKey] = useState<string>("");
+  const [secretKey, setSecretKey] = useState<string>("");
   const [balance, setBalance] = useState<string>("0");
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  const openModal = (modalName: string) => {
+    setActiveModal(modalName);
+  };
+
+  const closeModal = () => {
+    setActiveModal(null);
+  };
 
   return (
     <>
       <div className="wallet-container flex flex-col min-h-screen">
+        <Modal
+          openModal={openModal}
+          activeModal={activeModal as string}
+          label={activeModal as string}
+          isOpen={activeModal !== null}
+          onClose={closeModal}
+          secretKey={secretKey as string}
+          publicKey={publicKey as string}
+        />
         <Navbar />
         <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
           <div className="flex justify-evenly w-full gap-5 py-5 px-10">
@@ -25,11 +45,19 @@ function Wallet() {
               </p>
             </div>
             <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
-              <Button onClick={() => {}} buttonClass="button-send" fullWidth>
+              <Button
+                onClick={() => {
+                  openModal("SendTransaction");
+                }}
+                buttonClass="button-send"
+                fullWidth
+              >
                 Send
               </Button>
               <Button
-                onClick={() => {}}
+                onClick={() => {
+                  openModal("ReceiveTransaction");
+                }}
                 buttonClass="button-receive"
                 fullWidth
                 secondary

@@ -5,16 +5,9 @@ import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
 import Navbar from "../components/Navbar";
-
-import CustomModal from "@/components/modals/CustomModal";
-import {
-  generateKeyPairContentStep1,
-  generateKeyPairContentStep2,
-  loginContentStep1,
-  loginContentStep2,
-} from "../content/modals";
-import resetKeys from "@/actions/resetKeys";
+import resetKeys from "../actions/resetKeys";
 import Footer from "../components/Footer";
+import Modal from "../components/modals/home";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../GlobalRedux/store";
 import { IAuthState } from "@/types/types";
@@ -40,45 +33,27 @@ export default function Page() {
   };
 
   return (
-
     <div className="relative h-[80vh]">
-      {[
-        "generateKeyPair",
-        "confirmWallet",
-        "connectSecretKeyWarning",
-        "connectAddSecretKey",
-      ].map((modalLabel) => (
-        <CustomModal
-          key={modalLabel}
-          label={modalLabel}
-          isOpen={activeModal === modalLabel}
-          onClose={closeModal}
-          content={
-            modalLabel === "generateKeyPair"
-              ? generateKeyPairContentStep1
-              : modalLabel === "confirmWallet"
-              ? generateKeyPairContentStep2
-              : modalLabel === "connectSecretKeyWarning"
-              ? loginContentStep1
-              : loginContentStep2
-          }
-          openModal={openModal}
-          setPublicKey={setPublicKey}
-          setSecretKey={setSecretKey}
-          publicKey={publicKey}
-          secretKey={secretKey}
-          setActiveModal={setActiveModal}
-        />
-      ))}
+      <Modal
+        activeModal={activeModal as string}
+        label={activeModal as string}
+        isOpen={activeModal !== null}
+        onClose={closeModal}
+        openModal={openModal}
+        setPublicKey={setPublicKey}
+        setSecretKey={setSecretKey}
+        secretKey={secretKey as string}
+        publicKey={publicKey as string}
+      />
       <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
-      <Image
-            src={logo}
-            width={100}
-            height={100}
-            alt="logo"
-            className="stellar-home-logo mx-auto w-auto h-20 rounded-lg cursor-pointer hover:scale-110 pt-5"
-          />
+        <Image
+          src={logo}
+          width={100}
+          height={100}
+          alt="logo"
+          className="stellar-home-logo mx-auto w-auto h-20 rounded-lg cursor-pointer hover:scale-110 pt-5"
+        />
       </div>
       <div className="border-2 rounded-[25px] my-6 mx-auto w-[90%] sm:max-w-lg h-900px] z-30 bg-gray-100 p-3 flex flex-col">
         <h1 className="rocket-title mb-8 text-center text-3xl font-bold tracking-tight text-gray-800">
@@ -104,11 +79,10 @@ export default function Page() {
               </Button>
             </div>
             <Register modalName="generateKeyPair" openModal={openModal} />
-         </div>
+          </div>
         </div>
       </div>
       <Footer />
     </div>
-
   );
 }

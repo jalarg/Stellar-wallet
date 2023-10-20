@@ -10,12 +10,13 @@
     "cypress:open": "cypress open",
     "jest": "jest",
     "lint": "next lint",
-    "test": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && npm run cypress:open\""
+    "cypress": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && npm run cypress:open\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "antd": "^5.9.4",
     "next": "latest",
+    "qrcode.react": "^3.1.0",
     "react": "latest",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "latest",

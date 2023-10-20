@@ -2,6 +2,7 @@ import { IInput } from "../../types/types";
 import copy from "../../assets/copy-icon.svg";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Image from "next/image";
+import { message } from "antd";
 
 const Input: React.FC<IInput> = ({
   label,
@@ -38,7 +39,7 @@ const Input: React.FC<IInput> = ({
           />
           <CopyToClipboard
             text={value || ""}
-            onCopy={() => alert("Text copied to the clipboard")}
+            onCopy={() => message.success("Copied to clipboard")}
           >
             <Image
               src={copy}
