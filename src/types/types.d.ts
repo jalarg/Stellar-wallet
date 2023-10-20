@@ -36,7 +36,6 @@ export interface IKeypair {
   privateKey: string;
 }
 
-
 export interface IPair {
   publicKey: () => string | null;
   privateKey: () => string | null;
@@ -62,7 +61,10 @@ export interface IMinimumBalanceResponse {
 
 export interface IAuthState {
   isAuthenticated: boolean;
-  walletCredential: string | null; 
+  walletCredentials: {
+    publicKey: string;
+    secretKey: string;
+  };
 }
 
 export interface IModal {
@@ -75,6 +77,8 @@ export interface IModal {
   setSecretKey: (secretKey: string | null) => void;
   secretKey: string;
   publicKey: string;
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
 
 export interface IModalWallet {
@@ -116,6 +120,8 @@ export interface IRegistrationModalStepTwo {
     checkbox: string;
     button: string;
   };
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
 
 export interface ILoginModalStepOne {
@@ -145,6 +151,8 @@ export interface ILoginModalStepTwo {
     list: string[];
     button: string;
   };
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
 
 export interface ISendTransaction {
@@ -173,7 +181,10 @@ export interface IReceiveTransaction {
 
 export interface ICloseModal {
   onClose: () => void;
-  handleCheck: (isChecked: boolean, setIsChecked: (isChecked: boolean) => void) => void;
+  handleCheck: (
+    isChecked: boolean,
+    setIsChecked: (isChecked: boolean) => void
+  ) => void;
   isChecked?: boolean;
   setIsChecked?: (isChecked: boolean) => void;
 }
@@ -186,4 +197,11 @@ export interface IOpenModal {
 export interface IRegister {
   modalName: string;
   openModal: (modalName: string) => void;
+}
+
+export interface ILogin {
+  publicKey?: string;
+  secretKey: string;
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
