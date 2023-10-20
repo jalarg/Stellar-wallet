@@ -46,6 +46,11 @@ export interface IBalance {
   balance: string;
 }
 
+export interface IMiniumBalanceHandler {
+  publicKey: string;
+  setBalance: (balance: string) => void;
+}
+
 export interface ISendTransaction {
   publicKey: string;
   privateKey: string;
