@@ -7,12 +7,13 @@ import Button from "../../components/commons/Button";
 import { WarningOutlined } from "@ant-design/icons";
 import Modal from "../../components/modals/wallet";
 import { useSelector, useDispatch } from "react-redux";
-import { checkBalance, minimumBalance } from "@/actions";
-import miniumBalanceHandler from "../../actions/miniumBalanceHandler";
-import { IMiniumBalanceHandler } from "../../types/types";
+import { checkBalance, paymentsHistory } from "../../actions/stellar";
+import { miniumBalanceHandler } from "../../actions/handlers";
+import { trimWalletAddress, roundNumber } from "../../actions/utils";
 
 function Wallet() {
   const [balance, setBalance] = useState<string>("0");
+  const [payments, setPayments] = useState<any[] | null>(null);
   const dispatch = useDispatch();
   const publicKey = useSelector(
     (state: any) => state.auth.walletCredentials.publicKey
@@ -23,16 +24,24 @@ function Wallet() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchBalance = async () => {
+    const fetchWalletInformation = async () => {
       if (publicKey) {
-        await checkBalance(publicKey)
+        await checkBalance(publicKey as string)
           .then((res) => setBalance(res[0].balance))
           .catch((err) => setBalance("0"));
+
+        const data = await paymentsHistory(publicKey)
+          .then((res) => {
+            console.log("res", res);
+            setPayments(res);
+          })
+          .catch((err) => {
+            setPayments(null);
+          });
       }
-      setBalance(balance as string);
     };
-    fetchBalance();
-  }, [publicKey, minimumBalance]);
+    fetchWalletInformation();
+  }, []);
 
   const openModal = (modalName: string) => {
     setActiveModal(modalName);
@@ -53,6 +62,7 @@ function Wallet() {
           onClose={closeModal}
           secretKey={secretKey as string}
           publicKey={publicKey as string}
+          setBalance={setBalance}
         />
         <Navbar />
         <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
@@ -62,7 +72,7 @@ function Wallet() {
                 Your balance
               </p>
               <p className="wallet-balance-amount text-sm sm:text-2xl font-bold">
-                {balance} Lumens (XML)
+                {roundNumber(balance)} Lumens (XML)
               </p>
             </div>
             <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
@@ -95,7 +105,7 @@ function Wallet() {
                 </div>
                 <Input
                   className="wallet-input text-sm font-semibold h-10"
-                  value={publicKey}
+                  value={trimWalletAddress(publicKey)}
                 />
               </div>
             </div>
@@ -117,9 +127,20 @@ function Wallet() {
             <div className="wallet-payments-title flex items-start justify-start pb-5 pt-5 font-semibold text-sm sm:text-xl">
               Payments History
             </div>
-            <p className="wallet-payments-text flex justify-start items-start text-center text-sm text-gray-600">
-              There are no payments to show.
-            </p>
+            {payments ? (
+              payments.map((payment: any, index: number) => (
+                <div
+                  key={index}
+                  className="wallet-payments-text flex justify-start items-start text-center text-sm text-gray-600"
+                >
+                  {payment.amount} Lumens (XML) sent to {payment.receiver}
+                </div>
+              ))
+            ) : (
+              <p className="wallet-payments-text flex justify-start items-start text-center text-sm text-gray-600">
+                There are no payments to show.
+              </p>
+            )}
             <div className="wallet-lp-title flex items-start justify-start pb-5 pt-5 font-semibold text-sm sm:text-xl">
               Liquidity pool transactions
             </div>
