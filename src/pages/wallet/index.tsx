@@ -10,6 +10,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { checkBalance, paymentsHistory } from "../../actions/stellar";
 import { miniumBalanceHandler } from "../../actions/handlers";
 import { trimWalletAddress, roundNumber } from "../../actions/utils";
+import Image from "next/image";
+import copy from "../../assets/copy-icon.svg";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { message } from "antd";
 
 function Wallet() {
   const [balance, setBalance] = useState<string>("0");
@@ -103,10 +107,22 @@ function Wallet() {
                 <div className="wallet-public-key-title flex items-start justify-start text-xs sm:text-xl font-semibold py-5">
                   Your Stellar Public Key
                 </div>
-                <Input
-                  className="wallet-input text-sm font-semibold h-10"
-                  value={trimWalletAddress(publicKey)}
-                />
+                <div className="wallet-public-key-text flex items-start justify-start text-xs sm:text-xl font-semibold pb-5">
+                  <Input
+                    className="wallet-input text-sm font-semibold h-10"
+                    value={trimWalletAddress(publicKey)}
+                  />
+                  <CopyToClipboard
+                    text={publicKey}
+                    onCopy={() => message.success("Copied to clipboard")}
+                  >
+                    <Image
+                      src={copy}
+                      alt="copy"
+                      className="wallet-copy-icon m-3 w-4 h-4 cursor-pointer"
+                    />
+                  </CopyToClipboard>
+                </div>
               </div>
             </div>
             <div className="flex items-center justify-center border-2 border-orange-300 rounded-md bg-orange-100 mt-3 p-3 gap-2">
