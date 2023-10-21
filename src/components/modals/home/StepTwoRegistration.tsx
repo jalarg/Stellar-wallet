@@ -91,7 +91,12 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
             buttonClass={`button-modal-${label}-cancel`}
             danger
             onClick={() => {
-              closeModalHandler({ onClose, handleCheck, setIsChecked, isChecked });
+              closeModalHandler({
+                onClose,
+                handleCheck,
+                setIsChecked,
+                isChecked,
+              });
             }}
           >
             Cancel

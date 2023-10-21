@@ -6,7 +6,6 @@ import closeModalHandler from "../../../actions/closeModalHandler";
 import openModalHandler from "../../../actions/openModalHandler";
 import { Modal } from "antd";
 import { handleCheck } from "../../../actions/utils";
-import { is } from "node_modules/cypress/types/bluebird";
 
 const StepOneLogin: React.FC<ILoginModalStepOne> = ({
   content,
