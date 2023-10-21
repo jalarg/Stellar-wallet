@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Button from "../../commons/Button";
 import { ILoginModalStepOne } from "../../../types/types";
 import { Checkbox } from "antd";
-import closeModalHandler from "../../../actions/handlers/closeModalHandler";
-import openModalHandler from "../../../actions/handlers/openModalHandler";
+import {closeModalHandler, openModalHandler} from "../../../actions/handlers";
 import { Modal } from "antd";
 import { handleCheck } from "../../../actions/utils";
 

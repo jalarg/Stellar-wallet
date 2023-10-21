@@ -1,6 +1,6 @@
 import Button from "../../commons/Button";
 import { IRegistrationModalStepOne } from "../../../types/types";
-import registerHandler from "../../../actions/handlers/registerHandler";
+import { registerHandler } from "../../../actions/handlers";
 import { Modal } from "antd";
 
 const StepOneRegistration: React.FC<IRegistrationModalStepOne> = ({

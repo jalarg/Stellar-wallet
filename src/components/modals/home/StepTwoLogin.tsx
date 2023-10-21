@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Modal } from "antd";
 import { ILogin } from "../../../types/types";
-import loginHandler from "../../../actions/handlers/loginHandler";
+import {loginHandler} from "../../../actions/handlers";
 
 const StepTwoLogin: React.FC<ILoginModalStepTwo> = ({
   content,
