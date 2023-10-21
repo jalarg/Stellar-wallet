@@ -1,9 +1,8 @@
 import "jest";
 import { expect } from "@jest/globals";
-import { checkBalance } from "../../src/actions";
+import { checkBalance } from "../../src/actions/stellar";
 
 describe("CheckBalance function", () => {
-  
   it("Should load and log account balance of lummens", async () => {
     const publicKey =
       "GDNQCO7LX3PDR2YB5V3D7ZBOT6F3QBBXKO4E52AWIDE63Z5RAPMJWNST";

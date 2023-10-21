@@ -1,7 +1,7 @@
 import "jest";
 import { expect } from "@jest/globals";
 import { Keypair } from "stellar-sdk";
-import { minimumBalance } from "../../src/actions";
+import { minimumBalance } from "../../src/actions/stellar";
 import fetchMock from "jest-fetch-mock";
 
 jest.mock("node-fetch", () => jest.fn());
@@ -36,7 +36,7 @@ describe("MinimumBalance function", () => {
   afterAll(() => {
     fetchMock.disableMocks();
   });
-  
+
   it("Should call the function minimumBalance and fund the publickey with lummens", async () => {
     const consoleLog = jest.spyOn(console, "log");
     const realPair = Keypair.random();

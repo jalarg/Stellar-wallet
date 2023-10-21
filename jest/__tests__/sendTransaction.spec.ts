@@ -1,7 +1,7 @@
 import "jest";
 import { expect, describe } from "@jest/globals";
-import sendTransaction from "../../src/actions/sendTransaction";
-import { server } from "../../src/actions";
+import sendTransaction from "../../src/actions/stellar/sendTransaction";
+import { server } from "../../src/actions/stellar";
 import stellarSdk from "stellar-sdk";
 import { ISendTransaction } from "@/types/types";
 

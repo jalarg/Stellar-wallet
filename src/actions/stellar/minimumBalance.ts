@@ -1,4 +1,4 @@
-import { IMinimumBalanceResponse } from "../../src/types/types";
+import { IMinimumBalanceResponse } from "../../types/types";
 
 async function minimumBalance(publicKey: string | null) {
   try {
@@ -10,7 +10,7 @@ async function minimumBalance(publicKey: string | null) {
     );
 
     const responseJSON = (await response.json()) as IMinimumBalanceResponse;
-    
+
     if (responseJSON.status === 400) {
       console.error(`ERROR ${responseJSON.detail} !`, responseJSON.error);
     } else {

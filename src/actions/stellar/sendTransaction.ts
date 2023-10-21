@@ -1,6 +1,6 @@
 import StellarSdk from "stellar-sdk";
 import { BASE_FEE, Networks } from "stellar-sdk";
-import { ISendTransactionFunction } from "../types/types";
+import { ISendTransactionFunction } from "../../types/types";
 import { server } from "./";
 
 async function sendTransaction({

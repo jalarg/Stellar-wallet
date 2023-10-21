@@ -1,7 +1,7 @@
 import "jest";
 import { expect, describe } from "@jest/globals";
-import paymentHistory from "../../src/actions/paymentsHistory";
-import { server } from "../../src/actions";
+import paymentHistory from "../../src/actions/stellar/paymentsHistory";
+import { server } from "../../src/actions/stellar";
 
 const publicKey = "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IX";
 
