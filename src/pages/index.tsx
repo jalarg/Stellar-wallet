@@ -5,7 +5,7 @@ import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
 import Navbar from "../components/Navbar";
-import resetKeys from "../actions/resetKeys";
+import resetKeys from "../actions/stellar/resetKeys";
 import Footer from "../components/Footer";
 import Modal from "../components/modals/home";
 import { useSelector, useDispatch } from "react-redux";

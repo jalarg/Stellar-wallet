@@ -1,8 +1,8 @@
-import { IAuthState } from "../types/types";
-import { login } from "../GlobalRedux/store";
+import { IAuthState } from "../../types/types";
+import { login } from "../../GlobalRedux/store";
 import { Keypair } from "stellar-sdk";
 import { message } from "antd";
-import { ILogin } from "../types/types";
+import { ILogin } from "../../types/types";
 
 async function loginHandler({ publicKey, secretKey, dispatch, auth }: ILogin) {
   try {

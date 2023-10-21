@@ -1,4 +1,4 @@
-import { ICloseModal } from "../types/types";
+import { ICloseModal } from "../../types/types";
 
 function closeModalHandler({
   onClose,

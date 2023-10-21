@@ -1,5 +1,5 @@
-import { sendTransaction, checkBalance } from "../actions";
-import { ISendTransactionFunction } from "../types/types";
+import { sendTransaction, checkBalance } from "../stellar";
+import { ISendTransactionFunction } from "../../types/types";
 import { message } from "antd";
 
 const sendTransactionHandler = async ({

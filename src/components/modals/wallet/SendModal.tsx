@@ -3,10 +3,10 @@ import Button from "../../commons/Button";
 import { ISendTransaction } from "../../../types/types";
 import { Input, Tooltip } from "antd";
 import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
-import closeModalHandler from "../../../actions/closeModalHandler";
+import closeModalHandler from "../../../actions/handlers/closeModalHandler";
 import { message } from "antd";
 import { Modal } from "antd";
-import sendTransactionHandler from "@/actions/sendTransactionHandler";
+import sendTransactionHandler from "@/actions/handlers/sendTransactionHandler";
 import { ISendTransactionFunction } from "@/types/types";
 
 const SendModal: React.FC<ISendTransaction> = ({

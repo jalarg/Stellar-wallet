@@ -1,6 +1,6 @@
 import Button from "../components/commons/Button";
 import { IRegister } from "../types/types";
-import openModalHandler from "../actions/openModalHandler";
+import openModalHandler from "../actions/handlers/openModalHandler";
 
 const Register: React.FC<IRegister> = ({ modalName, openModal }) => {
   return (

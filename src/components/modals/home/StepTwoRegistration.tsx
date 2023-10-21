@@ -4,10 +4,10 @@ import Input from "../../commons/Input";
 import { IRegistrationModalStepTwo } from "../../../types/types";
 import Link from "next/link";
 import { Checkbox } from "antd";
-import closeModalHandler from "@/actions/closeModalHandler";
+import closeModalHandler from "@/actions/handlers/closeModalHandler";
 import { Modal } from "antd";
 import { handleCheck } from "../../../actions/utils";
-import loginHandler from "../../../actions/loginHandler";
+import loginHandler from "../../../actions/handlers/loginHandler";
 import { ILogin } from "../../../types/types";
 
 const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Modal } from "antd";
 import { ILogin } from "../../../types/types";
-import loginHandler from "../../../actions/loginHandler";
+import loginHandler from "../../../actions/handlers/loginHandler";
 
 const StepTwoLogin: React.FC<ILoginModalStepTwo> = ({
   content,
@@ -17,7 +17,6 @@ const StepTwoLogin: React.FC<ILoginModalStepTwo> = ({
   auth,
 }) => {
   const [value, setValue] = useState<string>("");
-
 
   const handleSecretKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

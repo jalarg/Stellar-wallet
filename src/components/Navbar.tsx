@@ -8,7 +8,7 @@ import { FaRegMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";
 import { IAuth } from "../types/types";
-import logoutHandler from "../actions/logoutHandler";
+import logoutHandler from "../actions/handlers/logoutHandler";
 
 const Navbar = () => {
   const dispatch = useDispatch();
