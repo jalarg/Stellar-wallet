@@ -3,12 +3,12 @@ import QRCode from "qrcode.react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Image from "next/image";
 import copy from "../../../assets/copy-icon.svg";
-import { IReceiveTransaction } from "../../../types/types";
-import trimWalletAddress from "@/actions/utils/trimWalletAddress";
+import { IReceiveTransactionModal } from "../../../types/types";
+import trimWalletAddress from "../../../actions/utils/trimWalletAddress";
 import { message } from "antd";
 import { Modal } from "antd";
 
-const ReceiveModal: React.FC<IReceiveTransaction> = ({
+const ReceiveModal: React.FC<IReceiveTransactionModal> = ({
   label,
   isOpen,
   onClose,

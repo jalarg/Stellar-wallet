@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import Button from "../../commons/Button";
-import { ISendTransaction } from "../../../types/types";
+import { ISendTransactionModal } from "../../../types/types";
 import { Input, Tooltip } from "antd";
 import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 import closeModalHandler from "../../../actions/handlers/closeModalHandler";
-import { message } from "antd";
 import { Modal } from "antd";
 import sendTransactionHandler from "@/actions/handlers/sendTransactionHandler";
-import { ISendTransactionFunction } from "@/types/types";
+import { ISendTransactionHandler } from "../../../types/types";
 
-const SendModal: React.FC<ISendTransaction> = ({
+const SendModal: React.FC<ISendTransactionModal> = ({
   label,
   isOpen,
   onClose,
@@ -20,6 +19,7 @@ const SendModal: React.FC<ISendTransaction> = ({
 }) => {
   const [destinationId, setDestinationId] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSetTransactionId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDestinationId(e.target.value);
@@ -64,8 +64,10 @@ const SendModal: React.FC<ISendTransaction> = ({
         <div className="flex justify-evenly w-full gap-5 py-5 px-10">
           <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
             <Button
+              disabled={isLoading}
               buttonClass={`button-modal-${label}`}
-              onClick={() =>
+              onClick={() =>               
+         
                 sendTransactionHandler({
                   publicKey: publicKey,
                   privateKey: secretKey,
@@ -73,7 +75,8 @@ const SendModal: React.FC<ISendTransaction> = ({
                   destinationId: destinationId,
                   onClose,
                   setBalance,
-                })
+                  setIsLoading,
+                } as ISendTransactionHandler)
               }
             >
               {content.button}
