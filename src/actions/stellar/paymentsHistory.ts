@@ -43,8 +43,6 @@ async function paymentsHistory(publicKey: string): Promise<IPayment[]> {
             reject(error);
           },
         });
-      console.log("paymentData", paymentData);
-      resolve(paymentData);
     } catch (err) {
       console.error("ERROR!", err);
       reject(err);
