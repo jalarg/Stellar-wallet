@@ -44,7 +44,6 @@ export default function Page() {
         dispatch={dispatch}
         auth={auth}
       />
-      <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
         <Image
           src={logo}
@@ -81,7 +80,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
