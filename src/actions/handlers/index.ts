@@ -5,6 +5,7 @@ import miniumBalanceHandler from "./miniumBalanceHandler";
 import openModalHandler from "./openModalHandler";
 import registerHandler from "./registerHandler";
 import sendTransactionHandler from "./sendTransactionHandler";
+import handleWalletInformation from "./handleWalletInformation";
 
 export {
   closeModalHandler,
@@ -14,4 +15,5 @@ export {
   miniumBalanceHandler,
   registerHandler,
   sendTransactionHandler,
+  handleWalletInformation,
 };
