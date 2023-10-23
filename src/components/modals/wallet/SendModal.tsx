@@ -64,10 +64,10 @@ const SendModal: React.FC<ISendTransactionModal> = ({
         <div className="flex justify-evenly w-full gap-5 py-5 px-10">
           <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
             <Button
-              disabled={isLoading}
+              isLoading={isLoading}
+              disabled={isLoading || destinationId === "" || amount === ""}
               buttonClass={`button-modal-${label}`}
-              onClick={() =>               
-         
+              onClick={() =>
                 sendTransactionHandler({
                   publicKey: publicKey,
                   privateKey: secretKey,

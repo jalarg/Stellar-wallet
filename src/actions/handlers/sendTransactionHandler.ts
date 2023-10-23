@@ -12,7 +12,6 @@ const sendTransactionHandler = async ({
   setIsLoading,
 }: ISendTransactionHandler) => {
   if (privateKey && onClose && setBalance) {
-    console.log("sendTransactionHandler")
     setIsLoading(true);
     await sendTransaction({ publicKey, privateKey, amount, destinationId } as ISendTransactionFunction);
     await checkBalance(publicKey)
