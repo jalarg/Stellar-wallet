@@ -20,20 +20,24 @@ const columns: ColumnsType<DataType> = [
     title: "From",
     dataIndex: "sender",
     render: (sender: string) => trimWalletAddress(sender),
+    width: 200,
   },
   {
     title: "Sent to",
     dataIndex: "receiver",
     render: (receiver: string) => trimWalletAddress(receiver),
+    width: 200,
   },
   {
     title: "Asset",
     dataIndex: "asset",
+    width: 100,
   },
   {
     title: "Amount",
     dataIndex: "amount",
     render: (amount: string) => roundNumber(amount),
+    width: 100,
   },
 ];
 
@@ -49,10 +53,15 @@ const Payments: React.FC<IPayments> = ({ payments }) => {
   });
 
   return (
-    <div className="flex justify-center m-5">
-      {payments.length > 0 ? ( // Mostrar la tabla si hay datos en payments
-        <div className="w-full lg:w-3/4 xl:w-1/2">
-          <Table columns={columns} dataSource={data} size="middle" />
+    <div>
+      {payments.length > 0 ? (
+        <div className="w-full p-5">
+          <Table
+            columns={columns}
+            dataSource={data}
+            size="middle"
+            pagination={{ pageSize: 5 }}
+          />
         </div>
       ) : (
         <p className="wallet-lp-text flex justify-start items-start text-sm text-gray-600 pb-5">
