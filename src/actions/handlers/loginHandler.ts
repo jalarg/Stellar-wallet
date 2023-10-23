@@ -1,4 +1,3 @@
-import { IAuthState } from "../../types/types";
 import { login } from "../../GlobalRedux/store";
 import { Keypair } from "stellar-sdk";
 import { message } from "antd";

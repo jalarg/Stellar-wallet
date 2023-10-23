@@ -18,6 +18,7 @@ export interface IButton {
   danger?: boolean;
   disabled?: boolean;
   buttonClass?: string;
+  isLoading?: boolean;
 }
 
 export interface IRegisterButton {
