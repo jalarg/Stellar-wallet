@@ -1,5 +1,5 @@
 import { sendTransaction, checkBalance } from "../stellar";
-import { ISendTransactionFunction } from "../../types/types";
+import { ISendTransactionFunction, ISendTransactionHandler } from "../../types/types";
 import { message } from "antd";
 
 const sendTransactionHandler = async ({
@@ -9,14 +9,18 @@ const sendTransactionHandler = async ({
   destinationId,
   onClose,
   setBalance,
-}: ISendTransactionFunction) => {
+  setIsLoading,
+}: ISendTransactionHandler) => {
   if (privateKey && onClose && setBalance) {
-    await sendTransaction({ publicKey, privateKey, amount, destinationId });
+    console.log("sendTransactionHandler")
+    setIsLoading(true);
+    await sendTransaction({ publicKey, privateKey, amount, destinationId } as ISendTransactionFunction);
     await checkBalance(publicKey)
       .then((res) => setBalance(res[0].balance))
       .catch((err) => setBalance("0"));
     message.success("Transaction sent successfully");
     onClose();
+    setIsLoading(false);
   }
 };
 

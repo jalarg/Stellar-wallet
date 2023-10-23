@@ -49,6 +49,7 @@ export interface IBalance {
 export interface IMiniumBalanceHandler {
   publicKey: string;
   setBalance: (balance: string) => void;
+  setIsLoading: (loading: boolean) => void;
 }
 
 export interface ISendTransactionHandler {
@@ -56,6 +57,9 @@ export interface ISendTransactionHandler {
   publicKey: string;
   amount: string;
   destinationId: string;
+  onClose?: () => void;
+  setBalance?: (balance: string) => void;
+  setIsLoading: (loading: boolean) => void;
 }
 
 export interface IMinimumBalanceResponse {
@@ -170,11 +174,9 @@ export interface ISendTransactionFunction {
   privateKey: string;
   destinationId: string;
   amount: string;
-  onClose?: () => void;
-  setBalance?: (balance: string) => void;
 }
 
-export interface ISendTransaction {
+export interface ISendTransactionModal {
   isOpen?: boolean;
   onClose: () => void;
   label: string;
@@ -187,7 +189,7 @@ export interface ISendTransaction {
   setBalance: (balance: string) => void;
 }
 
-export interface IReceiveTransaction {
+export interface IReceiveTransactionModal {
   isOpen?: boolean;
   onClose: () => void;
   label: string;
