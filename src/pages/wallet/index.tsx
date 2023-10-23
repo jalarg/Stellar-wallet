@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Input } from "antd";
 import { Button, Spiral } from "../../components/commons";
 import { WarningOutlined } from "@ant-design/icons";
@@ -69,7 +69,7 @@ function Wallet({ publicKey, secretKey, balance, setBalance, payments }: any) {
             </Button>
           </div>
         </div>
-        <div className="bg-neutralMain flex flex-col px-[12.5%] text-black bg-blue-200 rounded-md border-2 border-blue-300 sm:h-[70vh] h-[70vh] sm:w-[60%]  hover:bg-blue-100">
+        <div className="flex flex-col px-[12.5%] text-black bg-blue-200 rounded-md border-2 border-blue-300 sm:h-[80vh] h-[70vh] sm:w-[60%]   hover:bg-blue-100">
           <div className="flex items-center justify-center font-semibold gap-x-3">
             <div className="w-[80%]">
               <div className="wallet-public-key-title flex items-start justify-start text-xs sm:text-xl font-semibold py-5">
@@ -122,7 +122,9 @@ function Wallet({ publicKey, secretKey, balance, setBalance, payments }: any) {
           <div className="wallet-payments-title flex items-start justify-start pb-5 pt-5 font-semibold text-sm sm:text-xl">
             Payments History
           </div>
-          {payments && <Payments payments={payments} />}
+          <div className="wallet-payments-text flex justify-start items-start text-sm pb-5">
+            {payments && <Payments payments={payments} />}
+          </div>
           <div className="wallet-lp-title flex items-start justify-start pb-5 pt-5 font-semibold text-sm sm:text-xl">
             Liquidity pool transactions
           </div>
