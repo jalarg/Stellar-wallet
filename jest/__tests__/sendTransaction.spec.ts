@@ -3,7 +3,7 @@ import { expect, describe } from "@jest/globals";
 import sendTransaction from "../../src/actions/stellar/sendTransaction";
 import { server } from "../../src/actions/stellar";
 import stellarSdk from "stellar-sdk";
-import { ISendTransaction } from "@/types/types";
+import { ISendTransactionFunction } from "@/types/types";
 
 jest.mock("stellar-sdk", () => {
   return {
@@ -36,7 +36,7 @@ jest.mock("stellar-sdk", () => {
   };
 });
 
-jest.mock("../../src/actions", () => {
+jest.mock("../../src/actions/stellar", () => {
   return {
     server: {
       loadAccount: jest.fn(),
@@ -105,7 +105,7 @@ describe("SendTransaction function", () => {
     });
 
     const result = await sendTransaction(
-      sendTransactionInformation as ISendTransaction
+      sendTransactionInformation as ISendTransactionFunction
     );
 
     expect(server.loadAccount).toHaveBeenCalledTimes(2);
@@ -131,7 +131,7 @@ describe("SendTransaction function", () => {
       privateKey: "SCO26FBHD2WFYB55HXQCZVRNL4UAMZZJR5VOJID2SYABAWNO5VOO77CR",
       destinationId: destinationId,
       amount: "20",
-    } as ISendTransaction);
+    } as ISendTransactionFunction);
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       expect.stringContaining("ERROR!"),
@@ -170,7 +170,7 @@ describe("SendTransaction function", () => {
       privateKey: "SCO26FBHD2WFYB55HXQCZVRNL4UAMZZJR5VOJID2SYABAWNO5VOO77CR",
       destinationId: "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IX",
       amount: "20",
-    } as ISendTransaction);
+    } as ISendTransactionFunction);
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       expect.stringContaining("ERROR!"),

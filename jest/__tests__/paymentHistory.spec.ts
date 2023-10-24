@@ -5,7 +5,7 @@ import { server } from "../../src/actions/stellar";
 
 const publicKey = "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IX";
 
-jest.mock("../../src/actions", () => {
+jest.mock("../../src/actions/stellar", () => {
   const paymentsMock = jest.fn().mockReturnValue({
     forAccount: jest.fn().mockReturnValue({
       stream: jest.fn((options) => {
@@ -43,6 +43,7 @@ describe("PaymentHistory function", () => {
       amount: "10.0000000",
       asset: "lumens",
       sender: "GDNQCO7LX3PDR2YB5V3D7ZBOT6F3QBBXKO4E52AWIDE63Z5RAPMJWNST",
+      receiver: publicKey,
     });
   });
 
