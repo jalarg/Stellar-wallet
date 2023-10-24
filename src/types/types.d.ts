@@ -62,6 +62,7 @@ export interface ISendTransactionHandler {
   setBalance?: (balance: string) => void;
   setIsLoading: (loading: boolean) => void;
   setPayments: (payments: any) => void;
+  isAlbedo: boolean;
 }
 
 export interface IMinimumBalanceResponse {
@@ -80,6 +81,7 @@ export interface IAuthState {
     publicKey: string;
     secretKey: string;
   };
+  isAlbedo: boolean;
 }
 
 export interface IModal {
@@ -106,6 +108,7 @@ export interface IModalWallet {
   publicKey: string;
   setBalance: (balance: string) => void;
   setPayments: (payments: any) => void;
+  isAlbedo: boolean;
 }
 
 export interface IRegistrationModalStepOne {
@@ -192,6 +195,7 @@ export interface ISendTransactionFunction {
   privateKey: string;
   destinationId: string;
   amount: string;
+  isAlbedo: boolean;
 }
 
 export interface ISendTransactionModal {
@@ -206,6 +210,7 @@ export interface ISendTransactionModal {
   };
   setBalance: (balance: string) => void;
   setPayments: (payments: any) => void;
+  isAlbedo: boolean;
 }
 
 export interface IReceiveTransactionModal {
