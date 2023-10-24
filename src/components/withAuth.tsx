@@ -46,6 +46,7 @@ export default function withAuth(WrappedComponent: any) {
             balance={balance}
             payments={payments}
             setBalance={setBalance}
+            setPayments={setPayments}
           />
         )}
       </>

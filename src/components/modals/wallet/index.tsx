@@ -11,6 +11,7 @@ const Modal: React.FC<IModalWallet> = ({
   secretKey,
   publicKey,
   setBalance,
+  setPayments,
 }) => {
   switch (activeModal) {
     case "ReceiveTransaction":
@@ -33,6 +34,7 @@ const Modal: React.FC<IModalWallet> = ({
           secretKey={secretKey}
           publicKey={publicKey}
           setBalance={setBalance}
+          setPayments={setPayments}
         />
       );
     default:

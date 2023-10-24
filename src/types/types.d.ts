@@ -61,6 +61,7 @@ export interface ISendTransactionHandler {
   onClose?: () => void;
   setBalance?: (balance: string) => void;
   setIsLoading: (loading: boolean) => void;
+  setPayments: (payments: any) => void;
 }
 
 export interface IMinimumBalanceResponse {
@@ -104,6 +105,7 @@ export interface IModalWallet {
   secretKey: string;
   publicKey: string;
   setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
 }
 
 export interface IRegistrationModalStepOne {
@@ -188,6 +190,7 @@ export interface ISendTransactionModal {
     button: string;
   };
   setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
 }
 
 export interface IReceiveTransactionModal {
