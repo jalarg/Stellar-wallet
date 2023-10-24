@@ -172,6 +172,19 @@ export interface ILoginModalStepTwo {
   auth: IAuthState;
 }
 
+export interface IAlbedoModal {
+  isOpen?: boolean;
+  onClose: () => void;
+  label: string;
+  openModal: (modalName: string) => void;
+  content: {
+    title: string;
+    subtitle: string;
+    list: string[];
+    button: string;
+  };
+}
+
 export interface ISendTransactionFunction {
   publicKey: string;
   privateKey: string;
