@@ -83,7 +83,9 @@ const Modal: React.FC<IModal> = ({
           isOpen={isOpen}
           onClose={onClose}
           openModal={openModal}
-          content={connectAlbedo}
+          content={connectAlbedo} 
+          dispatch={dispatch}    
+          auth={auth}
         />
       );
     default:

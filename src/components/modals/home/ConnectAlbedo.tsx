@@ -1,3 +1,5 @@
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "../../commons/Button";
 import { albedoLogin } from "../../../actions/stellar";
 import { closeModalHandler, openModalHandler } from "../../../actions/handlers";
@@ -6,7 +8,6 @@ import { IAlbedoModal } from "../../../types/types";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import icon from "../../../assets/albedo.svg";
-import albedo from "@albedo-link/intent";
 
 const ConnectAlbedo: React.FC<IAlbedoModal> = ({
   content,
@@ -14,7 +15,18 @@ const ConnectAlbedo: React.FC<IAlbedoModal> = ({
   isOpen,
   onClose,
   openModal,
+  dispatch,
+  auth,
 }) => {
+  const { isAuthenticated } = auth;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/wallet");
+    }
+  }, [isAuthenticated]);
+
   return (
     <Modal
       className={`modal-container-${label}`}
@@ -49,7 +61,10 @@ const ConnectAlbedo: React.FC<IAlbedoModal> = ({
           ))}
         </div>
         <div className="flex flex-row justify-center mt-5 space-x-10">
-          <Button buttonClass={`button-modal-${label} `} onClick={albedoLogin}>
+          <Button
+            buttonClass={`button-modal-${label} `}
+            onClick={() => albedoLogin(dispatch as any)}
+          >
             {content.button}
           </Button>
           <Button

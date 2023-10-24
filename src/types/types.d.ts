@@ -183,6 +183,8 @@ export interface IAlbedoModal {
     list: string[];
     button: string;
   };
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
 
 export interface ISendTransactionFunction {

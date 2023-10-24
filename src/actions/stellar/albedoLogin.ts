@@ -1,14 +1,16 @@
 import albedo from "@albedo-link/intent";
+import { useDispatch } from "react-redux";
+import { login } from "../../GlobalRedux/store";
 
-async function albedoLogin() {
-  try {
-    const albedoPublicKey = await albedo.publicKey({});
-    console.log("Logged in with Albedo. Public Key:", albedoPublicKey);
-
-    return albedoPublicKey;
-  } catch (err: any) {
-    throw new Error(err.error.message);
-  }
+function albedoLogin(dispatch = useDispatch()) {
+  albedo
+    .publicKey({})
+    .then((albedoPublicKey) => {
+      dispatch(login({ publicKey: albedoPublicKey.pubkey, secretKey: "" }));
+    })    
+    .catch((err) => {
+      throw new Error(err.message);
+    });
 }
 
 export default albedoLogin;
