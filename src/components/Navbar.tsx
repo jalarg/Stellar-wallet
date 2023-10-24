@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="lg:flex block gap-6 ">
           {auth.isAuthenticated && (
             <div className="flex items-center">
-              <Link className={`navbar-link`} href="/">
+              <Link className={`navbar-link-logout`} href="/">
                 <Image
                   className="cursor-pointer"
                   onClick={() => logoutHandler(dispatch)}

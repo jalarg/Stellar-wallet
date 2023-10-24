@@ -64,7 +64,7 @@ const Payments: React.FC<IPayments> = ({ payments }) => {
           />
         </div>
       ) : (
-        <p className="wallet-lp-text flex justify-start items-start text-sm text-gray-600 pb-5">
+        <p className="wallet-payments-text flex justify-start items-start text-sm text-gray-600 pb-5">
           There are no payments to show.
         </p>
       )}

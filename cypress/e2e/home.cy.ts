@@ -30,11 +30,25 @@ describe("Home UI", () => {
       .and("contain", "Sign in methods");
   });
 
+  it("Should show a button to connect with Albedo", () => {
+    cy.get(".button-albedo")
+      .should("exist")
+      .should("be.visible")
+      .and("contain", "Connect with Albedo");
+  });
+
   it("Should show a button to generate connect", () => {
     cy.get("@connectButton")
       .should("exist")
       .should("be.visible")
       .and("contain", "Connect with a secret key");
+  });
+
+  it("Should show a button to register", () => {
+    cy.get("@registerButton")
+      .should("exist")
+      .should("be.visible")
+      .and("contain", "Generate key pair for a new account");
   });
 });
 describe("Navbar", () => {
