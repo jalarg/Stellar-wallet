@@ -13,9 +13,17 @@ import { message } from "antd";
 import Payments from "../../components/Payments";
 import withAuth from "../../components/withAuth";
 
-function Wallet({ publicKey, secretKey, balance, setBalance, payments, setPayments, isAlbedo }: any) {
+function Wallet({
+  publicKey,
+  secretKey,
+  balance,
+  setBalance,
+  payments,
+  setPayments,
+  isAlbedo,
+}: any) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [activeModal, setActiveModal] = useState<string | null>(null);  
+  const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const openModal = (modalName: string) => {
     setActiveModal(modalName);
@@ -36,8 +44,8 @@ function Wallet({ publicKey, secretKey, balance, setBalance, payments, setPaymen
         secretKey={secretKey as string}
         publicKey={publicKey as string}
         setBalance={setBalance}
-        setPayments={setPayments}   
-        isAlbedo={isAlbedo}   
+        setPayments={setPayments}
+        isAlbedo={isAlbedo}
       />
       <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
         <div className="flex justify-evenly w-full gap-5 py-5 px-10">
@@ -77,9 +85,9 @@ function Wallet({ publicKey, secretKey, balance, setBalance, payments, setPaymen
               <div className="wallet-public-key-title flex items-start justify-start text-xs sm:text-xl font-semibold py-5">
                 Your Stellar Public Key
               </div>
-              <div className="wallet-public-key-text flex items-start justify-start text-xs sm:text-xl font-semibold pb-5">
+              <div className="flex items-start justify-start text-xs sm:text-xl font-semibold pb-5">
                 <Input
-                  className="wallet-input text-sm font-semibold h-10"
+                  className="text-sm font-semibold h-10 wallet-input"
                   value={trimWalletAddress(publicKey)}
                 />
                 <CopyToClipboard

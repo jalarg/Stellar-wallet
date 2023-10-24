@@ -32,7 +32,7 @@ const ReceiveModal: React.FC<IReceiveTransactionModal> = ({
     >
       <div className="flex flex-col justify-center bg-gray-200 rounded-[10px] border border-[2] border-gray-600 p-3 space-y-3 m-5">
         <div className="flex flex-col items-center justify-center text-center text-xs sm:text-xl py-5 space-y-2">
-          <h1 className={`modal-title-${label} text-xl font-semibold`}>
+          <h1 className={`text-xl font-semibold modal-title-${label}`}>
             {content.title}
           </h1>
           <h3 className={`modal-subtitle-${label} text-sm sm:text-sm`}>

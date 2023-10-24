@@ -17,7 +17,7 @@ const SendModal: React.FC<ISendTransactionModal> = ({
   publicKey,
   setBalance,
   setPayments,
-  isAlbedo
+  isAlbedo,
 }) => {
   const [destinationId, setDestinationId] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
@@ -41,7 +41,7 @@ const SendModal: React.FC<ISendTransactionModal> = ({
     >
       <div className="flex flex-col justify-center bg-gray-200 rounded-[10px] border border-[2] border-gray-600 p-3 space-y-3 m-5">
         <div className="flex items-start justify-center text-xs sm:text-xl font-semibold py-5">
-          <h1 className={`modal-title-${label} text-xl`}>{content.title}</h1>
+          <h1 className={`text-xl modal-title-${label}`}>{content.title}</h1>
         </div>
 
         <Input
@@ -78,8 +78,8 @@ const SendModal: React.FC<ISendTransactionModal> = ({
                   onClose,
                   setBalance,
                   setIsLoading,
-                  setPayments, 
-                  isAlbedo,                 
+                  setPayments,
+                  isAlbedo,
                 } as ISendTransactionHandler)
               }
             >

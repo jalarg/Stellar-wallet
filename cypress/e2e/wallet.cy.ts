@@ -1,10 +1,22 @@
-import { projectUrl } from "../support/constants";
+import { projectUrl, walletCredentials } from "../support/constants";
+import { login } from "../../src/GlobalRedux/Features/authSlice";
 
 beforeEach(() => {
-  cy.visit(`${projectUrl}/wallet`);
+  cy.visit(projectUrl);
 });
 
 describe("Wallet UI", () => {
+  beforeEach(() => {
+    cy.get(".button-connect").as("connectButton");
+    cy.get("@connectButton").click();
+    cy.get(".ant-checkbox-input").click({ force: true });
+    cy.get(".button-modal-connectSecretKeyWarning").as(
+      "connectSecretKeyWarning"
+    );
+    cy.get("@connectSecretKeyWarning").click({ force: true });
+    cy.get(".input-private-key").type(walletCredentials.secretKey);
+    cy.get(".button-modal-connectAddSecretKey").click({ force: true });
+  });
   it("Should the wallet container be visible", () => {
     cy.get(".wallet-container").should("exist").and("be.visible");
   });
@@ -48,9 +60,6 @@ describe("Wallet UI", () => {
     cy.get(".wallet-payments-title")
       .should("be.visible")
       .and("contain", "Payments History");
-    cy.get(".wallet-payments-text")
-      .should("be.visible")
-      .and("contain", "There are no payments to show.");
   });
 
   it("Should the title for payments and the paragraph for payment history be visible and contain a text message", () => {
@@ -67,6 +76,15 @@ describe("Wallet UI", () => {
 });
 describe("Send transaction modal", () => {
   beforeEach(() => {
+    cy.get(".button-connect").as("connectButton");
+    cy.get("@connectButton").click();
+    cy.get(".ant-checkbox-input").click({ force: true });
+    cy.get(".button-modal-connectSecretKeyWarning").as(
+      "connectSecretKeyWarning"
+    );
+    cy.get("@connectSecretKeyWarning").click({ force: true });
+    cy.get(".input-private-key").type(walletCredentials.secretKey);
+    cy.get(".button-modal-connectAddSecretKey").click({ force: true });
     cy.get(".button-send").click();
   });
 
@@ -94,6 +112,15 @@ describe("Send transaction modal", () => {
 });
 describe("Receive transaction modal", () => {
   beforeEach(() => {
+    cy.get(".button-connect").as("connectButton");
+    cy.get("@connectButton").click();
+    cy.get(".ant-checkbox-input").click({ force: true });
+    cy.get(".button-modal-connectSecretKeyWarning").as(
+      "connectSecretKeyWarning"
+    );
+    cy.get("@connectSecretKeyWarning").click({ force: true });
+    cy.get(".input-private-key").type(walletCredentials.secretKey);
+    cy.get(".button-modal-connectAddSecretKey").click({ force: true });
     cy.get(".button-receive").click();
   });
 
