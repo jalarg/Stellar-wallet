@@ -5,6 +5,7 @@ import setKeypair from "./setKeypair";
 import paymentsHistory from "./paymentsHistory";
 import server from "./server";
 import resetKeys from "./resetKeys";
+import albedoLogin from "./albedoLogin";
 
 export {
   minimumBalance,
@@ -14,4 +15,5 @@ export {
   paymentsHistory,
   server,
   resetKeys,
+  albedoLogin,
 };
