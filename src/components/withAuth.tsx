@@ -15,6 +15,7 @@ export default function withAuth(WrappedComponent: any) {
     const secretKey = useSelector(
       (state: IAuth) => state.auth.walletCredentials.secretKey
     );
+    const isAlbedo = useSelector((state: IAuth) => state.auth.isAlbedo);
     const [isLoading, setIsLoading] = useState(false);
     const [balance, setBalance] = useState("0");
     const [payments, setPayments] = useState(null);
@@ -47,6 +48,7 @@ export default function withAuth(WrappedComponent: any) {
             payments={payments}
             setBalance={setBalance}
             setPayments={setPayments}
+            isAlbedo={isAlbedo}
           />
         )}
       </>

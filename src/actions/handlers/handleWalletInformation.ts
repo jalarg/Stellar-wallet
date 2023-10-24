@@ -20,6 +20,7 @@ const handleWalletInformation = async ({
       setBalance(balanceResult[0].balance);
       const paymentsResult = await paymentsHistory(publicKey);
       setPayments(paymentsResult);
+      setIsLoading(false);
     } catch (error) {
       setBalance("0");
       setPayments(null);

@@ -8,6 +8,7 @@ async function sendTransaction({
   privateKey,
   destinationId,
   amount,
+  isAlbedo,
 }: ISendTransactionFunction) {
   try {
     const destinationAccount = await server.loadAccount(destinationId);

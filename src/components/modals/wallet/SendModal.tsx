@@ -17,6 +17,7 @@ const SendModal: React.FC<ISendTransactionModal> = ({
   publicKey,
   setBalance,
   setPayments,
+  isAlbedo
 }) => {
   const [destinationId, setDestinationId] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
@@ -77,7 +78,8 @@ const SendModal: React.FC<ISendTransactionModal> = ({
                   onClose,
                   setBalance,
                   setIsLoading,
-                  setPayments,
+                  setPayments, 
+                  isAlbedo,                 
                 } as ISendTransactionHandler)
               }
             >

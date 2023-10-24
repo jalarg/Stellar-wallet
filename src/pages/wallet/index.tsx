@@ -13,9 +13,9 @@ import { message } from "antd";
 import Payments from "../../components/Payments";
 import withAuth from "../../components/withAuth";
 
-function Wallet({ publicKey, secretKey, balance, setBalance, payments, setPayments }: any) {
+function Wallet({ publicKey, secretKey, balance, setBalance, payments, setPayments, isAlbedo }: any) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [activeModal, setActiveModal] = useState<string | null>(null);  
 
   const openModal = (modalName: string) => {
     setActiveModal(modalName);
@@ -36,7 +36,8 @@ function Wallet({ publicKey, secretKey, balance, setBalance, payments, setPaymen
         secretKey={secretKey as string}
         publicKey={publicKey as string}
         setBalance={setBalance}
-        setPayments={setPayments}      
+        setPayments={setPayments}   
+        isAlbedo={isAlbedo}   
       />
       <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
         <div className="flex justify-evenly w-full gap-5 py-5 px-10">
