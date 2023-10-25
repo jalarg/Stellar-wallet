@@ -251,3 +251,10 @@ export interface ILogin {
   dispatch: (action: any) => void;
   auth: IAuthState;
 }
+
+interface IHandleWalletInformationProps {
+  setIsLoading: (isLoading: boolean) => void;
+  setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
+  publicKey: string;
+}
