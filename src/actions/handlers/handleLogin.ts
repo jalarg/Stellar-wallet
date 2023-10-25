@@ -3,7 +3,12 @@ import { Keypair } from "stellar-sdk";
 import { message } from "antd";
 import { ILogin } from "../../types/types";
 
-async function loginHandler({ publicKey, secretKey, dispatch, auth }: ILogin) {
+async function handleLogin({
+  publicKey,
+  secretKey,
+  dispatch,
+  auth,
+}: ILogin) {
   try {
     if (auth.isAuthenticated) {
       message.error("You are already logged in!");
@@ -28,5 +33,4 @@ async function loginHandler({ publicKey, secretKey, dispatch, auth }: ILogin) {
     console.log("Error:", error);
   }
 }
-
-export default loginHandler;
+export default handleLogin;

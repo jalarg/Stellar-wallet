@@ -1,18 +1,12 @@
 import { checkBalance, paymentsHistory } from "../stellar";
+import { IHandleWalletInformationProps } from "../../types/types";
 
-interface HandleWalletInformationProps {
-  setIsLoading: (isLoading: boolean) => void;
-  setBalance: (balance: string) => void;
-  setPayments: (payments: any) => void;
-  publicKey: string;
-}
-
-const handleWalletInformation = async ({
+async function handleWalletInformation({
   setIsLoading,
   setBalance,
   setPayments,
   publicKey,
-}: HandleWalletInformationProps) => {
+}: IHandleWalletInformationProps) {
   if (publicKey) {
     setIsLoading(true);
     try {
@@ -27,6 +21,6 @@ const handleWalletInformation = async ({
     }
     setIsLoading(false);
   }
-};
+}
 
 export default handleWalletInformation;

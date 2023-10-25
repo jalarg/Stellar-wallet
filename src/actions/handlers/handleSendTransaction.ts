@@ -7,7 +7,7 @@ import {
 import { message } from "antd";
 import albedo from "@albedo-link/intent";
 
-const sendTransactionHandler = async ({
+async function handleSendTransaction({
   publicKey,
   privateKey,
   amount,
@@ -17,7 +17,7 @@ const sendTransactionHandler = async ({
   setIsLoading,
   setPayments,
   isAlbedo,
-}: ISendTransactionHandler) => {
+}: ISendTransactionHandler) {
   if (isAlbedo && onClose && setBalance) {
     setIsLoading(true);
     albedo
@@ -62,6 +62,6 @@ const sendTransactionHandler = async ({
     onClose();
     setIsLoading(false);
   }
-};
+}
 
-export default sendTransactionHandler;
+export default handleSendTransaction;

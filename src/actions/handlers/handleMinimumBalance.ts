@@ -2,11 +2,11 @@ import { minimumBalance, checkBalance } from "../stellar";
 import { IMiniumBalanceHandler } from "../../types/types";
 import { message } from "antd";
 
-const miniumBalanceHandler = async ({
+async function handleMinimumBalance({
   publicKey,
   setBalance,
   setIsLoading,
-}: IMiniumBalanceHandler) => {
+}: IMiniumBalanceHandler) {
   if (publicKey) {
     setIsLoading(true);
     await minimumBalance(publicKey);
@@ -17,6 +17,6 @@ const miniumBalanceHandler = async ({
     setIsLoading(false);
     message.success("Account created successfully");
   }
-};
+}
 
-export default miniumBalanceHandler;
+export default handleMinimumBalance;

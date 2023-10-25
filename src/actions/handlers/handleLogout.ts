@@ -1,7 +1,7 @@
 import { logout } from "../../globalRedux/store";
 import { message } from "antd";
 
-async function logoutHandler(dispatch: any) {
+function handleLogout(dispatch: any) {
   try {
     dispatch(logout());
     message.success("Logout Successful");
@@ -10,4 +10,4 @@ async function logoutHandler(dispatch: any) {
   }
 }
 
-export default logoutHandler;
+export default handleLogout;
