@@ -8,7 +8,7 @@ import { FaRegMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";
 import { IAuth } from "../types/types";
-import { logoutHandler } from "../actions/handlers";
+import { handleLogout } from "../actions/handlers";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Navbar = () => {
               <Link className={`navbar-link-logout`} href="/">
                 <Image
                   className="cursor-pointer"
-                  onClick={() => logoutHandler(dispatch)}
+                  onClick={() => handleLogout(dispatch)}
                   src={logout}
                   alt="logo"
                   width={50}

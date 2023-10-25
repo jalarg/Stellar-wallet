@@ -4,7 +4,7 @@ import { Input } from "antd";
 import { Button, Spiral } from "../../components/commons";
 import { WarningOutlined } from "@ant-design/icons";
 import Modal from "../../components/modals/wallet";
-import { miniumBalanceHandler } from "../../actions/handlers";
+import { handleMinimumBalance } from "../../actions/handlers";
 import { trimWalletAddress, roundNumber } from "../../actions/utils";
 import Image from "next/image";
 import copy from "../../assets/copy-icon.svg";
@@ -115,7 +115,7 @@ function Wallet({
                   disabled={isLoading}
                   className="button-add-lumens activate-button font-extrabold text-blue-500 hover:text-blue-600"
                   onClick={() =>
-                    miniumBalanceHandler({
+                    handleMinimumBalance({
                       publicKey,
                       setBalance,
                       setIsLoading,

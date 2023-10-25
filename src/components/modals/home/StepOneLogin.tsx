@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../../commons/Button";
 import { ILoginModalStepOne } from "../../../types/types";
 import { Checkbox } from "antd";
-import {closeModalHandler, openModalHandler} from "../../../actions/handlers";
+import {handleCloseModal, handleOpenModal} from "../../../actions/handlers";
 import { Modal } from "antd";
 import { handleCheck } from "../../../actions/utils";
 
@@ -54,7 +54,7 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
             disabled={!isChecked}
             buttonClass={`button-modal-${label}`}
             onClick={() => {
-              openModalHandler({ modalName: "connectAddSecretKey", openModal });
+              handleOpenModal({ modalName: "connectAddSecretKey", openModal });
             }}
           >
             {content.button}
@@ -63,7 +63,7 @@ const StepOneLogin: React.FC<ILoginModalStepOne> = ({
             buttonClass="button-modal-cancel-1"
             danger
             onClick={() => {
-              closeModalHandler({
+              handleCloseModal({
                 onClose,
                 handleCheck,
                 isChecked,

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Checkbox } from "antd";
 import { Modal } from "antd";
 import { handleCheck } from "../../../actions/utils";
-import { loginHandler, closeModalHandler } from "../../../actions/handlers";
+import { handleLogin, handleCloseModal } from "../../../actions/handlers";
 import { ILogin } from "../../../types/types";
 
 const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
@@ -75,7 +75,7 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
               disabled={!isChecked}
               buttonClass={`button-modal-${label}`}
               onClick={() => {
-                loginHandler({
+                handleLogin({
                   publicKey,
                   secretKey,
                   dispatch,
@@ -90,7 +90,7 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
             buttonClass={`button-modal-${label}-cancel`}
             danger
             onClick={() => {
-              closeModalHandler({
+              handleCloseModal({
                 onClose,
                 handleCheck,
                 setIsChecked,

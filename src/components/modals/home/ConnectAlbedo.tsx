@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Button from "../../commons/Button";
 import { albedoLogin } from "../../../actions/stellar";
-import { closeModalHandler, openModalHandler } from "../../../actions/handlers";
+import { handleCloseModal } from "../../../actions/handlers";
 import { Modal } from "antd";
 import { IAlbedoModal } from "../../../types/types";
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -71,7 +71,7 @@ const ConnectAlbedo: React.FC<IAlbedoModal> = ({
             buttonClass="button-modal-cancel-1"
             danger
             onClick={() => {
-              closeModalHandler({
+              handleCloseModal({
                 onClose,
               });
             }}

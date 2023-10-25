@@ -3,9 +3,9 @@ import Button from "../../commons/Button";
 import { ISendTransactionModal } from "../../../types/types";
 import { Input, Tooltip } from "antd";
 import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
-import closeModalHandler from "../../../actions/handlers/closeModalHandler";
+import { handleCloseModal } from "../../../actions/handlers";
 import { Modal } from "antd";
-import sendTransactionHandler from "@/actions/handlers/sendTransactionHandler";
+import { handleSendTransaction } from "../../../actions/handlers";
 import { ISendTransactionHandler } from "../../../types/types";
 
 const SendModal: React.FC<ISendTransactionModal> = ({
@@ -70,7 +70,7 @@ const SendModal: React.FC<ISendTransactionModal> = ({
               disabled={isLoading || destinationId === "" || amount === ""}
               buttonClass={`button-modal-${label}`}
               onClick={() =>
-                sendTransactionHandler({
+                handleSendTransaction({
                   publicKey: publicKey,
                   privateKey: secretKey,
                   amount: amount,
@@ -89,7 +89,7 @@ const SendModal: React.FC<ISendTransactionModal> = ({
               buttonClass="button-modal-cancel"
               danger
               onClick={() => {
-                closeModalHandler({ onClose });
+                handleCloseModal({ onClose });
               }}
             >
               Cancel
