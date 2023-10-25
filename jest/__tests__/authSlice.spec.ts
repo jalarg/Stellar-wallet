@@ -1,5 +1,5 @@
 import "jest";
-import { login, logout, authReducer } from "../../src/GlobalRedux/store";
+import { login, logout, authReducer } from "../../src/globalRedux/store";
 import { IAuthState } from "../../src/types/types";
 import { expect } from "@jest/globals";
 
@@ -10,6 +10,7 @@ describe("Authentication Redux Store", () => {
   it("Should handle login action adding login credentials to store", () => {
     const initialState: IAuthState = {
       isAuthenticated: false,
+      isAlbedo: false,
       walletCredentials: {
         publicKey: "",
         secretKey: "",
@@ -18,16 +19,26 @@ describe("Authentication Redux Store", () => {
 
     const { isAuthenticated, walletCredentials } = authReducer(
       initialState,
-      login({secretKey, publicKey})
+      login({ secretKey, publicKey })
     );
-    console.log("walletCredentials", isAuthenticated, walletCredentials);
+
+    const { secretKey: secretKeyFromStore, publicKey: publicKeyFromStore } =
+      walletCredentials;
+
     expect(isAuthenticated).toBe(true);
-    expect(walletCredentials.secretKey).toBe(secretKey);
+    expect({
+      secretKey: secretKeyFromStore,
+      publicKey: publicKeyFromStore,
+    }).toEqual({
+      publicKey: publicKey,
+      secretKey: secretKey,
+    });
   });
 
   it("Should handle logout action removing credentials from store", () => {
     const initialState: IAuthState = {
       isAuthenticated: false,
+      isAlbedo: false,
       walletCredentials: {
         publicKey: "",
         secretKey: "",
@@ -38,8 +49,16 @@ describe("Authentication Redux Store", () => {
       initialState,
       logout()
     );
+    const { secretKey: secretKeyFromStore, publicKey: publicKeyFromStore } =
+      walletCredentials;
+
     expect(isAuthenticated).toBe(false);
-    expect(walletCredentials.publicKey).toBe("");
-    expect(walletCredentials.secretKey).toBe("");
+    expect({
+      secretKey: secretKeyFromStore,
+      publicKey: publicKeyFromStore,
+    }).toEqual({
+      publicKey: "",
+      secretKey: "",
+    });
   });
 });

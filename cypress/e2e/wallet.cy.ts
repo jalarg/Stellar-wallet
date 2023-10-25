@@ -1,5 +1,4 @@
 import { projectUrl, walletCredentials } from "../support/constants";
-import { login } from "../../src/GlobalRedux/Features/authSlice";
 
 beforeEach(() => {
   cy.visit(projectUrl);
@@ -17,6 +16,7 @@ describe("Wallet UI", () => {
     cy.get(".input-private-key").type(walletCredentials.secretKey);
     cy.get(".button-modal-connectAddSecretKey").click({ force: true });
   });
+
   it("Should the wallet container be visible", () => {
     cy.get(".wallet-container").should("exist").and("be.visible");
   });
