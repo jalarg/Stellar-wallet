@@ -1,4 +1,4 @@
-import { login } from "../../GlobalRedux/store";
+import { login } from "../../globalRedux/store";
 import { Keypair } from "stellar-sdk";
 import { message } from "antd";
 import { ILogin } from "../../types/types";
