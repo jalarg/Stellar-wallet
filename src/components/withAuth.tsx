@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Spiral } from "./commons";
 import { IAuth } from "../types/types";
 import { handleWalletInformation } from "../actions/handlers";
+import { IWalletComponent } from "../types/types";
 
-export default function withAuth(WrappedComponent: any) {
+export default function withAuth(WrappedComponent: React.FC<IWalletComponent>) {
   return function WithAuthWrapper(props: any) {
     const { isAuthenticated } = useSelector((state: IAuth) => state.auth);
     const publicKey = useSelector(
