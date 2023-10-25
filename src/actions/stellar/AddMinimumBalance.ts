@@ -10,7 +10,6 @@ async function addMinimumBalance(publicKey: string | null) {
     const response = await fetch(
       `${FRIENDBOT_URL}?addr=${encodeURIComponent(publicKey)}`
     );
-
     const responseJSON = (await response.json()) as IMinimumBalanceResponse;
 
     if (responseJSON.status === 400) {
