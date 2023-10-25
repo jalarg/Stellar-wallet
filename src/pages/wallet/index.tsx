@@ -12,6 +12,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { message } from "antd";
 import Payments from "../../components/Payments";
 import withAuth from "../../components/withAuth";
+import { IWalletComponent } from "../../types/types";
 
 function Wallet({
   publicKey,
@@ -21,7 +22,7 @@ function Wallet({
   payments,
   setPayments,
   isAlbedo,
-}: any) {
+}: IWalletComponent) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<string | null>(null);
 

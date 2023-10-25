@@ -1,3 +1,14 @@
+export interface IWalletComponent {
+  setIsLoading: (isLoading: boolean) => void;
+  setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
+  publicKey: string;
+  secretKey: string;
+  balance: string;
+  payments: any;
+  isAlbedo: boolean;
+}
+
 export interface IInput {
   label: string;
   type?: string;
@@ -71,7 +82,7 @@ export interface IMinimumBalanceResponse {
   error: string;
 }
 
-interface IAuth {
+export interface IAuth {
   auth: IAuthState;
 }
 
@@ -252,9 +263,21 @@ export interface ILogin {
   auth: IAuthState;
 }
 
-interface IHandleWalletInformationProps {
+export interface IHandleWalletInformationProps {
   setIsLoading: (isLoading: boolean) => void;
   setBalance: (balance: string) => void;
   setPayments: (payments: any) => void;
   publicKey: string;
+}
+
+export interface IPaymentsTable {
+  key: React.Key;
+  sender: string;
+  receiver: string;
+  asset: string;
+  amount: string;
+}
+
+export interface IPayments {
+  payments: IPaymentsTable[];
 }
