@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { checkBalance, paymentsHistory } from "../actions/stellar";
 import { Spiral } from "./commons";
 import { IAuth } from "../types/types";
 import { handleWalletInformation } from "../actions/handlers";

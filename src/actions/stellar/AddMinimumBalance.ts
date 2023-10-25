@@ -1,12 +1,14 @@
 import { IMinimumBalanceResponse } from "../../types/types";
 
-async function minimumBalance(publicKey: string | null) {
+const FRIENDBOT_URL = process.env.FRIENDBOT_URL as string;
+
+async function addMinimumBalance(publicKey: string | null) {
   try {
     if (!publicKey) {
       throw new Error("Public key is null or empty");
     }
     const response = await fetch(
-      `https://friendbot.stellar.org?addr=${encodeURIComponent(publicKey)}`
+      `${FRIENDBOT_URL}?addr=${encodeURIComponent(publicKey)}`
     );
 
     const responseJSON = (await response.json()) as IMinimumBalanceResponse;
@@ -21,4 +23,4 @@ async function minimumBalance(publicKey: string | null) {
   }
 }
 
-export default minimumBalance;
+export default addMinimumBalance;

@@ -1,6 +1,6 @@
 import "jest";
 import { expect, describe } from "@jest/globals";
-import paymentsHistory from "../../src/actions/stellar/paymentsHistory";
+import getPaymentsHistory from "../../src/actions/stellar/getPaymentsHistory";
 import { server } from "../../src/actions/stellar";
 
 const publicKey = "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IX";
@@ -30,7 +30,7 @@ jest.mock("../../src/actions/stellar", () => {
 
 describe("PaymentHistory function", () => {
   it("Should create an array with the history of lumens transactions of a wallet", async () => {
-    const result = await paymentsHistory(publicKey);
+    const result = await getPaymentsHistory(publicKey);
 
     expect(server.payments).toHaveBeenCalledTimes(1);
     expect(server.payments().forAccount).toHaveBeenCalledTimes(1);
@@ -51,7 +51,7 @@ describe("PaymentHistory function", () => {
     const publicKey = "";
     expect.assertions(1);
 
-    await expect(paymentsHistory(publicKey)).rejects.toThrow(
+    await expect(getPaymentsHistory(publicKey)).rejects.toThrow(
       "Public key is null or empty"
     );
   });

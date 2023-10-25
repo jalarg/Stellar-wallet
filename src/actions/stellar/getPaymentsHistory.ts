@@ -1,4 +1,4 @@
-import { server } from "./";
+import { server } from ".";
 
 interface IPayment {
   amount: string;
@@ -7,7 +7,7 @@ interface IPayment {
   receiver: string;
 }
 
-async function paymentsHistory(publicKey: string): Promise<IPayment[]> {
+async function getPaymentsHistory(publicKey: string): Promise<IPayment[]> {
   return new Promise<IPayment[]>(async (resolve, reject) => {
     try {
       if (!publicKey) {
@@ -50,4 +50,4 @@ async function paymentsHistory(publicKey: string): Promise<IPayment[]> {
   });
 }
 
-export default paymentsHistory;
+export default getPaymentsHistory;

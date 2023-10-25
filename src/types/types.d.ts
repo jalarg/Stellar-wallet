@@ -47,7 +47,7 @@ export interface IBalance {
   balance: string;
 }
 
-export interface IMiniumBalanceHandler {
+export interface IAddMiniumBalanceHandler {
   publicKey: string;
   setBalance: (balance: string) => void;
   setIsLoading: (loading: boolean) => void;

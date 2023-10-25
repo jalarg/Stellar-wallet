@@ -1,4 +1,4 @@
-import { checkBalance, paymentsHistory } from "../stellar";
+import { checkBalance, getPaymentsHistory } from "../stellar";
 import { IHandleWalletInformationProps } from "../../types/types";
 
 async function handleWalletInformation({
@@ -12,7 +12,7 @@ async function handleWalletInformation({
     try {
       const balanceResult = await checkBalance(publicKey);
       setBalance(balanceResult[0].balance);
-      const paymentsResult = await paymentsHistory(publicKey);
+      const paymentsResult = await getPaymentsHistory(publicKey);
       setPayments(paymentsResult);
       setIsLoading(false);
     } catch (error) {

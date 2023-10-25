@@ -1,18 +1,18 @@
-import minimumBalance from "./minimumBalance";
+import AddMinimumBalance from "./AddMinimumBalance";
 import checkBalance from "./checkBalance";
 import sendTransaction from "./sendTransaction";
 import setKeypair from "./setKeypair";
-import paymentsHistory from "./paymentsHistory";
+import getPaymentsHistory from "./getPaymentsHistory";
 import server from "./server";
 import resetKeys from "./resetKeys";
-import albedoLogin from "./albedoLogin";
+import albedoLogin from "../wallets/albedoLogin";
 
 export {
-  minimumBalance,
+  AddMinimumBalance,
   checkBalance,
   sendTransaction,
   setKeypair,
-  paymentsHistory,
+  getPaymentsHistory,
   server,
   resetKeys,
   albedoLogin,
