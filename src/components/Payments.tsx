@@ -2,20 +2,9 @@ import React from "react";
 import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { trimWalletAddress, roundNumber } from "../actions/utils";
+import { IPayments, IPaymentsTable } from "../types/types";
 
-interface DataType {
-  key: React.Key;
-  sender: string;
-  receiver: string;
-  asset: string;
-  amount: string;
-}
-
-interface IPayments {
-  payments: DataType[];
-}
-
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<IPaymentsTable> = [
   {
     title: "From",
     dataIndex: "sender",
@@ -42,7 +31,7 @@ const columns: ColumnsType<DataType> = [
 ];
 
 const Payments: React.FC<IPayments> = ({ payments }) => {
-  const data = payments.map((payment, index) => {
+  const paymentsHistory = payments.map((payment, index) => {
     return {
       key: index,
       sender: payment.sender,
@@ -58,7 +47,7 @@ const Payments: React.FC<IPayments> = ({ payments }) => {
         <div className="w-full p-5">
           <Table
             columns={columns}
-            dataSource={data}
+            dataSource={paymentsHistory}
             size="middle"
             pagination={{ pageSize: 5 }}
           />
