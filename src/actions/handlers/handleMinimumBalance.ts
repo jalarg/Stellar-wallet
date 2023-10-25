@@ -1,4 +1,4 @@
-import { AddMinimumBalance, checkBalance } from "../stellar";
+import { addMinimumBalance, checkBalance } from "../stellar";
 import { IAddMiniumBalanceHandler } from "../../types/types";
 import { message } from "antd";
 
@@ -9,7 +9,7 @@ async function handleMinimumBalance({
 }: IAddMiniumBalanceHandler) {
   if (publicKey) {
     setIsLoading(true);
-    await AddMinimumBalance(publicKey);
+    await addMinimumBalance(publicKey);
     await checkBalance(publicKey)
       .then((res: any[]) => setBalance(res[0].balance))
       .catch((err: string) => setBalance("0"));

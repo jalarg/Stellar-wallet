@@ -1,7 +1,7 @@
 import "jest";
 import { expect } from "@jest/globals";
 import { Keypair } from "stellar-sdk";
-import { AddMinimumBalance } from "../../src/actions/stellar";
+import { addMinimumBalance } from "../../src/actions/stellar";
 import fetchMock from "jest-fetch-mock";
 
 jest.mock("node-fetch", () => jest.fn());
@@ -42,7 +42,7 @@ describe("MinimumBalance function", () => {
     const realPair = Keypair.random();
     const publicKey = realPair.publicKey();
 
-    await AddMinimumBalance(publicKey);
+    await addMinimumBalance(publicKey);
     expect(consoleLog).toHaveBeenCalledWith(
       "SUCCESS! You have a new account :)\n",
       expect.objectContaining({ status: 200 })
@@ -52,7 +52,7 @@ describe("MinimumBalance function", () => {
   it("Should log an error message when publicKey is null or empty", async () => {
     const consoleError = jest.spyOn(console, "error");
     const publicKey = null;
-    await AddMinimumBalance(publicKey);
+    await addMinimumBalance(publicKey);
     expect(consoleError).toHaveBeenCalledWith("ERROR!", expect.any(Error));
   });
 });
