@@ -4,7 +4,7 @@ const roundNumber = (numberString: string) => {
     const rounded = number.toFixed(2);
     return rounded.endsWith(".00") ? rounded.replace(".00", "") : rounded;
   }
-  return "Invalid Input";
+  throw new Error("Invalid number");
 };
 
 export default roundNumber;
