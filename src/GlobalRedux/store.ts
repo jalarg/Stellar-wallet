@@ -2,7 +2,7 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./features/authSlice";
-import { login, logout, setIsAlbedo } from "./features/authSlice";
+import { login, logout, setType } from "./features/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -26,4 +26,4 @@ if (typeof window !== "undefined" && window.Cypress) {
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export { login, logout, setIsAlbedo, authReducer };
+export { login, logout, setType, authReducer };
