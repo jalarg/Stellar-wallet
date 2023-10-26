@@ -92,7 +92,7 @@ export interface IAuthState {
     publicKey: string;
     secretKey: string;
   };
-  walletType: "privateKey" | "albedo" | "freighter";
+  walletType: "privateKey" | "albedo" | "freighter" | ""
 }
 
 export interface IModal {
