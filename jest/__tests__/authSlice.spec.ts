@@ -10,16 +10,19 @@ describe("Authentication Redux Store", () => {
   it("Should handle login action adding login credentials to store", () => {
     const initialState: IAuthState = {
       isAuthenticated: false,
-      isAlbedo: false,
+      walletType: "",
       walletCredentials: {
         publicKey: "",
         secretKey: "",
       },
     };
 
-    const { isAuthenticated, walletCredentials } = authReducer(
+    const { isAuthenticated, walletCredentials, walletType } = authReducer(
       initialState,
-      login({ secretKey, publicKey })
+      login({
+        walletType: "privateKey",
+        walletCredentials: { publicKey, secretKey },
+      })
     );
 
     const { secretKey: secretKeyFromStore, publicKey: publicKeyFromStore } =
@@ -33,19 +36,20 @@ describe("Authentication Redux Store", () => {
       publicKey: publicKey,
       secretKey: secretKey,
     });
+    expect(walletType).toBe("privateKey");
   });
 
   it("Should handle logout action removing credentials from store", () => {
     const initialState: IAuthState = {
       isAuthenticated: false,
-      isAlbedo: false,
+      walletType: "",
       walletCredentials: {
         publicKey: "",
         secretKey: "",
       },
     };
 
-    const { isAuthenticated, walletCredentials } = authReducer(
+    const { isAuthenticated, walletCredentials, walletType } = authReducer(
       initialState,
       logout()
     );
@@ -60,5 +64,6 @@ describe("Authentication Redux Store", () => {
       publicKey: "",
       secretKey: "",
     });
+    expect(walletType).toBe("");
   });
 });

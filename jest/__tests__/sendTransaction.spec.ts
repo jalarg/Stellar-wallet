@@ -1,9 +1,9 @@
 import "jest";
 import { expect, describe } from "@jest/globals";
-import sendTransaction from "../../src/actions/stellar/sendTransaction";
 import { server } from "../../src/actions/stellar";
 import stellarSdk from "stellar-sdk";
 import { ISendTransactionFunction } from "@/types/types";
+import WalletSwitcher from "../../src/actions/wallets/walletSwitcher";
 
 jest.mock("stellar-sdk", () => {
   return {
@@ -104,9 +104,16 @@ describe("SendTransaction function", () => {
         "AAAAAwAAAAAAAAACAAAAAwAfcjQAAAAAAAAAANsBO+u+3jjrAe12P+Qun4u4BDdTuE7oFkDJ7eexA9ibAAAAFiRmy6wAHeFOAAAAHAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAMAAAAAAB9yFwAAAABlLtG1AAAAAAAAAAEAH3I0AAAAAAAAAADbATvrvt446wHtdj/kLp+LuAQ3U7hO6BZAye3nsQPYmwAAABYkZsusAB3hTgAAAB0AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAADAAAAAAAfcjQAAAAAZS7SVAAAAAAAAAABAAAABAAAAAMAH3I0AAAAAAAAAADbATvrvt446wHtdj/kLp+LuAQ3U7hO6BZAye3nsQPYmwAAABYkZsusAB3hTgAAAB0AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAADAAAAAAAfcjQAAAAAZS7SVAAAAAAAAAABAB9yNAAAAAAAAAAA2wE7677eOOsB7XY/5C6fi7gEN1O4TugWQMnt57ED2JsAAAAWFYAZLAAd4U4AAAAdAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAwAAAAAAH3I0AAAAAGUu0lQAAAAAAAAAAwAfchcAAAAAAAAAAN7WYg1mYFYMVX0nHRQQE47TdxVWtt9BrcMUuJVZfiTnAAAAGGyG+QAAHeSlAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAQAfcjQAAAAAAAAAAN7WYg1mYFYMVX0nHRQQE47TdxVWtt9BrcMUuJVZfiTnAAAAGHttq4AAHeSlAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
     });
 
-    const result = await sendTransaction(
-      sendTransactionInformation as ISendTransactionFunction
-    );
+    const wallet = WalletSwitcher.createWallet({
+      walletType: "privateKey",
+      publicKey: sendTransactionInformation.publicKey,
+      secretKey: sendTransactionInformation.privateKey,
+    });
+
+    const result = await wallet.sendTransaction({
+      destinationId: sendTransactionInformation.destinationId,
+      amount: sendTransactionInformation.amount,
+    } as ISendTransactionFunction);
 
     expect(server.loadAccount).toHaveBeenCalledTimes(2);
     expect(server.loadAccount).toHaveBeenNthCalledWith(
@@ -126,9 +133,13 @@ describe("SendTransaction function", () => {
     const destinationId =
       "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IXGF";
 
-    await sendTransaction({
+    const wallet = WalletSwitcher.createWallet({
+      walletType: "privateKey",
       publicKey: "GDNQCO7LX3PDR2YB5V3D7ZBOT6F3QBBXKO4E52AWIDE63Z5RAPMJWNST",
-      privateKey: "SCO26FBHD2WFYB55HXQCZVRNL4UAMZZJR5VOJID2SYABAWNO5VOO77CR",
+      secretKey: "SCO26FBHD2WFYB55HXQCZVRNL4UAMZZJR5VOJID2SYABAWNO5VOO77CR",
+    });
+
+    await wallet.sendTransaction({
       destinationId: destinationId,
       amount: "20",
     } as ISendTransactionFunction);
@@ -165,9 +176,13 @@ describe("SendTransaction function", () => {
       ],
     });
 
-    await sendTransaction({
+    const wallet = WalletSwitcher.createWallet({
+      walletType: "privateKey",
       publicKey: publicKey,
-      privateKey: "SCO26FBHD2WFYB55HXQCZVRNL4UAMZZJR5VOJID2SYABAWNO5VOO77CR",
+      secretKey: "SCO26FBHD2WFYB55HXQCZVRNL4UAMZZJR5VOJID2SYABAWNO5VOO77CR",
+    });
+
+    await wallet.sendTransaction({
       destinationId: "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IX",
       amount: "20",
     } as ISendTransactionFunction);
