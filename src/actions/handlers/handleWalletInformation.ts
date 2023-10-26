@@ -18,7 +18,7 @@ async function handleWalletInformation({
       });
       const balance = await wallet.checkBalance();    
       setBalance(balance[0].balance);
-      const paymentsHistory = await wallet.fetchPaymentsHistory();
+      const paymentsHistory = await wallet.getPaymentsHistory();
       setPayments(paymentsHistory);
       setIsLoading(false);
     } catch (error) {
