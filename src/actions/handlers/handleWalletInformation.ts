@@ -1,24 +1,18 @@
 import { IHandleWalletInformationProps } from "../../types/types";
-import WalletSwitcher from "../wallets/walletSwitcher";
+import { checkBalance, getPaymentsHistory } from "../stellar";
 
 async function handleWalletInformation({
   setIsLoading,
   setBalance,
   setPayments,
   publicKey,
-  walletType,
 }: IHandleWalletInformationProps) {
   if (publicKey) {
     setIsLoading(true);
-    try { 
-      const wallet = WalletSwitcher.createWallet({
-        walletType,
-        publicKey,
-        secretKey: "",
-      });
-      const balance = await wallet.checkBalance();    
+    try {
+      const balance = await checkBalance(publicKey);
       setBalance(balance[0].balance);
-      const paymentsHistory = await wallet.getPaymentsHistory();
+      const paymentsHistory = await getPaymentsHistory(publicKey);
       setPayments(paymentsHistory);
       setIsLoading(false);
     } catch (error) {
