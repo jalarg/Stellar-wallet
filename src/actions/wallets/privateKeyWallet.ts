@@ -2,6 +2,8 @@ import { ISendTransactionFunction } from "../../types/types";
 import { IBalance } from "../../types/types";
 import isValidPublicKey from "../../validations/isValidPublicKey";
 import { server } from "../stellar";
+import StellarSdk from "stellar-sdk";
+import { BASE_FEE, Networks } from "stellar-sdk";
 
 import { sendTransaction } from "../stellar";
 
@@ -55,7 +57,7 @@ export default class PrivateKeyWallet {
           .payments()
           .forAccount(this.publicKey)
           .stream({
-            onmessage: (payment: any) => {   
+            onmessage: (payment: any) => {
               var asset;
               if (payment.asset_type === "native") {
                 asset = "lumens";
@@ -88,12 +90,41 @@ export default class PrivateKeyWallet {
   }
 
   async sendTransaction({ destinationId, amount }: ISendTransactionFunction) {
-    const result = await sendTransaction({
-      publicKey: this.publicKey,
-      privateKey: this.secretKey,
-      destinationId,
-      amount,
-    });
-    return result;
+    try {
+      const destinationAccount = await server.loadAccount(destinationId);
+      if (!destinationAccount) {
+        throw new Error("The destination account does not exist!");
+      }
+      const senderAccount = await server.loadAccount(this.publicKey);
+      if (!senderAccount) {
+        throw new Error("The sender account does not exist!");
+      }
+
+      const transactionBuilder = new StellarSdk.TransactionBuilder(
+        senderAccount,
+        {
+          fee: BASE_FEE,
+          networkPassphrase: Networks.TESTNET,
+        }
+      );
+
+      const transaction = transactionBuilder
+        .addOperation(
+          StellarSdk.Operation.payment({
+            destination: destinationId,
+            asset: StellarSdk.Asset.native(),
+            amount: amount,
+          })
+        )
+        .setTimeout(180)
+        .build();
+
+      const keyPair = StellarSdk.Keypair.fromSecret(this.secretKey);
+      transaction.sign(keyPair);
+      const transactionResult = await server.submitTransaction(transaction);
+      return JSON.stringify(transactionResult, null, 2);
+    } catch (err) {
+      console.error("ERROR!", err);
+    }
   }
 }
