@@ -1,5 +1,4 @@
 import PrivateKeyWallet from "./privateKeyWallet";
-import albedoLogin from "../stellar/albedoLogin";
 import albedo from "@albedo-link/intent";
 
 interface IWallet {
@@ -16,11 +15,6 @@ export default class Albedo extends PrivateKeyWallet {
   constructor({ publicKey, secretKey }: IWallet) {
     super({ publicKey, secretKey });
   }
-
-  async login(dispatch: any) {
-    albedoLogin(dispatch);
-  }
-
   async sendTransaction({ destinationId, amount }: IAlbedo): Promise<any> {
     const result = await albedo.pay({
       destination: destinationId,
