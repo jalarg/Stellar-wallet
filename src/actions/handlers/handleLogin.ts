@@ -3,12 +3,7 @@ import { Keypair } from "stellar-sdk";
 import { message } from "antd";
 import { ILogin } from "../../types/types";
 
-async function handleLogin({
-  publicKey,
-  secretKey,
-  dispatch,
-  auth,
-}: ILogin) {
+async function handleLogin({ publicKey, secretKey, dispatch, auth }: ILogin) {
   try {
     if (auth.isAuthenticated) {
       message.error("You are already logged in!");
@@ -23,11 +18,21 @@ async function handleLogin({
     }
     if (!publicKey) {
       publicKey = Keypair.fromSecret(secretKey).publicKey();
-      dispatch(login({ publicKey, secretKey }));
+      dispatch(
+        login({
+          walletType: "privateKey",
+          walletCredentials: { publicKey, secretKey },
+        })
+      );
       message.success("Login successful!");
       return;
     }
-    dispatch(login({ publicKey, secretKey }));
+    dispatch(
+      login({
+        walletType: "privateKey",
+        walletCredentials: { publicKey, secretKey },
+      })
+    );
     message.success("Login successful!");
   } catch (error) {
     console.log("Error:", error);
