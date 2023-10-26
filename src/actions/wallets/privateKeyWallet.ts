@@ -5,8 +5,6 @@ import { server } from "../stellar";
 import StellarSdk from "stellar-sdk";
 import { BASE_FEE, Networks } from "stellar-sdk";
 
-import { sendTransaction } from "../stellar";
-
 interface IWallet {
   publicKey: string;
   secretKey: string;

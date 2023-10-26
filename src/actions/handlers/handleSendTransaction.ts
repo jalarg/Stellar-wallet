@@ -1,11 +1,9 @@
-import { sendTransaction } from "../stellar";
 import handleWalletInformation from "./handleWalletInformation";
 import {
   ISendTransactionFunction,
   ISendTransactionHandler,
 } from "../../types/types";
 import { message } from "antd";
-import albedo from "@albedo-link/intent";
 import WalletSwitcher from "../wallets/walletSwitcher";
 
 async function handleSendTransaction({
