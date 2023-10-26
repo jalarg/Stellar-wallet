@@ -12,7 +12,7 @@ const Modal: React.FC<IModalWallet> = ({
   publicKey,
   setBalance,  
   setPayments,
-  isAlbedo
+  walletType
 }) => {
   switch (activeModal) {
     case "ReceiveTransaction":
@@ -36,7 +36,7 @@ const Modal: React.FC<IModalWallet> = ({
           publicKey={publicKey}
           setBalance={setBalance}
           setPayments={setPayments}
-          isAlbedo={isAlbedo}
+          walletType={walletType}
         />
       );
     default:

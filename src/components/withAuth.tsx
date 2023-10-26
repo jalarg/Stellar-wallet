@@ -15,7 +15,7 @@ export default function withAuth(WrappedComponent: React.FC<IWalletComponent>) {
     const secretKey = useSelector(
       (state: IAuth) => state.auth.walletCredentials.secretKey
     );
-    const isAlbedo = useSelector((state: IAuth) => state.auth.isAlbedo);
+    const walletType = useSelector((state: IAuth) => state.auth.walletType);
     const [isLoading, setIsLoading] = useState(false);
     const [balance, setBalance] = useState("0");
     const [payments, setPayments] = useState(null);
@@ -30,6 +30,7 @@ export default function withAuth(WrappedComponent: React.FC<IWalletComponent>) {
         setBalance,
         setPayments,
         setIsLoading,
+        walletType,
       });
     }, [isAuthenticated]);
 
@@ -48,7 +49,7 @@ export default function withAuth(WrappedComponent: React.FC<IWalletComponent>) {
             payments={payments}
             setBalance={setBalance}
             setPayments={setPayments}
-            isAlbedo={isAlbedo}
+            walletType={walletType}
           />
         )}
       </>

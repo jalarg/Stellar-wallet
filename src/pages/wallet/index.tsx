@@ -21,7 +21,7 @@ function Wallet({
   setBalance,
   payments,
   setPayments,
-  isAlbedo,
+  walletType,
 }: IWalletComponent) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -46,7 +46,7 @@ function Wallet({
         publicKey={publicKey as string}
         setBalance={setBalance}
         setPayments={setPayments}
-        isAlbedo={isAlbedo}
+        walletType={walletType}
       />
       <div className="flex flex-col justify-start items-center gap-5 flex-grow py-3">
         <div className="flex justify-evenly w-full gap-5 py-5 px-10">
