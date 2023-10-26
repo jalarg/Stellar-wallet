@@ -6,7 +6,7 @@ export interface IWalletComponent {
   secretKey: string;
   balance: string;
   payments: any;
-  isAlbedo: boolean;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IInput {
@@ -69,11 +69,11 @@ export interface ISendTransactionHandler {
   publicKey: string;
   amount: string;
   destinationId: string;
-  onClose?: () => void;
-  setBalance?: (balance: string) => void;
+  onClose: () => void;
+  setBalance: (balance: string) => void;
   setIsLoading: (loading: boolean) => void;
   setPayments: (payments: any) => void;
-  isAlbedo: boolean;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IMinimumBalanceResponse {
@@ -92,7 +92,7 @@ export interface IAuthState {
     publicKey: string;
     secretKey: string;
   };
-  isAlbedo: boolean;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IModal {
@@ -119,7 +119,7 @@ export interface IModalWallet {
   publicKey: string;
   setBalance: (balance: string) => void;
   setPayments: (payments: any) => void;
-  isAlbedo: boolean;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IRegistrationModalStepOne {
@@ -206,7 +206,6 @@ export interface ISendTransactionFunction {
   privateKey: string;
   destinationId: string;
   amount: string;
-  isAlbedo: boolean;
 }
 
 export interface ISendTransactionModal {
@@ -221,7 +220,7 @@ export interface ISendTransactionModal {
   };
   setBalance: (balance: string) => void;
   setPayments: (payments: any) => void;
-  isAlbedo: boolean;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IReceiveTransactionModal {
@@ -268,6 +267,7 @@ export interface IHandleWalletInformationProps {
   setBalance: (balance: string) => void;
   setPayments: (payments: any) => void;
   publicKey: string;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IPaymentsTable {
@@ -280,4 +280,10 @@ export interface IPaymentsTable {
 
 export interface IPayments {
   payments: IPaymentsTable[];
+}
+
+export interface IWalletSwitcher {
+  walletType: "privateKey" | "albedo" | "freighter" | "";
+  publicKey: string;
+  secretKey: string;
 }
