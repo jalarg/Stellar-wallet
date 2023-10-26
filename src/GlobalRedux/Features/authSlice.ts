@@ -23,7 +23,7 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.walletType = "privatekey";
+      state.walletType = "";
       state.walletCredentials = {
         publicKey: "",
         secretKey: "",
