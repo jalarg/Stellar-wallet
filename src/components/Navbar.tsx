@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IAuth } from "../types/types";
 import { handleLogout } from "../actions/handlers";
 
-const Navbar = () => {
+const Navbar: React.FC  = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state: IAuth) => state.auth);
   const [theme, setTheme] = useState<string>("light");

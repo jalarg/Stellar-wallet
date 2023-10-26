@@ -3,7 +3,7 @@ import Image from "next/image";
 import logo from "../assets/github.svg";
 import { PiCopyrightBold } from "react-icons/pi";
 
-const Footer = () => {
+const Footer: React.FC  = () => {
   return (
     <footer className="footer-container flex flex-col px-[12.5%] text-black">
       <div className="border-t-2 border-black" />
