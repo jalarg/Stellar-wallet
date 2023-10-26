@@ -1,6 +1,7 @@
-import { addMinimumBalance, checkBalance } from "../stellar";
+import { addMinimumBalance } from "../stellar";
 import { IAddMiniumBalanceHandler } from "../../types/types";
 import { message } from "antd";
+import WalletSwitcher from "../../actions/wallets/walletSwitcher";
 
 async function handleMinimumBalance({
   publicKey,
@@ -10,10 +11,13 @@ async function handleMinimumBalance({
   if (publicKey) {
     setIsLoading(true);
     await addMinimumBalance(publicKey);
-    await checkBalance(publicKey)
-      .then((res: any[]) => setBalance(res[0].balance))
-      .catch((err: string) => setBalance("0"));
-
+    const wallet = WalletSwitcher.createWallet({
+      walletType: "privateKey",
+      publicKey,
+      secretKey: "",
+    });
+    const balance = await wallet.checkBalance();
+    setBalance(balance[0].balance);
     setIsLoading(false);
     message.success("Account created successfully");
   }
