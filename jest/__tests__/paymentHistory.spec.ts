@@ -1,7 +1,7 @@
 import "jest";
 import { expect, describe } from "@jest/globals";
+import getPaymentsHistory from "../../src/actions/stellar/getPaymentsHistory";
 import { server } from "../../src/actions/stellar";
-import WalletSwitcher from "../../src/actions/wallets/walletSwitcher";
 
 const publicKey = "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IX";
 
@@ -30,12 +30,7 @@ jest.mock("../../src/actions/stellar", () => {
 
 describe("PaymentsHistory function", () => {
   it("Should create an array with the history of lumens transactions of a wallet", async () => {
-    const wallet = WalletSwitcher.createWallet({
-      walletType: "privateKey",
-      publicKey: publicKey,
-      secretKey: "",
-    });
-    const result = await wallet.getPaymentsHistory();
+    const result = await getPaymentsHistory(publicKey);
 
     expect(server.payments).toHaveBeenCalledTimes(1);
     expect(server.payments().forAccount).toHaveBeenCalledTimes(1);
@@ -53,18 +48,11 @@ describe("PaymentsHistory function", () => {
   });
 
   it("Should throw an error when the publicKey format is invalid", async () => {
-    const wallet = WalletSwitcher.createWallet({
-      walletType: "privateKey",
-      publicKey: "",
-      secretKey: "",
-    });
+    const publicKey = "";
+    expect.assertions(1);
 
-    try {
-      await wallet.checkBalance();
-    } catch (error: any) {
-      expect(error.message).toBe(
-        "Please provide a public key in the correct format."
-      );
-    }
+    await expect(getPaymentsHistory(publicKey)).rejects.toThrow(
+      "Public key is null or empty"
+    );
   });
 });
