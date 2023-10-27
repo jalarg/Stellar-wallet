@@ -6,6 +6,7 @@ import handleOpenModal from "./handleOpenModal";
 import handleRegister from "./handleRegister";
 import handleSendTransaction from "./handleSendTransaction";
 import handleWalletInformation from "./handleWalletInformation";
+import handleLoginAlbedo from "./handleLoginAlbedo";
 
 export {
   handleCloseModal,
@@ -16,4 +17,5 @@ export {
   handleRegister,
   handleSendTransaction,
   handleWalletInformation,
+  handleLoginAlbedo,
 };

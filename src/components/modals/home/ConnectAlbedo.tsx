@@ -7,7 +7,7 @@ import { IAlbedoModal } from "../../../types/types";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import icon from "../../../assets/albedo.svg";
-import WalletSwitcher from "../../../actions/wallets/walletSwitcher";
+import { handleLoginAlbedo } from "../../../actions/handlers";
 
 const ConnectAlbedo: React.FC<IAlbedoModal> = ({
   content,
@@ -26,15 +26,6 @@ const ConnectAlbedo: React.FC<IAlbedoModal> = ({
       router.push("/wallet");
     }
   }, [isAuthenticated]);
-
-  function handleLoginAlbedo() {
-    const wallet = WalletSwitcher.createWallet({
-      walletType: "albedo",
-      publicKey: "",
-      secretKey: "",
-    });
-    wallet.login({ dispatch } as any);
-  }
 
   return (
     <Modal
@@ -72,7 +63,7 @@ const ConnectAlbedo: React.FC<IAlbedoModal> = ({
         <div className="flex flex-row justify-center mt-5 space-x-10">
           <Button
             buttonClass={`button-modal-${label} `}
-            onClick={handleLoginAlbedo}
+            onClick={() => handleLoginAlbedo({ dispatch })}
           >
             {content.button}
           </Button>
