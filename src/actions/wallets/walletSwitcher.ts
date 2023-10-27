@@ -9,9 +9,9 @@ export default class WalletSwitcher {
       case "privateKey":
         return new PrivateKeyWallet({ publicKey, secretKey });
       case "albedo":
-        return new AlbedoWallet({ publicKey, secretKey });
+        return new AlbedoWallet({ publicKey, secretKey: "" });
       default:
-        throw new Error("Tipo de wallet no válido");
+        throw new Error("Invalid walletType");
     }
   }
 }

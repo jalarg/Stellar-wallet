@@ -1,13 +1,19 @@
 import { ISendTransactionFunction } from "../../types/types";
-import { IBalance } from "../../types/types";
-import isValidPublicKey from "../../validations/isValidPublicKey";
+import { Keypair } from "stellar-sdk";
 import { server } from "../stellar";
 import StellarSdk from "stellar-sdk";
 import { BASE_FEE, Networks } from "stellar-sdk";
+import { message } from "antd";
+import { login } from "@/globalRedux/store";
 
 interface IWallet {
   publicKey: string;
   secretKey: string;
+}
+
+interface ILogin {
+  secretKey: string;
+  dispatch: (action: any) => void;
 }
 
 export default class PrivateKeyWallet {
@@ -17,6 +23,19 @@ export default class PrivateKeyWallet {
   constructor({ publicKey, secretKey }: IWallet) {
     this.publicKey = publicKey;
     this.secretKey = secretKey;
+  }
+
+  async login({ dispatch, secretKey }: ILogin) {
+    const publicKey = Keypair.fromSecret(secretKey).publicKey();
+    dispatch(
+      login({
+        walletType: "privateKey",
+        walletCredentials: {
+          publicKey: publicKey,
+          secretKey: secretKey,
+        },
+      })
+    );
   }
 
   async sendTransaction({ destinationId, amount }: ISendTransactionFunction) {
