@@ -92,7 +92,7 @@ export interface IAuthState {
     publicKey: string;
     secretKey: string;
   };
-  walletType: "privateKey" | "albedo" | "freighter" | ""
+  walletType: "privateKey" | "albedo" | "freighter" | "";
 }
 
 export interface IModal {
@@ -267,7 +267,6 @@ export interface IHandleWalletInformationProps {
   setBalance: (balance: string) => void;
   setPayments: (payments: any) => void;
   publicKey: string;
-  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IPaymentsTable {
@@ -285,5 +284,5 @@ export interface IPayments {
 export interface IWalletSwitcher {
   walletType: "privateKey" | "albedo" | "freighter" | "";
   publicKey: string;
-  secretKey: string;
+  secretKey: string | "";
 }
