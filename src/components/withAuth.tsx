@@ -30,7 +30,6 @@ export default function withAuth(WrappedComponent: React.FC<IWalletComponent>) {
         setBalance,
         setPayments,
         setIsLoading,
-        walletType,
       });
     }, [isAuthenticated]);
 

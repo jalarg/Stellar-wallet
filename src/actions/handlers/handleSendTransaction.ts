@@ -33,7 +33,6 @@ async function handleSendTransaction({
     setBalance,
     setPayments,
     publicKey,
-    walletType,
   });
 
   message.success("Transaction sent successfully");
