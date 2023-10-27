@@ -1,24 +1,20 @@
 "use client";
 import Image from "next/image";
 import logo from "../assets/stellar-xlm-logo.svg";
+import albedo from "../assets/albedo.svg";
 import Button from "../components/commons/Button";
 import { useState } from "react";
 import Register from "../components/Register";
-import Navbar from "../components/Navbar";
-import resetKeys from "../actions/resetKeys";
-import Footer from "../components/Footer";
+import { resetKeys } from "../actions/stellar";
 import Modal from "../components/modals/home";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../GlobalRedux/store";
-import { IAuthState } from "@/types/types";
-
+import { IAuth } from "../types/types";
 
 export default function Page() {
   const [secretKey, setSecretKey] = useState<string | null>(null);
-  const [publicKey, setPublicKey] = useState<string | null>(null);  
+  const [publicKey, setPublicKey] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const userPrivateKey = useSelector((state: IAuthState) => state.walletCredential);
-
+  const auth = useSelector((state: IAuth) => state.auth);
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const openModal = (modalName: string) => {
@@ -44,8 +40,9 @@ export default function Page() {
         setSecretKey={setSecretKey}
         secretKey={secretKey as string}
         publicKey={publicKey as string}
+        dispatch={dispatch}
+        auth={auth}
       />
-      <Navbar />
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-30">
         <Image
           src={logo}
@@ -66,6 +63,25 @@ export default function Page() {
           Sign in methods
         </p>
         <div className="flex flex-col justify-center m-5 px-5 ">
+          <div className="flex flex-col sm:flex-row justify-around m-5 px-5 ">
+            <button
+              onClick={() => {
+                openModal("connectAlbedo");
+              }} 
+            className="button-albedo flex justify-center py-2 mb-3 rounded-[4px] text-xs font-semibold border border-blue-400 bg-blue-200 w-full sm:w-[45%]">
+              <Image
+                width={15}
+                height={15}
+                src={albedo}
+                alt="icon"
+                className="icon-albedo mx-1"
+              />
+              Connect with Albedo
+            </button>
+            <button className="button-albedo flex justify-center py-2 mb-3 rounded-[4px] text-xs font-semibold border border-blue-400 bg-blue-200 w-full sm:w-[45%]">
+              Connect with Freighter
+            </button>
+          </div>
           <div className="flex flex-col justify-center m-5 px-5">
             <div className="flex flex-col justify-center m-5">
               <Button
@@ -82,7 +98,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

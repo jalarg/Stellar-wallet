@@ -2,11 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import logo from "../assets/stellar-xlm-logo-full.svg";
+import logout from "../assets/logout.png";
 import { Avatar } from "antd";
 import { FaRegMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
+import { IAuth } from "../types/types";
+import { handleLogout } from "../actions/handlers";
 
-const Navbar = () => {
+const Navbar: React.FC  = () => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state: IAuth) => state.auth);
   const [theme, setTheme] = useState<string>("light");
 
   const handleChangeTheme = () =>
@@ -20,11 +26,25 @@ const Navbar = () => {
             <Image src={logo} alt="logo" width={120} height={120} />
           </Link>
         </div>
-        <div className="lg:flex block ">
+        <div className="lg:flex block gap-6 ">
+          {auth.isAuthenticated && (
+            <div className="flex items-center">
+              <Link className={`navbar-link-logout`} href="/">
+                <Image
+                  className="cursor-pointer"
+                  onClick={() => handleLogout(dispatch)}
+                  src={logout}
+                  alt="logo"
+                  width={50}
+                  height={50}
+                />
+              </Link>
+            </div>
+          )}
           <Avatar
             icon={
               theme === "light" ? (
-                <FiSun    
+                <FiSun
                   className={`theme-button-${theme} text-3xl m-[6px] text-yellow-500 transition-colors hover:text-yellow-200`}
                 />
               ) : (

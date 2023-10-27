@@ -1,6 +1,6 @@
 import Button from "../components/commons/Button";
 import { IRegister } from "../types/types";
-import openModalHandler from "../actions/openModalHandler";
+import { handleOpenModal } from "../actions/handlers";
 
 const Register: React.FC<IRegister> = ({ modalName, openModal }) => {
   return (
@@ -10,7 +10,7 @@ const Register: React.FC<IRegister> = ({ modalName, openModal }) => {
         secondary
         fullWidth
         onClick={() => {
-          openModalHandler({ modalName, openModal });
+          handleOpenModal({ modalName, openModal });
         }}
       >
         Generate key pair for a new account

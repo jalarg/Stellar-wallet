@@ -1,8 +1,8 @@
 import { Keypair } from "stellar-sdk";
-import setKeypair from "./setKeypair";
-import { ISetKeyPair } from "../types/types";
+import setKeypair from "../stellar/setKeypair";
+import { ISetKeyPair } from "../../types/types";
 
-function registerHandler({
+function handleRegister({
   setSecretKey,
   setPublicKey,
   openModal,
@@ -14,4 +14,4 @@ function registerHandler({
   }
 }
 
-export default registerHandler;
+export default handleRegister;

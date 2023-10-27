@@ -1,38 +1,34 @@
 import React, { useState } from "react";
 import Button from "../../commons/Button";
-import { ISendTransaction } from "../../../types/types";
+import { ISendTransactionModal } from "../../../types/types";
 import { Input, Tooltip } from "antd";
 import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
-import closeModalHandler from "../../../actions/closeModalHandler";
-import { message } from "antd";
+import { handleCloseModal } from "../../../actions/handlers";
 import { Modal } from "antd";
+import { handleSendTransaction } from "../../../actions/handlers";
+import { ISendTransactionHandler } from "../../../types/types";
 
-const SendModal: React.FC<ISendTransaction> = ({
+const SendModal: React.FC<ISendTransactionModal> = ({
   label,
   isOpen,
   onClose,
   content,
   secretKey,
   publicKey,
+  setBalance,
+  setPayments,
+  walletType,
 }) => {
-  const [value, setValue] = useState<string>("");
+  const [destinationId, setDestinationId] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSetTransactionId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    setDestinationId(e.target.value);
   };
 
   const handleSetAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);
-  };
-
-  const sendTransactionHandler = () => {
-    if (value && amount) {
-      message.success("Transaction sent successfully");
-      closeModalHandler({ onClose });
-    } else {
-      message.error("Please fill in all fields");
-    }
   };
 
   return (
@@ -45,7 +41,7 @@ const SendModal: React.FC<ISendTransaction> = ({
     >
       <div className="flex flex-col justify-center bg-gray-200 rounded-[10px] border border-[2] border-gray-600 p-3 space-y-3 m-5">
         <div className="flex items-start justify-center text-xs sm:text-xl font-semibold py-5">
-          <h1 className={`modal-title-${label} text-xl`}>{content.title}</h1>
+          <h1 className={`text-xl modal-title-${label}`}>{content.title}</h1>
         </div>
 
         <Input
@@ -58,7 +54,7 @@ const SendModal: React.FC<ISendTransaction> = ({
               <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
             </Tooltip>
           }
-          value={value}
+          value={destinationId}
         />
         <Input
           onChange={handleSetAmount}
@@ -70,8 +66,22 @@ const SendModal: React.FC<ISendTransaction> = ({
         <div className="flex justify-evenly w-full gap-5 py-5 px-10">
           <div className="flex items-center justify-center gap-2 sm:w-[30%] w-[40%]">
             <Button
+              isLoading={isLoading}
+              disabled={isLoading || destinationId === "" || amount === ""}
               buttonClass={`button-modal-${label}`}
-              onClick={sendTransactionHandler}
+              onClick={() =>
+                handleSendTransaction({
+                  publicKey: publicKey,
+                  privateKey: secretKey,
+                  amount: amount,
+                  destinationId: destinationId,
+                  onClose,
+                  setBalance,
+                  setIsLoading,
+                  setPayments,
+                  walletType,
+                } as ISendTransactionHandler)
+              }
             >
               {content.button}
             </Button>
@@ -79,7 +89,7 @@ const SendModal: React.FC<ISendTransaction> = ({
               buttonClass="button-modal-cancel"
               danger
               onClick={() => {
-                closeModalHandler({ onClose });
+                handleCloseModal({ onClose });
               }}
             >
               Cancel

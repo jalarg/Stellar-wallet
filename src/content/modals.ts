@@ -50,12 +50,20 @@ export const loginContentStep2 = {
 };
 
 export const sendTransaction = {
-    title: "Send Lumens",
-    button: "Send",
+  title: "Send Lumens",
+  button: "Send",
 };
 
 export const receiveTransaction = {
   title: "Receive Lumens",
-  subtitle: "Scan this QR code using a Stellar wallet app to make a payment to your account.",
+  subtitle:
+    "Scan this QR code using a Stellar wallet app to make a payment to your account.",
   button: "Receive",
+};
+
+export const connectAlbedo = {
+  title: "Connect with Albedo",
+  subtitle: "Albedo is a browser wallet..",
+  list: [`Click on "Connect with Albedo" to launch Albedo browser wallet`],
+  button: "Connect",
 };

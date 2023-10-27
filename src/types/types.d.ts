@@ -1,3 +1,14 @@
+export interface IWalletComponent {
+  setIsLoading: (isLoading: boolean) => void;
+  setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
+  publicKey: string;
+  secretKey: string;
+  balance: string;
+  payments: any;
+  walletType: "privateKey" | "albedo" | "freighter";
+}
+
 export interface IInput {
   label: string;
   type?: string;
@@ -18,6 +29,7 @@ export interface IButton {
   danger?: boolean;
   disabled?: boolean;
   buttonClass?: string;
+  isLoading?: boolean;
 }
 
 export interface IRegisterButton {
@@ -36,7 +48,6 @@ export interface IKeypair {
   privateKey: string;
 }
 
-
 export interface IPair {
   publicKey: () => string | null;
   privateKey: () => string | null;
@@ -47,11 +58,22 @@ export interface IBalance {
   balance: string;
 }
 
-export interface ISendTransaction {
+export interface IAddMiniumBalanceHandler {
   publicKey: string;
+  setBalance: (balance: string) => void;
+  setIsLoading: (loading: boolean) => void;
+}
+
+export interface ISendTransactionHandler {
   privateKey: string;
-  destinationId: string;
+  publicKey: string;
   amount: string;
+  destinationId: string;
+  onClose: () => void;
+  setBalance: (balance: string) => void;
+  setIsLoading: (loading: boolean) => void;
+  setPayments: (payments: any) => void;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IMinimumBalanceResponse {
@@ -60,9 +82,17 @@ export interface IMinimumBalanceResponse {
   error: string;
 }
 
+export interface IAuth {
+  auth: IAuthState;
+}
+
 export interface IAuthState {
   isAuthenticated: boolean;
-  walletCredential: string | null; 
+  walletCredentials: {
+    publicKey: string;
+    secretKey: string;
+  };
+  walletType: "privateKey" | "albedo" | "freighter" | "";
 }
 
 export interface IModal {
@@ -75,6 +105,8 @@ export interface IModal {
   setSecretKey: (secretKey: string | null) => void;
   secretKey: string;
   publicKey: string;
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
 
 export interface IModalWallet {
@@ -85,6 +117,9 @@ export interface IModalWallet {
   openModal: (modalName: string) => void;
   secretKey: string;
   publicKey: string;
+  setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
 export interface IRegistrationModalStepOne {
@@ -116,6 +151,8 @@ export interface IRegistrationModalStepTwo {
     checkbox: string;
     button: string;
   };
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
 
 export interface ILoginModalStepOne {
@@ -145,9 +182,33 @@ export interface ILoginModalStepTwo {
     list: string[];
     button: string;
   };
+  dispatch: (action: any) => void;
+  auth: IAuthState;
 }
 
-export interface ISendTransaction {
+export interface IAlbedoModal {
+  isOpen?: boolean;
+  onClose: () => void;
+  label: string;
+  openModal: (modalName: string) => void;
+  content: {
+    title: string;
+    subtitle: string;
+    list: string[];
+    button: string;
+  };
+  dispatch: (action: any) => void;
+  auth: IAuthState;
+}
+
+export interface ISendTransactionFunction {
+  publicKey: string;
+  privateKey: string;
+  destinationId: string;
+  amount: string;
+}
+
+export interface ISendTransactionModal {
   isOpen?: boolean;
   onClose: () => void;
   label: string;
@@ -157,9 +218,12 @@ export interface ISendTransaction {
     title: string;
     button: string;
   };
+  setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
+  walletType: "privateKey" | "albedo" | "freighter";
 }
 
-export interface IReceiveTransaction {
+export interface IReceiveTransactionModal {
   isOpen?: boolean;
   onClose: () => void;
   label: string;
@@ -173,7 +237,10 @@ export interface IReceiveTransaction {
 
 export interface ICloseModal {
   onClose: () => void;
-  handleCheck: (isChecked: boolean, setIsChecked: (isChecked: boolean) => void) => void;
+  handleCheck?: (
+    isChecked: boolean,
+    setIsChecked: (isChecked: boolean) => void
+  ) => void;
   isChecked?: boolean;
   setIsChecked?: (isChecked: boolean) => void;
 }
@@ -186,4 +253,36 @@ export interface IOpenModal {
 export interface IRegister {
   modalName: string;
   openModal: (modalName: string) => void;
+}
+
+export interface ILogin {
+  publicKey?: string;
+  secretKey: string;
+  dispatch: (action: any) => void;
+  auth: IAuthState;
+}
+
+export interface IHandleWalletInformationProps {
+  setIsLoading: (isLoading: boolean) => void;
+  setBalance: (balance: string) => void;
+  setPayments: (payments: any) => void;
+  publicKey: string;
+}
+
+export interface IPaymentsTable {
+  key: React.Key;
+  sender: string;
+  receiver: string;
+  asset: string;
+  amount: string;
+}
+
+export interface IPayments {
+  payments: IPaymentsTable[];
+}
+
+export interface IWalletSwitcher {
+  walletType: "privateKey" | "albedo" | "freighter" | "";
+  publicKey: string;
+  secretKey: string | "";
 }

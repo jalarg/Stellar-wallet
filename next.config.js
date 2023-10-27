@@ -4,5 +4,6 @@ require("dotenv").config();
 module.exports = {
   env: {
     STELLAR_HORIZON_URL: process.env.STELLAR_HORIZON_URL,
+    FRIENDBOT_URL: process.env.FRIENDBOT_URL,
   },
 };
