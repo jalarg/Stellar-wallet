@@ -32,12 +32,13 @@ const columns: ColumnsType<IPaymentsTable> = [
 
 const Payments: React.FC<IPayments> = ({ payments }) => {
   const paymentsHistory = payments.map((payment, index) => {
+    const { sender, receiver, asset, amount } = payment;
     return {
       key: index,
-      sender: payment.sender,
-      receiver: payment.receiver,
-      asset: payment.asset,
-      amount: payment.amount,
+      sender,
+      receiver,
+      asset,
+      amount,
     };
   });
 
