@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Button from "../../commons/Button";
-import { albedoLogin } from "../../../actions/stellar";
 import { handleCloseModal } from "../../../actions/handlers";
 import { Modal } from "antd";
 import { IAlbedoModal } from "../../../types/types";

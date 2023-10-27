@@ -3,8 +3,7 @@ import { Keypair } from "stellar-sdk";
 import { server } from "../stellar";
 import StellarSdk from "stellar-sdk";
 import { BASE_FEE, Networks } from "stellar-sdk";
-import { message } from "antd";
-import { login } from "@/globalRedux/store";
+import { login } from "../../globalRedux/store";
 
 interface IWallet {
   publicKey: string;
