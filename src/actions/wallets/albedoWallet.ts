@@ -25,7 +25,7 @@ export default class AlbedoWallet {
   }
 
   async login({ dispatch }: ILogin) {
-    albedo
+    return albedo
       .publicKey({})
       .then((albedoPublicKey) => {
         dispatch(
@@ -38,10 +38,11 @@ export default class AlbedoWallet {
           })
         );
       })
-      .catch((err) => {
-        throw new Error(err.message);
+      .catch((err: any) => {
+        throw err; 
       });
   }
+  
 
   async sendTransaction({ destinationId, amount }: IAlbedo): Promise<any> {
     const result = await albedo.pay({
