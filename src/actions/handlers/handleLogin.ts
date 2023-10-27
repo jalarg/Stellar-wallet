@@ -1,38 +1,24 @@
-import { login } from "../../globalRedux/store";
 import { Keypair } from "stellar-sdk";
 import { message } from "antd";
 import { ILogin } from "../../types/types";
+import WalletSwitcher from "../wallets/walletSwitcher";
 
 async function handleLogin({ publicKey, secretKey, dispatch, auth }: ILogin) {
   try {
     if (auth.isAuthenticated) {
       message.error("You are already logged in!");
-      dispatch({
-        type: "AUTH_ERROR",
-        payload: {
-          error: "You are already logged in!",
-        },
-      });
-      message.error("You are already logged in!");
       return;
     }
-    if (!publicKey) {
-      publicKey = Keypair.fromSecret(secretKey).publicKey();
-      dispatch(
-        login({
-          walletType: "privateKey",
-          walletCredentials: { publicKey, secretKey },
-        })
-      );
-      message.success("Login successful!");
+    if (!secretKey) {
+      message.error("You must provide a secret key!");
       return;
     }
-    dispatch(
-      login({
-        walletType: "privateKey",
-        walletCredentials: { publicKey, secretKey },
-      })
-    );
+    const wallet = WalletSwitcher.createWallet({
+      walletType: "privateKey",
+      publicKey: (publicKey) ? publicKey : Keypair.fromSecret(secretKey).publicKey(),
+      secretKey,
+    });
+    await wallet.login({ dispatch, secretKey });
     message.success("Login successful!");
   } catch (error) {
     console.log("Error:", error);
