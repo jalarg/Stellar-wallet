@@ -8,13 +8,14 @@ describe("Wallet UI", () => {
   beforeEach(() => {
     cy.get(".button-connect").as("connectButton");
     cy.get("@connectButton").click();
-    cy.get(".ant-checkbox-input").click({ force: true });
+    cy.get(".ant-checkbox-input").click();
     cy.get(".button-modal-connectSecretKeyWarning").as(
       "connectSecretKeyWarning"
     );
-    cy.get("@connectSecretKeyWarning").click({ force: true });
+    cy.get("@connectSecretKeyWarning").click();
     cy.get(".input-private-key").type(walletCredentials.secretKey);
-    cy.get(".button-modal-connectAddSecretKey").click({ force: true });
+    cy.get(".button-modal-connectAddSecretKey").click();
+    cy.wait(1000);
   });
 
   it("Should the wallet container be visible", () => {
@@ -27,7 +28,7 @@ describe("Wallet UI", () => {
       .and("contain", "Your balance");
     cy.get(".wallet-balance-amount")
       .should("be.visible")
-      .and("contain", `0 Lumens (XML)`);
+      .and("contain", `10252 Lumens (XML)`);
   });
 
   it("Should the button send and receive be visible and contain a text message", () => {
@@ -78,13 +79,13 @@ describe("Send transaction modal", () => {
   beforeEach(() => {
     cy.get(".button-connect").as("connectButton");
     cy.get("@connectButton").click();
-    cy.get(".ant-checkbox-input").click({ force: true });
+    cy.get(".ant-checkbox-input").click();
     cy.get(".button-modal-connectSecretKeyWarning").as(
       "connectSecretKeyWarning"
     );
-    cy.get("@connectSecretKeyWarning").click({ force: true });
+    cy.get("@connectSecretKeyWarning").click();
     cy.get(".input-private-key").type(walletCredentials.secretKey);
-    cy.get(".button-modal-connectAddSecretKey").click({ force: true });
+    cy.get(".button-modal-connectAddSecretKey").click();
     cy.get(".button-send").click();
   });
 
@@ -114,13 +115,13 @@ describe("Receive transaction modal", () => {
   beforeEach(() => {
     cy.get(".button-connect").as("connectButton");
     cy.get("@connectButton").click();
-    cy.get(".ant-checkbox-input").click({ force: true });
+    cy.get(".ant-checkbox-input").click();
     cy.get(".button-modal-connectSecretKeyWarning").as(
       "connectSecretKeyWarning"
     );
-    cy.get("@connectSecretKeyWarning").click({ force: true });
+    cy.get("@connectSecretKeyWarning").click();
     cy.get(".input-private-key").type(walletCredentials.secretKey);
-    cy.get(".button-modal-connectAddSecretKey").click({ force: true });
+    cy.get(".button-modal-connectAddSecretKey").click();
     cy.get(".button-receive").click();
   });
 

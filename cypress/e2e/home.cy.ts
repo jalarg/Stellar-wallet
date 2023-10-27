@@ -14,6 +14,7 @@ describe("Home UI", () => {
   beforeEach(() => {
     cy.get(".button-register").as("registerButton");
     cy.get(".button-connect").as("connectButton");
+    cy.get(".button-albedo").as("connectAlbedo");
   });
 
   it("Should the Stellar logo be visible", () => {
@@ -31,7 +32,7 @@ describe("Home UI", () => {
   });
 
   it("Should show a button to connect with Albedo", () => {
-    cy.get(".button-albedo")
+    cy.get("@connectAlbedo")
       .should("exist")
       .should("be.visible")
       .and("contain", "Connect with Albedo");
