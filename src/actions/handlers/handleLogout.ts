@@ -1,4 +1,4 @@
-import { logout } from "../../globalRedux/store";
+import { logout } from "../../GlobalRedux/store";
 import { message } from "antd";
 
 function handleLogout(dispatch: any) {

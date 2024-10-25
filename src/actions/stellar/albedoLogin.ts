@@ -1,6 +1,6 @@
 import albedo from "@albedo-link/intent";
 import { useDispatch } from "react-redux";
-import { login } from "../../globalRedux/store";
+import { login } from "../../GlobalRedux/store";
 
 function albedoLogin(dispatch = useDispatch()) {
   albedo

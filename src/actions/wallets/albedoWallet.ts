@@ -1,4 +1,4 @@
-import { login } from "../../globalRedux/store";
+import { login } from "../../GlobalRedux/store";
 import albedo from "@albedo-link/intent";
 
 interface IWallet {
@@ -39,10 +39,9 @@ export default class AlbedoWallet {
         );
       })
       .catch((err: any) => {
-        throw err; 
+        throw err;
       });
   }
-  
 
   async sendTransaction({ destinationId, amount }: IAlbedo): Promise<any> {
     const result = await albedo.pay({
