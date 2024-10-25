@@ -19,7 +19,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return getLayout(
     <Providers>
       <Navbar />
-      <Component {...pageProps} />
+      <div className="flex-grow pb-20 dark:bg-gray-400 p-4 text-black dark:text-white">
+        <Component {...pageProps} />
+      </div>
       <Footer />
     </Providers>
   );
