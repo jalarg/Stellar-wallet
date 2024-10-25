@@ -1,9 +1,10 @@
-import { server } from "./";
+import { server } from ".";
 
 interface IPayment {
   amount: string;
   asset: string;
   sender: string;
+  receiver: string;
 }
 
 async function paymentsHistory(publicKey: string): Promise<IPayment[]> {
@@ -17,10 +18,7 @@ async function paymentsHistory(publicKey: string): Promise<IPayment[]> {
         .payments()
         .forAccount(publicKey)
         .stream({
-          onmessage: function (payment: any) {
-            if (payment.to !== publicKey) {
-              return;
-            }
+          onmessage: (payment: any) => {
             var asset;
             if (payment.asset_type === "native") {
               asset = "lumens";
@@ -32,18 +30,19 @@ async function paymentsHistory(publicKey: string): Promise<IPayment[]> {
               amount: payment.amount,
               asset: asset,
               sender: payment.from,
+              receiver: payment.to,
             };
 
             if (payment.type !== "create_account") {
               paymentData.push(paymentEntry);
+              resolve(paymentData);
             }
           },
-          onerror: function (error: any) {
+          onerror: (error: any) => {
             console.error("Error in payment stream");
             reject(error);
           },
         });
-      resolve(paymentData);
     } catch (err) {
       console.error("ERROR!", err);
       reject(err);

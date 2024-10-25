@@ -1,6 +1,6 @@
 import "jest";
 import { expect } from "@jest/globals";
-import { checkBalance } from "../../src/actions";
+import { checkBalance } from "../../src/actions/stellar";
 
 describe("CheckBalance function", () => {
   

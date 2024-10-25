@@ -1,11 +1,11 @@
 import "jest";
 import { expect, describe } from "@jest/globals";
-import paymentHistory from "../../src/actions/paymentsHistory";
-import { server } from "../../src/actions";
+import getPaymentsHistory from "../../src/actions/stellar/getPaymentsHistory";
+import { server } from "../../src/actions/stellar";
 
 const publicKey = "GDPNMYQNMZQFMDCVPUTR2FAQCOHNG5YVK23N6QNNYMKLRFKZPYSOO4IX";
 
-jest.mock("../../src/actions", () => {
+jest.mock("../../src/actions/stellar", () => {
   const paymentsMock = jest.fn().mockReturnValue({
     forAccount: jest.fn().mockReturnValue({
       stream: jest.fn((options) => {
@@ -28,9 +28,9 @@ jest.mock("../../src/actions", () => {
   };
 });
 
-describe("PaymentHistory function", () => {
+describe("PaymentsHistory function", () => {
   it("Should create an array with the history of lumens transactions of a wallet", async () => {
-    const result = await paymentHistory(publicKey);
+    const result = await getPaymentsHistory(publicKey);
 
     expect(server.payments).toHaveBeenCalledTimes(1);
     expect(server.payments().forAccount).toHaveBeenCalledTimes(1);
@@ -43,6 +43,7 @@ describe("PaymentHistory function", () => {
       amount: "10.0000000",
       asset: "lumens",
       sender: "GDNQCO7LX3PDR2YB5V3D7ZBOT6F3QBBXKO4E52AWIDE63Z5RAPMJWNST",
+      receiver: publicKey,
     });
   });
 
@@ -50,7 +51,7 @@ describe("PaymentHistory function", () => {
     const publicKey = "";
     expect.assertions(1);
 
-    await expect(paymentHistory(publicKey)).rejects.toThrow(
+    await expect(getPaymentsHistory(publicKey)).rejects.toThrow(
       "Public key is null or empty"
     );
   });

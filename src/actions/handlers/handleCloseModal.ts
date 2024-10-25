@@ -1,6 +1,6 @@
-import { ICloseModal } from "../types/types";
+import { ICloseModal } from "../../types/types";
 
-function closeModalHandler({
+async function handleCloseModal({
   onClose,
   handleCheck,
   isChecked,
@@ -12,4 +12,4 @@ function closeModalHandler({
   }
 }
 
-export default closeModalHandler;
+export default handleCloseModal;

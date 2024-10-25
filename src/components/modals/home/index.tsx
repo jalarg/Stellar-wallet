@@ -3,11 +3,13 @@ import StepOneLogin from "./StepOneLogin";
 import StepTwoLogin from "./StepTwoLogin";
 import StepOneRegistration from "./StepOneRegistration";
 import StepTwoRegistration from "./StepTwoRegistration";
+import ConnectAlbedo from "./ConnectAlbedo";
 import {
   generateKeyPairContentStep1,
   generateKeyPairContentStep2,
   loginContentStep1,
   loginContentStep2,
+  connectAlbedo,
 } from "../../../content/modals";
 import { IModal } from "../../../types/types";
 
@@ -21,6 +23,8 @@ const Modal: React.FC<IModal> = ({
   setSecretKey,
   secretKey,
   publicKey,
+  dispatch,
+  auth,
 }) => {
   switch (activeModal) {
     case "generateKeyPair":
@@ -45,6 +49,8 @@ const Modal: React.FC<IModal> = ({
           content={generateKeyPairContentStep2}
           secretKey={secretKey}
           publicKey={publicKey}
+          dispatch={dispatch}
+          auth={auth}
         />
       );
     case "connectSecretKeyWarning":
@@ -66,6 +72,20 @@ const Modal: React.FC<IModal> = ({
           openModal={openModal}
           content={loginContentStep2}
           setSecretKey={setSecretKey}
+          dispatch={dispatch}
+          auth={auth}
+        />
+      );
+    case "connectAlbedo":
+      return (
+        <ConnectAlbedo
+          label={label}
+          isOpen={isOpen}
+          onClose={onClose}
+          openModal={openModal}
+          content={connectAlbedo} 
+          dispatch={dispatch}    
+          auth={auth}
         />
       );
     default:

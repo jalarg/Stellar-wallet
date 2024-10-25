@@ -1,5 +1,5 @@
-import { IBalance } from "../types/types";
-import isValidPublicKey from "../validations/isValidPublicKey";
+import { IBalance } from "../../types/types";
+import isValidPublicKey from "../../validations/isValidPublicKey";
 import { server } from "./";
 
 async function checkBalance(publicKey: string) {

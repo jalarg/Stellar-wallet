@@ -3,12 +3,12 @@ import QRCode from "qrcode.react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Image from "next/image";
 import copy from "../../../assets/copy-icon.svg";
-import { IReceiveTransaction } from "../../../types/types";
-import trimWalletAddress from "@/actions/trimWalletAddress";
+import { IReceiveTransactionModal } from "../../../types/types";
+import trimWalletAddress from "../../../actions/utils/trimWalletAddress";
 import { message } from "antd";
 import { Modal } from "antd";
 
-const ReceiveModal: React.FC<IReceiveTransaction> = ({
+const ReceiveModal: React.FC<IReceiveTransactionModal> = ({
   label,
   isOpen,
   onClose,
@@ -32,7 +32,7 @@ const ReceiveModal: React.FC<IReceiveTransaction> = ({
     >
       <div className="flex flex-col justify-center bg-gray-200 rounded-[10px] border border-[2] border-gray-600 p-3 space-y-3 m-5">
         <div className="flex flex-col items-center justify-center text-center text-xs sm:text-xl py-5 space-y-2">
-          <h1 className={`modal-title-${label} text-xl font-semibold`}>
+          <h1 className={`text-xl font-semibold modal-title-${label}`}>
             {content.title}
           </h1>
           <h3 className={`modal-subtitle-${label} text-sm sm:text-sm`}>

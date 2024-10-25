@@ -4,10 +4,10 @@ import Input from "../../commons/Input";
 import { IRegistrationModalStepTwo } from "../../../types/types";
 import Link from "next/link";
 import { Checkbox } from "antd";
-import closeModalHandler from "@/actions/closeModalHandler";
-import { message } from "antd";
 import { Modal } from "antd";
 import { handleCheck } from "../../../actions/utils";
+import { handleLogin, handleCloseModal } from "../../../actions/handlers";
+import { ILogin } from "../../../types/types";
 
 const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
   content,
@@ -16,12 +16,10 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
   onClose,
   secretKey,
   publicKey,
+  dispatch,
+  auth,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
-
-  const handleRegister = () => {
-    message.success("You have successfully registered");
-  };
 
   return (
     <Modal
@@ -76,7 +74,14 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
             <Button
               disabled={!isChecked}
               buttonClass={`button-modal-${label}`}
-              onClick={handleRegister}
+              onClick={() => {
+                handleLogin({
+                  publicKey,
+                  secretKey,
+                  dispatch,
+                  auth,
+                } as ILogin);
+              }}
             >
               {content.button}
             </Button>
@@ -85,7 +90,12 @@ const StepTwoRegistration: React.FC<IRegistrationModalStepTwo> = ({
             buttonClass={`button-modal-${label}-cancel`}
             danger
             onClick={() => {
-              closeModalHandler({ onClose, handleCheck, setIsChecked, isChecked });
+              handleCloseModal({
+                onClose,
+                handleCheck,
+                setIsChecked,
+                isChecked,
+              });
             }}
           >
             Cancel

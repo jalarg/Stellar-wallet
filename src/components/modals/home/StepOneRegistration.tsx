@@ -1,6 +1,6 @@
 import Button from "../../commons/Button";
 import { IRegistrationModalStepOne } from "../../../types/types";
-import registerHandler from "../../../actions/registerHandler";
+import { handleRegister } from "../../../actions/handlers";
 import { Modal } from "antd";
 
 const StepOneRegistration: React.FC<IRegistrationModalStepOne> = ({
@@ -41,7 +41,7 @@ const StepOneRegistration: React.FC<IRegistrationModalStepOne> = ({
           <Button
             buttonClass={`button-modal-${label}`}
             onClick={() => {
-              registerHandler({ setSecretKey, setPublicKey, openModal });
+              handleRegister({ setSecretKey, setPublicKey, openModal });
             }}
           >
             {content.button}
