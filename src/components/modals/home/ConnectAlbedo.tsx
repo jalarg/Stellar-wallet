@@ -25,7 +25,7 @@ const ConnectAlbedo: React.FC<IAlbedoModal> = ({
     if (isAuthenticated) {
       router.push("/wallet");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   return (
     <Modal
