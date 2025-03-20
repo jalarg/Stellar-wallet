@@ -7,11 +7,20 @@ import { authReducer } from "./Features/authSlice";
 import { themeReducer } from "./Features/themeSlice";
 import { login, logout, setType } from "./Features/authSlice";
 import { combineReducers } from "redux";
+import {
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
 // Persist config for redux-persist
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["auth", "theme"], // Agrega solo los reducers que quieres persistir
 };
 
 // Combine reducers for extensibility
@@ -26,6 +35,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Configure the store with the persisted reducer
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER], // Ignora las acciones de redux-persist
+      },
+    }),
 });
 
 // Configure persistor for redux-persist
