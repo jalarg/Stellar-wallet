@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Billetera Stellar
 
-## Getting Started
+Esta es una aplicación de billetera Stellar construida con [Next.js](https://nextjs.org/). Permite a los usuarios crear una billetera y probar el proceso de intercambio de dinero utilizando la criptomoneda de la testnet de Stellar.
 
-First, run the development server:
+## Características
+
+- **Creación de Billetera**: Crea fácilmente una nueva billetera para comenzar a usar la testnet de Stellar.
+- **Intercambio de Criptomonedas**: Prueba el proceso de intercambio de criptomonedas de la testnet de Stellar.
+- **Autenticación Segura**: Incluye componentes de autenticación para asegurar el acceso.
+- **Diseño Responsivo**: Construido con un diseño responsivo para asegurar la usabilidad en diferentes dispositivos.
+
+## Comenzando
+
+Primero, se instalan dependencias y se ejecuta el servidor de desarrollo:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura del Proyecto
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Componentes**: Componentes reutilizables como Navbar, Footer y Payments se encuentran en el directorio `src/components`.
+- **Páginas**: Las páginas principales de la aplicación están en el directorio `src/pages`, con páginas específicas de la billetera en `src/pages/wallet`.
+- **Gestión de Estado Global**: Gestionado usando Redux, ubicado en el directorio `src/GlobalRedux`.
+- **Estilos**: Todos los archivos de estilo se encuentran en el directorio `src/styles`.
 
-## Learn More
+## Despliegue
 
-To learn more about Next.js, take a look at the following resources:
+La aplicación está desplegada en Vercel y se puede acceder a través de [este enlace](https://rocket-stellar-wallet.vercel.app/wallet).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Aprende Más
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Para aprender más sobre Next.js, consulta los siguientes recursos:
 
-## Deploy on Vercel
+- [Documentación de Next.js](https://nextjs.org/docs) - aprende sobre las características y API de Next.js.
+- [Aprende Next.js](https://nextjs.org/learn) - un tutorial interactivo de Next.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Despliegue en Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+La forma más fácil de desplegar tu aplicación Next.js es usar la [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) de los creadores de Next.js.
+
+Consulta nuestra [documentación de despliegue de Next.js](https://nextjs.org/docs/deployment) para más detalles.
