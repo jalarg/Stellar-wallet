@@ -15,9 +15,19 @@ const Navbar: React.FC = () => {
   const { theme } = useSelector(
     (state: { theme: { theme: "light" | "dark" } }) => state.theme
   );
+  const themeIcon =
+    theme === "light" ? (
+      <RiSunLine className="w-6 h-6 text-yellow-500 transition-transform transform hover:rotate-45" />
+    ) : (
+      <RiMoonFill className="w-6 h-6 text-blue-500 transition-transform transform hover:rotate-45" />
+    );
 
   const handleChangeTheme = useCallback(() => {
     dispatch(toggleTheme());
+  }, [dispatch]);
+
+  const handleLogoutClick = useCallback(() => {
+    handleLogout(dispatch);
   }, [dispatch]);
 
   return (
@@ -36,20 +46,14 @@ const Navbar: React.FC = () => {
         <div className="flex items-center gap-4 sm:flex-col sm:gap-2">
           {isAuthenticated && (
             <Button
-              onClick={() => handleLogout(dispatch)}
+              onClick={handleLogoutClick}
               className="bg-blue-500 hover:bg-orange-600 text-white sm:w-full"
             >
               Logout
             </Button>
           )}
           <Avatar
-            icon={
-              theme === "light" ? (
-                <RiSunLine className="w-6 h-6 text-yellow-500 transition-transform transform hover:rotate-45" />
-              ) : (
-                <RiMoonFill className="w-6 h-6 text-blue-500 transition-transform transform hover:rotate-45" />
-              )
-            }
+            icon={themeIcon}
             className={`w-10 h-10 flex items-center justify-center bg-white border border-black ${
               theme === "dark" ? "hover:bg-blue-300" : "hover:bg-yellow-300"
             }`}
