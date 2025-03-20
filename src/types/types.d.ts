@@ -30,6 +30,7 @@ export interface IButton {
   disabled?: boolean;
   buttonClass?: string;
   isLoading?: boolean;
+  className?: string;
 }
 
 export interface IRegisterButton {

@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IAuth } from "../types/types";
 import { handleLogout } from "../actions/handlers";
 import { toggleTheme } from "../GlobalRedux/Features/themeSlice";
+import { Button } from "../components/commons";
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,25 +23,24 @@ const Navbar: React.FC = () => {
   return (
     <nav className="bg-white dark:bg-gray-400 p-4 text-black dark:text-white">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold">
+        <div className="text-2xl font-bold hidden sm:block">
           <Link className="stellar-icon" href="https://stellar.org/">
-            <Image src={logo} alt="logo" width={120} height={120} />
+            <Image
+              src="/assets/stellar-xlm-logo-full.svg"
+              alt="logo"
+              width={120}
+              height={120}
+            />
           </Link>
         </div>
-        <div className="lg:flex block gap-6">
+        <div className="flex items-center gap-4 sm:flex-col sm:gap-2">
           {auth.isAuthenticated && (
-            <div className="flex items-center">
-              <Link className="navbar-link-logout" href="/">
-                <Image
-                  className="cursor-pointer"
-                  onClick={() => handleLogout(dispatch)}
-                  src={logout}
-                  alt="logout"
-                  width={50}
-                  height={50}
-                />
-              </Link>
-            </div>
+            <Button
+              onClick={() => handleLogout(dispatch)}
+              className="bg-blue-500 hover:bg-orange-600 text-white sm:w-full"
+            >
+              Logout
+            </Button>
           )}
           <Avatar
             icon={
