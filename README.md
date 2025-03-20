@@ -11,7 +11,13 @@ Esta es una aplicación de billetera Stellar construida con [Next.js](https://ne
 
 ## Comenzando
 
-Primero, se instalan dependencias y se ejecuta el servidor de desarrollo:
+Primero, copia el archivo de variables de entorno y configúralo:
+
+```bash
+cp .env.example .env
+```
+
+Segundo, se instalan dependencias y se ejecuta el servidor de desarrollo:
 
 ```bash
 npm install
