@@ -20,7 +20,7 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth", "theme"], // Agrega solo los reducers que quieres persistir
+  whitelist: ["auth", "theme"],
 };
 
 // Combine reducers for extensibility
