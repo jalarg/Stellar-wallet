@@ -13,6 +13,7 @@ import { message } from "antd";
 import Payments from "../../components/Payments";
 import withAuth from "../../components/withAuth";
 import { IWalletComponent } from "../../types/types";
+import { useCallback } from "react";
 
 function Wallet({
   publicKey,
@@ -26,13 +27,13 @@ function Wallet({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
-  const openModal = (modalName: string) => {
+  const openModal = useCallback((modalName: string) => {
     setActiveModal(modalName);
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setActiveModal(null);
-  };
+  }, []);
 
   return (
     <div className="wallet-container flex flex-col min-h-screen">
