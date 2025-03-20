@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../assets/stellar-xlm-logo-full.svg";
-import logout from "../assets/logout.png";
 import { Avatar } from "antd";
 import { RiSunLine, RiMoonFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,17 +7,19 @@ import { IAuth } from "../types/types";
 import { handleLogout } from "../actions/handlers";
 import { toggleTheme } from "../GlobalRedux/Features/themeSlice";
 import { Button } from "../components/commons";
+import { useCallback } from "react";
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
-  const auth = useSelector((state: IAuth) => state.auth);
-  const theme = useSelector(
-    (state: { theme: { theme: "light" | "dark" } }) => state.theme.theme
+  const { isAuthenticated } = useSelector((state: IAuth) => state.auth);
+  const { theme } = useSelector(
+    (state: { theme: { theme: "light" | "dark" } }) => state.theme
   );
 
-  const handleChangeTheme = () => {
+  const handleChangeTheme = useCallback(() => {
     dispatch(toggleTheme());
-  };
+  }, [dispatch]);
+
   return (
     <nav className="bg-white dark:bg-gray-400 p-4 text-black dark:text-white">
       <div className="container mx-auto flex justify-between items-center">
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
         <div className="flex items-center gap-4 sm:flex-col sm:gap-2">
-          {auth.isAuthenticated && (
+          {isAuthenticated && (
             <Button
               onClick={() => handleLogout(dispatch)}
               className="bg-blue-500 hover:bg-orange-600 text-white sm:w-full"
